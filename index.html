@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InterviewPro — Interviews & Assessments, Built in Minutes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ============ CSS VARIABLES / THEME ============ */
+:root{
+  --bg:#F8FAFC;
+  --primary:#2563EB;
+  --secondary:#4F46E5;
+  --accent:#06B6D4;
+  --success:#10B981;
+  --text:#0F172A;
+  --text-secondary:#64748B;
+  --card-bg:#FFFFFF;
+  --border:#E2E8F0;
+  --gradient:linear-gradient(135deg,#2563EB,#4F46E5);
+  --gradient-accent:linear-gradient(135deg,#06B6D4,#2563EB);
+  --radius:20px;
+  --radius-sm:12px;
+  --shadow-sm:0 2px 8px rgba(15,23,42,0.04);
+  --shadow-md:0 8px 24px rgba(15,23,42,0.08);
+  --shadow-lg:0 20px 48px rgba(37,99,235,0.16);
+  --transition:all .35s cubic-bezier(.4,0,.2,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+button{font-family:inherit;border:none;cursor:pointer;background:none;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.section{padding:120px 0;position:relative;}
+@media(max-width:768px){.section{padding:80px 0;}}
+
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(37,99,235,0.08);
+  color:var(--primary);
+  font-size:13px;font-weight:600;
+  padding:7px 16px;border-radius:999px;
+  margin-bottom:18px;letter-spacing:.02em;
+}
+.section-heading{
+  font-size:clamp(28px,4vw,42px);
+  font-weight:800;
+  letter-spacing:-0.02em;
+  margin-bottom:16px;
+}
+.section-sub{
+  color:var(--text-secondary);
+  font-size:17px;
+  max-width:560px;
+}
+.section-head{margin-bottom:56px;}
+.section-head.center{text-align:center;margin-left:auto;margin-right:auto;}
+.section-head.center .section-sub{margin-left:auto;margin-right:auto;}
+
+/* Buttons */
+.btn{
+  position:relative;overflow:hidden;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 28px;
+  border-radius:14px;
+  font-weight:600;
+  font-size:15px;
+  transition:var(--transition);
+  white-space:nowrap;
+}
+.btn-primary{
+  background:var(--gradient);
+  color:#fff;
+  box-shadow:0 8px 20px rgba(37,99,235,.28);
+  background-size:150% 150%;
+  background-position:0% 50%;
+}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 30px rgba(37,99,235,.36);
+  background-position:100% 50%;
+}
+.btn-outline{
+  background:#fff;
+  border:1.5px solid var(--border);
+  color:var(--text);
+}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px);}
+.btn-lg{padding:16px 34px;font-size:16px;}
+.ripple{
+  position:absolute;border-radius:50%;
+  background:rgba(255,255,255,.5);
+  transform:scale(0);
+  animation:rippleAnim .6s linear;
+  pointer-events:none;
+}
+@keyframes rippleAnim{to{transform:scale(3.5);opacity:0;}}
+
+/* ============ NAVBAR ============ */
+.navbar{
+  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  padding:20px 0;
+  transition:var(--transition);
+}
+.navbar.scrolled{
+  background:rgba(248,250,252,0.75);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 4px 20px rgba(15,23,42,0.06);
+  padding:14px 0;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-size:21px;font-weight:800;letter-spacing:-0.02em;
+}
+.logo .logo-mark{
+  width:34px;height:34px;border-radius:10px;
+  background:var(--gradient);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:16px;
+  box-shadow:0 6px 14px rgba(37,99,235,.3);
+}
+.nav-links{display:flex;align-items:center;gap:36px;}
+.nav-links a{
+  font-size:14.5px;font-weight:500;color:var(--text);
+  position:relative;padding:4px 0;
+  transition:var(--transition);
+}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:-2px;
+  width:0;height:2px;background:var(--gradient);
+  transition:var(--transition);border-radius:2px;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--primary);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-actions{display:flex;align-items:center;gap:14px;}
+.login-btn{font-size:14.5px;font-weight:600;color:var(--text);padding:10px 6px;}
+.login-btn:hover{color:var(--primary);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1100;}
+.hamburger span{width:24px;height:2.5px;background:var(--text);border-radius:2px;transition:var(--transition);}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+@media(max-width:920px){
+  .nav-links{
+    position:fixed;top:0;right:-100%;width:78%;max-width:320px;height:100vh;
+    background:#fff;flex-direction:column;justify-content:center;gap:28px;
+    box-shadow:-10px 0 40px rgba(15,23,42,.1);
+    transition:right .4s cubic-bezier(.4,0,.2,1);
+  }
+  .nav-links.open{right:0;}
+  .login-btn{display:none;}
+  .hamburger{display:flex;}
+}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;
+  padding:170px 0 120px;
+  overflow:hidden;
+}
+.blob{
+  position:absolute;border-radius:50%;
+  filter:blur(60px);opacity:.35;z-index:0;
+  animation:blobMove 14s ease-in-out infinite;
+}
+.blob1{width:480px;height:480px;background:var(--primary);top:-160px;right:-120px;}
+.blob2{width:380px;height:380px;background:var(--accent);bottom:-100px;left:-100px;animation-delay:2s;}
+.blob3{width:260px;height:260px;background:var(--secondary);top:40%;right:30%;opacity:.18;animation-delay:4s;}
+@keyframes blobMove{
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(40px,-30px) scale(1.1);}
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;
+  position:relative;z-index:1;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;border:1px solid var(--border);
+  padding:8px 16px;border-radius:999px;
+  font-size:13px;font-weight:600;color:var(--primary);
+  box-shadow:var(--shadow-sm);margin-bottom:24px;
+}
+.hero-badge i{color:var(--accent);}
+.hero h1{
+  font-size:clamp(34px,5vw,58px);
+  font-weight:900;letter-spacing:-0.03em;line-height:1.08;
+  margin-bottom:24px;
+}
+.hero h1 .typed-wrap{
+  background:var(--gradient);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.cursor{display:inline-block;width:3px;background:var(--primary);margin-left:2px;animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+.hero p.lead{
+  font-size:18px;color:var(--text-secondary);max-width:520px;margin-bottom:36px;
+}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;}
+.trust-row{display:flex;align-items:center;gap:14px;}
+.avatars{display:flex;}
+.avatars span{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--gradient);border:2px solid #fff;
+  margin-left:-10px;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:11px;font-weight:700;
+}
+.avatars span:first-child{margin-left:0;}
+.trust-row small{color:var(--text-secondary);font-size:13.5px;font-weight:500;}
+
+/* Hero visual */
+.hero-visual{position:relative;height:480px;}
+.dash-card{
+  position:absolute;background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.6);
+  border-radius:var(--radius);box-shadow:var(--shadow-lg);
+  padding:20px;
+}
+.dash-main{top:30px;left:10px;width:88%;height:380px;z-index:2;}
+.dash-main .dash-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.dash-dot{display:flex;gap:6px;}
+.dash-dot span{width:9px;height:9px;border-radius:50%;background:var(--border);}
+.dash-bars{display:flex;align-items:flex-end;gap:10px;height:140px;margin:24px 0;}
+.dash-bars div{flex:1;border-radius:8px 8px 0 0;background:var(--gradient);opacity:.85;}
+.dash-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--border);}
+.dash-row .dot{width:30px;height:30px;border-radius:8px;background:var(--gradient-accent);flex-shrink:0;}
+.dash-row .lines{flex:1;}
+.dash-row .lines .l1{height:8px;width:70%;background:var(--border);border-radius:4px;margin-bottom:6px;}
+.dash-row .lines .l2{height:6px;width:40%;background:#EEF2F7;border-radius:4px;}
+.float-card{
+  z-index:3;display:flex;align-items:center;gap:12px;
+  animation:floatY 4s ease-in-out infinite;
+}
+.float-card .ic{
+  width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;
+}
+.float-card h4{font-size:18px;font-weight:800;line-height:1;}
+.float-card p{font-size:11.5px;color:var(--text-secondary);font-weight:600;}
+.fc1{top:-10px;right:-10px;animation-delay:0s;}
+.fc1 .ic{background:var(--primary);}
+.fc2{bottom:40px;right:-30px;animation-delay:1s;}
+.fc2 .ic{background:var(--success);}
+.fc3{bottom:-20px;left:20px;animation-delay:2s;}
+.fc3 .ic{background:var(--secondary);}
+.fc4{top:160px;left:-40px;animation-delay:1.5s;}
+.fc4 .ic{background:var(--accent);}
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+
+@media(max-width:920px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-visual{height:380px;margin-top:40px;}
+  .hero{padding:140px 0 80px;}
+}
+
+/* ============ TRUSTED LOGOS ============ */
+.logos-section{padding:50px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.logos-label{text-align:center;color:var(--text-secondary);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:30px;}
+.logo-track-wrap{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);}
+.logo-track{display:flex;gap:70px;width:max-content;animation:scrollLogos 26s linear infinite;align-items:center;}
+.logo-track span{
+  font-size:21px;font-weight:800;color:#94A3B8;white-space:nowrap;
+  display:flex;align-items:center;gap:8px;
+}
+.logo-track span i{font-size:18px;}
+@keyframes scrollLogos{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ============ FEATURES ============ */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.feature-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:var(--radius);padding:32px 28px;
+  transition:var(--transition);
+}
+.feature-card:hover{
+  transform:translateY(-8px);
+  box-shadow:var(--shadow-lg);
+  border-color:transparent;
+}
+.feature-icon{
+  width:54px;height:54px;border-radius:16px;
+  background:var(--gradient);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:22px;margin-bottom:22px;
+  box-shadow:0 8px 18px rgba(37,99,235,.25);
+}
+.feature-card h3{font-size:19px;font-weight:700;margin-bottom:10px;}
+.feature-card p{color:var(--text-secondary);font-size:14.5px;}
+@media(max-width:920px){.features-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:620px){.features-grid{grid-template-columns:1fr;}}
+
+/* ============ HOW IT WORKS ============ */
+.timeline{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.timeline::before{
+  content:'';position:absolute;top:34px;left:8%;right:8%;height:2px;
+  background:repeating-linear-gradient(90deg,var(--border) 0 8px,transparent 8px 14px);
+  z-index:0;
+}
+.tl-step{position:relative;z-index:1;text-align:center;}
+.tl-num{
+  width:68px;height:68px;border-radius:50%;background:#fff;border:2px solid var(--primary);
+  color:var(--primary);font-weight:800;font-size:22px;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 22px;
+  box-shadow:var(--shadow-sm);transition:var(--transition);
+}
+.tl-step:hover .tl-num{background:var(--gradient);color:#fff;transform:scale(1.08);}
+.tl-step h4{font-size:16.5px;font-weight:700;margin-bottom:8px;}
+.tl-step p{font-size:13.5px;color:var(--text-secondary);padding:0 8px;}
+@media(max-width:820px){.timeline{grid-template-columns:1fr 1fr;row-gap:50px;}.timeline::before{display:none;}}
+@media(max-width:480px){.timeline{grid-template-columns:1fr;}}
+
+/* ============ PRODUCT SHOWCASE ============ */
+.showcase-wrap{
+  background:linear-gradient(135deg,#0F172A,#1E293B);
+  border-radius:28px;padding:48px;position:relative;overflow:hidden;
+  box-shadow:var(--shadow-lg);
+}
+.showcase-wrap::before{
+  content:'';position:absolute;top:-100px;right:-100px;width:300px;height:300px;
+  background:var(--primary);filter:blur(90px);opacity:.4;border-radius:50%;
+}
+.mock-dashboard{
+  position:relative;z-index:1;background:#fff;border-radius:18px;padding:24px;
+  display:grid;grid-template-columns:220px 1fr;gap:20px;box-shadow:0 30px 60px rgba(0,0,0,.4);
+}
+.mock-side{border-right:1px solid var(--border);padding-right:16px;}
+.mock-side .ms-item{display:flex;align-items:center;gap:10px;padding:10px 10px;border-radius:10px;font-size:13px;font-weight:600;color:var(--text-secondary);margin-bottom:4px;}
+.mock-side .ms-item.active{background:rgba(37,99,235,.08);color:var(--primary);}
+.mock-side .ms-item i{width:18px;text-align:center;}
+.mock-main-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.mock-panel{border:1px solid var(--border);border-radius:14px;padding:16px;}
+.mock-panel h5{font-size:13px;font-weight:700;margin-bottom:14px;display:flex;justify-content:space-between;color:var(--text-secondary);}
+.donut{width:110px;height:110px;border-radius:50%;margin:0 auto;
+  background:conic-gradient(var(--primary) 0% 62%, var(--accent) 62% 85%, var(--border) 85% 100%);
+  display:flex;align-items:center;justify-content:center;}
+.donut span{width:64px;height:64px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;}
+.mini-bars{display:flex;align-items:flex-end;gap:8px;height:80px;}
+.mini-bars div{flex:1;border-radius:6px 6px 0 0;background:var(--gradient-accent);}
+.mock-list .mock-li{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #F1F5F9;font-size:12.5px;}
+.tag{padding:3px 9px;border-radius:999px;font-size:11px;font-weight:700;}
+.tag.green{background:rgba(16,185,129,.12);color:var(--success);}
+.tag.blue{background:rgba(37,99,235,.12);color:var(--primary);}
+@media(max-width:820px){.mock-dashboard{grid-template-columns:1fr;}.mock-side{display:none;}.showcase-wrap{padding:24px;}}
+@media(max-width:600px){.mock-main-grid{grid-template-columns:1fr;}}
+
+/* ============ WHY CHOOSE US ============ */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.why-illustration{
+  aspect-ratio:1/1;border-radius:28px;
+  background:var(--gradient);position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.why-illustration i{font-size:120px;color:rgba(255,255,255,.25);}
+.why-illustration .orbit{
+  position:absolute;width:70%;height:70%;border:2px dashed rgba(255,255,255,.3);border-radius:50%;
+  animation:spin 18s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.why-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.why-item{
+  display:flex;gap:14px;align-items:flex-start;
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:18px;transition:var(--transition);
+}
+.why-item:hover{box-shadow:var(--shadow-md);transform:translateY(-4px);border-color:transparent;}
+.why-item i{color:var(--primary);font-size:18px;margin-top:2px;}
+.why-item h4{font-size:14.5px;font-weight:700;margin-bottom:2px;}
+.why-item p{font-size:12.5px;color:var(--text-secondary);}
+@media(max-width:920px){.why-grid{grid-template-columns:1fr;}.why-list{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.why-list{grid-template-columns:1fr;}}
+
+/* ============ STATS ============ */
+.stats-section{background:var(--gradient);border-radius:28px;margin:0 24px;padding:64px 40px;}
+.stats-section .container{padding:0;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;}
+.stat-item h3{color:#fff;font-size:clamp(32px,4vw,46px);font-weight:800;}
+.stat-item p{color:rgba(255,255,255,.85);font-size:14px;font-weight:600;margin-top:4px;}
+@media(max-width:820px){.stats-grid{grid-template-columns:1fr 1fr;gap:36px;}}
+
+/* ============ PRICING ============ */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start;}
+.price-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  padding:40px 32px;transition:var(--transition);position:relative;
+}
+.price-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
+.price-card.highlight{
+  background:linear-gradient(160deg,#0F172A,#1E293B);
+  color:#fff;transform:scale(1.05);box-shadow:var(--shadow-lg);
+  border:none;
+}
+.price-card.highlight:hover{transform:scale(1.05) translateY(-6px);}
+.price-badge{
+  position:absolute;top:-14px;right:32px;background:var(--gradient-accent);
+  color:#fff;font-size:12px;font-weight:700;padding:6px 14px;border-radius:999px;
+}
+.price-card h3{font-size:18px;font-weight:700;margin-bottom:6px;}
+.price-card .price-desc{font-size:13px;opacity:.7;margin-bottom:24px;}
+.price-card .price{font-size:42px;font-weight:800;margin-bottom:4px;}
+.price-card .price small{font-size:14px;font-weight:500;opacity:.6;}
+.price-card .price-period{font-size:13px;opacity:.6;margin-bottom:28px;}
+.price-features{margin-bottom:32px;}
+.price-features li{display:flex;gap:10px;align-items:flex-start;font-size:14px;padding:8px 0;}
+.price-features li i{color:var(--success);margin-top:3px;}
+.price-card.highlight .price-features li i{color:var(--accent);}
+.price-card .btn{width:100%;}
+@media(max-width:920px){.pricing-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto;}.price-card.highlight{transform:none;order:-1;}.price-card.highlight:hover{transform:translateY(-6px);}}
+
+/* ============ TESTIMONIALS ============ */
+.testi-wrap{position:relative;overflow:hidden;}
+.testi-track{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1);}
+.testi-slide{flex:0 0 100%;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding:4px;}
+.testi-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:30px;}
+.testi-stars{color:#F59E0B;font-size:14px;margin-bottom:16px;}
+.testi-card p.review{font-size:14.5px;color:var(--text);margin-bottom:24px;}
+.testi-person{display:flex;align-items:center;gap:12px;}
+.testi-avatar{width:42px;height:42px;border-radius:50%;background:var(--gradient);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;}
+.testi-person h5{font-size:14px;font-weight:700;}
+.testi-person span{font-size:12px;color:var(--text-secondary);}
+.testi-dots{display:flex;justify-content:center;gap:8px;margin-top:36px;}
+.testi-dots span{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:var(--transition);}
+.testi-dots span.active{width:26px;border-radius:5px;background:var(--gradient);}
+@media(max-width:920px){.testi-slide{grid-template-columns:1fr;gap:20px;}}
+
+/* ============ FAQ ============ */
+.faq-list{max-width:760px;margin:0 auto;}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:14px;overflow:hidden;background:#fff;}
+.faq-q{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 24px;cursor:pointer;font-weight:600;font-size:15px;
+}
+.faq-q i{transition:var(--transition);color:var(--primary);}
+.faq-item.open .faq-q i{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-a p{padding:0 24px 20px;color:var(--text-secondary);font-size:14px;}
+
+/* ============ CTA BANNER ============ */
+.cta-banner{
+  background:var(--gradient);border-radius:28px;margin:0 24px;
+  padding:80px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.cta-banner::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.15),transparent 50%);
+}
+.cta-banner h2{position:relative;color:#fff;font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:14px;}
+.cta-banner p{position:relative;color:rgba(255,255,255,.85);margin-bottom:32px;}
+.cta-banner .btn-outline{position:relative;background:#fff;border:none;color:var(--primary);}
+
+/* ============ FOOTER ============ */
+footer{background:#0F172A;color:#94A3B8;padding:70px 0 28px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px;}
+.footer-logo{display:flex;align-items:center;gap:10px;color:#fff;font-size:20px;font-weight:800;margin-bottom:16px;}
+.footer-col h5{color:#fff;font-size:14px;font-weight:700;margin-bottom:18px;}
+.footer-col li{margin-bottom:10px;font-size:13.5px;}
+.footer-col a:hover{color:#fff;}
+.social-icons{display:flex;gap:12px;margin-top:20px;}
+.social-icons a{
+  width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:center;transition:var(--transition);
+}
+.social-icons a:hover{background:var(--gradient);color:#fff;}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.08);padding-top:24px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;
+}
+.footer-bottom a{margin-left:18px;}
+@media(max-width:820px){.footer-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.footer-grid{grid-template-columns:1fr;}}
+
+/* ============ BACK TO TOP ============ */
+.back-top{
+  position:fixed;bottom:28px;right:28px;width:48px;height:48px;border-radius:50%;
+  background:var(--gradient);color:#fff;display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transform:translateY(10px);
+  transition:var(--transition);z-index:900;font-size:16px;
+}
+.back-top.show{opacity:1;pointer-events:all;transform:translateY(0);}
+
+/* ============ SCROLL ANIMATIONS ============ */
+.fade-up,.slide-left,.slide-right,.zoom-in{opacity:0;transition:opacity .8s ease,transform .8s ease;}
+.fade-up{transform:translateY(40px);}
+.slide-left{transform:translateX(-50px);}
+.slide-right{transform:translateX(50px);}
+.zoom-in{transform:scale(.92);}
+.in-view{opacity:1;transform:none;}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="logo"><span class="logo-mark"><i class="fa-solid fa-bolt"></i></span>InterviewPro</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#features" class="nav-link">Features</a></li>
+      <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+      <li><a href="#pricing" class="nav-link">Pricing</a></li>
+      <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#" class="login-btn">Log In</a>
+      <a href="#pricing" class="btn btn-primary">Start Free</a>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <div class="hero-badge"><i class="fa-solid fa-sparkles"></i> AI-Assisted Assessment Platform</div>
+      <h1>Create Professional <span class="typed-wrap" id="typedText"></span><span class="cursor"></span><br>in Minutes.</h1>
+      <p class="lead">Build coding tests, aptitude exams, MCQs, subjective papers, and recruitment assessments. Share with candidates using a single secure link.</p>
+      <div class="hero-ctas">
+        <a href="#pricing" class="btn btn-primary btn-lg">Start Free</a>
+        <a href="#" class="btn btn-outline btn-lg"><i class="fa-solid fa-circle-play"></i> Watch Demo</a>
+      </div>
+      <div class="trust-row">
+        <div class="avatars"><span>A</span><span>R</span><span>K</span><span>M</span></div>
+        <small>Trusted by 250+ hiring teams worldwide</small>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="dash-card dash-main fade-up">
+        <div class="dash-head">
+          <strong style="font-size:14px;">Dashboard Overview</strong>
+          <div class="dash-dot"><span></span><span></span><span></span></div>
+        </div>
+        <div class="dash-bars">
+          <div style="height:40%;"></div><div style="height:70%;"></div><div style="height:55%;"></div>
+          <div style="height:90%;"></div><div style="height:65%;"></div><div style="height:80%;"></div><div style="height:45%;"></div>
+        </div>
+        <div class="dash-row"><div class="dot"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div></div>
+        <div class="dash-row"><div class="dot"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div></div>
+      </div>
+      <div class="dash-card float-card fc1"><div class="ic"><i class="fa-solid fa-file-circle-check"></i></div><div><h4>10,000+</h4><p>Exams Created</p></div></div>
+      <div class="dash-card float-card fc2"><div class="ic"><i class="fa-solid fa-chart-line"></i></div><div><h4>98%</h4><p>Success Rate</p></div></div>
+      <div class="dash-card float-card fc3"><div class="ic"><i class="fa-solid fa-building"></i></div><div><h4>250+</h4><p>Companies</p></div></div>
+      <div class="dash-card float-card fc4"><div class="ic"><i class="fa-solid fa-users"></i></div><div><h4>50K+</h4><p>Candidates</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUSTED LOGOS ============ -->
+<section class="logos-section">
+  <p class="logos-label">Trusted by hiring teams at</p>
+  <div class="logo-track-wrap">
+    <div class="logo-track" id="logoTrack">
+      <span><i class="fa-brands fa-google"></i> Google</span>
+      <span><i class="fa-brands fa-microsoft"></i> Microsoft</span>
+      <span><i class="fa-brands fa-amazon"></i> Amazon</span>
+      <span>Infosys</span>
+      <span>TCS</span>
+      <span>Accenture</span>
+      <span><i class="fa-brands fa-ibm"></i> IBM</span>
+      <span><i class="fa-brands fa-adobe"></i> Adobe</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-eyebrow">FEATURES</span>
+      <h2 class="section-heading">Everything you need to assess talent</h2>
+      <p class="section-sub">A complete toolkit for building, running, and grading interviews and exams — without the busywork.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-up"><div class="feature-icon"><i class="fa-solid fa-pen-ruler"></i></div><h3>Easy Exam Builder</h3><p>Drag-and-drop builder for MCQs, coding tasks, and subjective questions — no training required.</p></div>
+      <div class="feature-card fade-up"><div class="feature-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div><h3>AI Question Generator</h3><p>Generate role-specific question banks instantly from a job description or topic.</p></div>
+      <div class="feature-card fade-up"><div class="feature-icon"><i class="fa-solid fa-code"></i></div><h3>Live Coding Interviews</h3><p>Run real-time coding rounds with a built-in editor, multiple languages, and instant compilation.</p></div>
+      <div class="feature-card fade-up"><div class="feature-icon"><i class="fa-solid fa-clipboard-check"></i></div><h3>Automatic Evaluation</h3><p>Objective questions and code are graded automatically the moment a candidate submits.</p></div>
+      <div class="feature-card fade-up"><div class="feature-icon"><i class="fa-solid fa-chart-pie"></i></div><h3>Candidate Analytics</h3><p>Score distributions, topic-wise breakdowns, and proctoring insights in one dashboard.</p></div>
+      <div class="feature-card fade-up"><div class="feature-icon"><i class="fa-solid fa-bolt"></i></div><h3>Instant Result Publishing</h3><p>Publish results and shortlists the moment an assessment window closes.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section" id="how-it-works" style="background:#fff;">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-eyebrow">HOW IT WORKS</span>
+      <h2 class="section-heading">Live in four simple steps</h2>
+      <p class="section-sub">From blank page to published results — no setup, no installs.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-step fade-up"><div class="tl-num">1</div><h4>Create Exam</h4><p>Pick a template or start from scratch.</p></div>
+      <div class="tl-step fade-up"><div class="tl-num">2</div><h4>Customize Questions</h4><p>Add MCQs, coding tasks, or subjective prompts.</p></div>
+      <div class="tl-step fade-up"><div class="tl-num">3</div><h4>Share Secure Link</h4><p>Send one link — no signup required for candidates.</p></div>
+      <div class="tl-step fade-up"><div class="tl-num">4</div><h4>Receive Analytics</h4><p>Get scores and insights the moment they finish.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCT SHOWCASE ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-eyebrow">PRODUCT</span>
+      <h2 class="section-heading">A dashboard built for hiring teams</h2>
+      <p class="section-sub">Every candidate, score, and question in one organized workspace.</p>
+    </div>
+    <div class="showcase-wrap zoom-in">
+      <div class="mock-dashboard">
+        <div class="mock-side">
+          <div class="ms-item active"><i class="fa-solid fa-gauge"></i> Overview</div>
+          <div class="ms-item"><i class="fa-solid fa-users"></i> Candidates</div>
+          <div class="ms-item"><i class="fa-solid fa-list-check"></i> Questions</div>
+          <div class="ms-item"><i class="fa-solid fa-chart-simple"></i> Analytics</div>
+          <div class="ms-item"><i class="fa-solid fa-gear"></i> Settings</div>
+        </div>
+        <div>
+          <div class="mock-main-grid" style="margin-bottom:16px;">
+            <div class="mock-panel"><h5>Score Distribution</h5><div class="donut"><span>76%</span></div></div>
+            <div class="mock-panel"><h5>Weekly Submissions</h5><div class="mini-bars"><div style="height:30%;"></div><div style="height:60%;"></div><div style="height:45%;"></div><div style="height:80%;"></div><div style="height:55%;"></div></div></div>
+          </div>
+          <div class="mock-panel mock-list">
+            <h5>Recent Activity</h5>
+            <div class="mock-li"><span>Aarav Sharma — Frontend Round</span><span class="tag green">Passed</span></div>
+            <div class="mock-li"><span>Priya Verma — DSA Assessment</span><span class="tag blue">In Review</span></div>
+            <div class="mock-li"><span>Rohan Iyer — Aptitude Test</span><span class="tag green">Passed</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-eyebrow">WHY INTERVIEWPRO</span>
+      <h2 class="section-heading">Built for modern hiring teams</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-illustration slide-left"><div class="orbit"></div><i class="fa-solid fa-cloud"></i></div>
+      <div class="why-list">
+        <div class="why-item slide-right"><i class="fa-solid fa-cloud-arrow-up"></i><div><h4>No Installation</h4><p>Runs entirely in the browser.</p></div></div>
+        <div class="why-item slide-right"><i class="fa-solid fa-server"></i><div><h4>Cloud Based</h4><p>Access from anywhere, anytime.</p></div></div>
+        <div class="why-item slide-right"><i class="fa-solid fa-robot"></i><div><h4>AI Assisted</h4><p>Smart question generation built in.</p></div></div>
+        <div class="why-item slide-right"><i class="fa-solid fa-user-shield"></i><div><h4>Role Based Access</h4><p>Control who sees and edits what.</p></div></div>
+        <div class="why-item slide-right"><i class="fa-solid fa-video"></i><div><h4>Realtime Monitoring</h4><p>Watch live sessions as they happen.</p></div></div>
+        <div class="why-item slide-right"><i class="fa-solid fa-floppy-disk"></i><div><h4>Auto Save</h4><p>Candidate progress is never lost.</p></div></div>
+        <div class="why-item slide-right"><i class="fa-solid fa-lock"></i><div><h4>Secure Encryption</h4><p>Data protected end-to-end.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="section" style="padding:60px 0;">
+  <div class="stats-section zoom-in">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item"><h3 data-count="10000">0</h3><p>Assessments</p></div>
+        <div class="stat-item"><h3 data-count="50000">0</h3><p>Candidates</p></div>
+        <div class="stat-item"><h3 data-count="250">0</h3><p>Organizations</p></div>
+        <div class="stat-item"><h3 data-count="99.9" data-decimal="1">0</h3><p>Uptime %</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="section" id="pricing" style="background:#fff;">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-eyebrow">PRICING</span>
+      <h2 class="section-heading">Simple, transparent pricing</h2>
+      <p class="section-sub">Start free. Upgrade when your hiring volume grows.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card fade-up">
+        <h3>Starter</h3><p class="price-desc">For individuals & small teams</p>
+        <div class="price">$0</div><p class="price-period">forever free</p>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-circle-check"></i> 5 active exams</li>
+          <li><i class="fa-solid fa-circle-check"></i> 50 candidates / month</li>
+          <li><i class="fa-solid fa-circle-check"></i> MCQ & subjective questions</li>
+          <li><i class="fa-solid fa-circle-check"></i> Basic analytics</li>
+        </ul>
+        <a href="#" class="btn btn-outline">Get Started</a>
+      </div>
+      <div class="price-card highlight fade-up">
+        <span class="price-badge">Most Popular</span>
+        <h3>Professional</h3><p class="price-desc">For growing hiring teams</p>
+        <div class="price">$49<small>/mo</small></div><p class="price-period">billed monthly</p>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-circle-check"></i> Unlimited exams</li>
+          <li><i class="fa-solid fa-circle-check"></i> 1,000 candidates / month</li>
+          <li><i class="fa-solid fa-circle-check"></i> Live coding interviews</li>
+          <li><i class="fa-solid fa-circle-check"></i> AI question generator</li>
+          <li><i class="fa-solid fa-circle-check"></i> Advanced analytics</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Start Free Trial</a>
+      </div>
+      <div class="price-card fade-up">
+        <h3>Enterprise</h3><p class="price-desc">For large organizations</p>
+        <div class="price">Custom</div><p class="price-period">talk to sales</p>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-circle-check"></i> Unlimited everything</li>
+          <li><i class="fa-solid fa-circle-check"></i> Role based access</li>
+          <li><i class="fa-solid fa-circle-check"></i> Dedicated support</li>
+          <li><i class="fa-solid fa-circle-check"></i> Custom integrations</li>
+        </ul>
+        <a href="#" class="btn btn-outline">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-eyebrow">TESTIMONIALS</span>
+      <h2 class="section-heading">Loved by hiring teams</h2>
+    </div>
+    <div class="testi-wrap">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-slide">
+          <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="review">"InterviewPro cut our screening time in half. The live coding rounds feel completely native to our workflow."</p><div class="testi-person"><div class="testi-avatar">AS</div><div><h5>Aditi Singh</h5><span>Head of Talent, Nexova</span></div></div></div>
+          <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="review">"Setting up a full assessment took fifteen minutes. The analytics alone are worth the subscription."</p><div class="testi-person"><div class="testi-avatar">RK</div><div><h5>Rahul Khanna</h5><span>HR Director, Brightlane</span></div></div></div>
+          <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="review">"Our candidates never need an account to take the exam, which alone improved our completion rates."</p><div class="testi-person"><div class="testi-avatar">MP</div><div><h5>Meera Pillai</h5><span>Recruiter, Solace Labs</span></div></div></div>
+        </div>
+        <div class="testi-slide">
+          <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="review">"The AI question generator alone saves my team three hours every week of exam prep."</p><div class="testi-person"><div class="testi-avatar">TV</div><div><h5>Tarun Verma</h5><span>Engineering Manager, Quanta</span></div></div></div>
+          <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="review">"Realtime monitoring made our remote interviews finally feel trustworthy."</p><div class="testi-person"><div class="testi-avatar">SN</div><div><h5>Sana Noor</h5><span>People Ops, Flowcrest</span></div></div></div>
+          <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="review">"Clean, fast, and our candidates actually compliment the experience. Rare for assessment tools."</p><div class="testi-person"><div class="testi-avatar">DJ</div><div><h5>Dev Joshi</h5><span>Founder, Hirewise</span></div></div></div>
+        </div>
+      </div>
+      <div class="testi-dots" id="testiDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-eyebrow">FAQ</span>
+      <h2 class="section-heading">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">How do I create an exam? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>Click "Start Free," choose a template or blank exam, add your questions, then share the secure link with candidates.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can candidates take exams without login? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>Yes. Candidates open the secure link, verify their name and email, and start immediately — no account required.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does it support coding questions? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>Yes. InterviewPro includes a live code editor with multiple languages and automatic test-case evaluation.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I export reports? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>Yes. Every assessment includes exportable score reports and candidate-level analytics in PDF or CSV.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is my data secure? <i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>All data is encrypted in transit and at rest, with role-based access controls for your team.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BANNER ============ -->
+<section class="section" style="padding:60px 0 100px;" id="contact">
+  <div class="cta-banner zoom-in">
+    <h2>Ready to Hire Smarter?</h2>
+    <p>Join hundreds of teams running better interviews and assessments today.</p>
+    <a href="#pricing" class="btn btn-outline btn-lg">Start Building Today</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><span class="logo-mark"><i class="fa-solid fa-bolt"></i></span>InterviewPro</div>
+        <p style="font-size:13.5px;max-width:280px;">The fastest way to build, share, and grade interviews and assessments online.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Product</h5>
+        <ul><li><a href="#features">Features</a></li><li><a href="#how-it-works">How It Works</a></li><li><a href="#pricing">Pricing</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#contact">Contact</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get in touch</h5>
+        <ul><li><i class="fa-solid fa-envelope"></i> hello@interviewpro.com</li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 InterviewPro. All rights reserved.</span>
+      <span><a href="#">Privacy</a><a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="back-top" id="backTop"><i class="fa-solid fa-arrow-up"></i></div>
+
+<script>
+/* ============ NAVBAR SCROLL + HAMBURGER ============ */
+const navbar = document.getElementById('navbar');
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+  backTop.classList.toggle('show', window.scrollY > 500);
+  updateActiveNav();
+});
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  navLinks.classList.remove('open');
+}));
+backTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+/* Active nav highlight on scroll */
+const sections = document.querySelectorAll('section[id]');
+const navAnchors = document.querySelectorAll('.nav-link');
+function updateActiveNav(){
+  let current = '';
+  sections.forEach(sec => {
+    const rect = sec.getBoundingClientRect();
+    if(rect.top <= 120 && rect.bottom > 120) current = sec.id;
+  });
+  navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+current));
+}
+
+/* ============ TYPING EFFECT ============ */
+const typedWords = ["Interviews", "Assessments", "Coding Tests", "MCQ Exams"];
+let twIndex = 0, twChar = 0, twDeleting = false;
+const typedEl = document.getElementById('typedText');
+function typeLoop(){
+  const word = typedWords[twIndex];
+  if(!twDeleting){
+    typedEl.textContent = word.slice(0, ++twChar);
+    if(twChar === word.length){ twDeleting = true; setTimeout(typeLoop, 1400); return; }
+  } else {
+    typedEl.textContent = word.slice(0, --twChar);
+    if(twChar === 0){ twDeleting = false; twIndex = (twIndex+1) % typedWords.length; }
+  }
+  setTimeout(typeLoop, twDeleting ? 45 : 90);
+}
+typeLoop();
+
+/* ============ INTERSECTION OBSERVER ANIMATIONS ============ */
+const animEls = document.querySelectorAll('.fade-up,.slide-left,.slide-right,.zoom-in');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+}, {threshold:.15});
+animEls.forEach((el,i) => { el.style.transitionDelay = (i%6)*0.06+'s'; io.observe(el); });
+
+/* ============ COUNTER ANIMATION ============ */
+const counters = document.querySelectorAll('[data-count]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, {threshold:.4});
+counters.forEach(c => counterObserver.observe(c));
+
+function animateCounter(el){
+  const target = parseFloat(el.getAttribute('data-count'));
+  const decimals = parseInt(el.getAttribute('data-decimal') || 0);
+  const duration = 1600;
+  const start = performance.now();
+  function tick(now){
+    const progress = Math.min((now-start)/duration, 1);
+    const eased = 1 - Math.pow(1-progress, 3);
+    const value = target * eased;
+    el.textContent = decimals ? value.toFixed(decimals) : Math.floor(value).toLocaleString();
+    if(progress < 1) requestAnimationFrame(tick);
+    else el.textContent = decimals ? target.toFixed(decimals) : target.toLocaleString();
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ============ FAQ ACCORDION ============ */
+document.querySelectorAll('.faq-item').forEach(item => {
+  const q = item.querySelector('.faq-q');
+  const a = item.querySelector('.faq-a');
+  q.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(other => {
+      other.classList.remove('open');
+      other.querySelector('.faq-a').style.maxHeight = null;
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      a.style.maxHeight = a.scrollHeight + 'px';
+    }
+  });
+});
+
+/* ============ TESTIMONIALS SLIDER ============ */
+const testiTrack = document.getElementById('testiTrack');
+const testiSlides = document.querySelectorAll('.testi-slide');
+const testiDotsWrap = document.getElementById('testiDots');
+let testiIndex = 0;
+testiSlides.forEach((_, i) => {
+  const dot = document.createElement('span');
+  if(i===0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToSlide(i));
+  testiDotsWrap.appendChild(dot);
+});
+function goToSlide(i){
+  testiIndex = i;
+  testiTrack.style.transform = `translateX(-${i*100}%)`;
+  testiDotsWrap.querySelectorAll('span').forEach((d,idx) => d.classList.toggle('active', idx===i));
+}
+setInterval(() => { goToSlide((testiIndex+1) % testiSlides.length); }, 5000);
+
+/* ============ RIPPLE BUTTON EFFECT ============ */
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('click', function(e){
+    const circle = document.createElement('span');
+    circle.classList.add('ripple');
+    const rect = this.getBoundingClientRect();
+    circle.style.left = (e.clientX - rect.left - 10) + 'px';
+    circle.style.top = (e.clientY - rect.top - 10) + 'px';
+    circle.style.width = circle.style.height = '20px';
+    this.style.position = 'relative';
+    this.style.overflow = 'hidden';
+    this.appendChild(circle);
+    setTimeout(() => circle.remove(), 650);
+  });
+});
+</script>
+</body>
+</html>
