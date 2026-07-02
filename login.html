@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>AssessForge | Premium HR Login</title>
+  <!-- Font Awesome 6 for professional icons (inline via CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- GLOBAL RESET & BASE ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: #0B0F19;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ----- ANIMATED BACKGROUND (floating shapes, grid, particles) ----- */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-gradient-circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      animation: floatCircle 20s infinite alternate ease-in-out;
+    }
+
+    .circle1 {
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, #3B82F6, #0B0F19);
+      top: -20%;
+      left: -10%;
+      animation-duration: 25s;
+    }
+
+    .circle2 {
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, #8B5CF6, #0B0F19);
+      bottom: -15%;
+      right: -5%;
+      animation-duration: 28s;
+      animation-delay: -5s;
+    }
+
+    .circle3 {
+      width: 40vw;
+      height: 40vw;
+      background: radial-gradient(circle, #22C55E, #0B0F19);
+      top: 50%;
+      left: 60%;
+      animation-duration: 22s;
+      opacity: 0.1;
+    }
+
+    .grid-pattern {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.5;
+    }
+
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.08) 0%, transparent 30%),
+                  radial-gradient(circle at 80% 70%, rgba(139,92,246,0.08) 0%, transparent 40%);
+      animation: particleShift 18s infinite alternate;
+    }
+
+    @keyframes floatCircle {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(5%, 8%) scale(1.1); }
+    }
+
+    @keyframes particleShift {
+      0% { opacity: 0.6; transform: scale(1); }
+      100% { opacity: 0.9; transform: scale(1.05); }
+    }
+
+    /* ----- MAIN LAYOUT: SPLIT SCREEN (desktop) ----- */
+    .main-container {
+      display: flex;
+      width: 100%;
+      max-width: 1300px;
+      min-height: 85vh;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: 2.5rem;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.08);
+      position: relative;
+      z-index: 2;
+      animation: fadeSlideUp 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    @keyframes fadeSlideUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ----- LEFT PANEL (45% desktop) ----- */
+    .left-panel {
+      width: 45%;
+      position: relative;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none"><rect width="800" height="1000" fill="%23111827"/><path d="M0 0h800v1000H0z" fill="url(%23a)"/><defs><pattern id="a" patternUnits="userSpaceOnUse" width="100" height="100"><path d="M0 0h100v100H0z" fill="%2322263a" opacity="0.2"/><circle cx="20" cy="20" r="2" fill="%233B82F6" opacity="0.3"/><circle cx="80" cy="80" r="3" fill="%238B5CF6" opacity="0.25"/></pattern></defs></svg>'), 
+      linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(17,24,39,0.85) 100%);
+      background-size: cover, auto;
+      background-position: center;
+      background-blend-mode: overlay;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem 2.5rem;
+      color: #F8FAFC;
+      overflow: hidden;
+    }
+
+    .left-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.25), transparent 70%);
+      opacity: 0.5;
+      animation: softGlow 8s infinite alternate;
+    }
+
+    @keyframes softGlow {
+      0% { opacity: 0.4; }
+      100% { opacity: 0.7; }
+    }
+
+    .left-content {
+      position: relative;
+      z-index: 3;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .brand-title {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(to right, #fff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #94A3B8;
+      margin-bottom: 2rem;
+      border-left: 4px solid #3B82F6;
+      padding-left: 1.2rem;
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 1.2rem;
+      color: #cbd5e1;
+      margin: 2rem 0;
+      line-height: 1.6;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+
+    .badge-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.8rem 1.5rem;
+      border-radius: 60px;
+      width: fit-content;
+      font-weight: 500;
+      color: #F8FAFC;
+      transition: all 0.3s ease;
+      animation: floatBadge 4s infinite alternate;
+      font-size: 0.95rem;
+    }
+
+    .badge-item i {
+      color: #22C55E;
+      font-size: 1.1rem;
+      width: 20px;
+      text-align: center;
+    }
+
+    .badge-item:nth-child(2) { animation-delay: 0.5s; }
+    .badge-item:nth-child(3) { animation-delay: 1s; }
+
+    @keyframes floatBadge {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-5px); }
+    }
+
+    /* ----- RIGHT PANEL (55% desktop) GLASS CARD ----- */
+    .right-panel {
+      width: 55%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem;
+      background: transparent;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.05);
+      padding: 2.5rem 2.2rem;
+      width: 100%;
+      max-width: 460px;
+      animation: cardFloat 6s infinite alternate ease-in-out;
+      transition: all 0.3s;
+    }
+
+    @keyframes cardFloat {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-6px); }
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: white;
+      box-shadow: 0 10px 20px rgba(59,130,246,0.4);
+      flex-shrink: 0;
+    }
+
+    .welcome-text h2 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: #F8FAFC;
+      letter-spacing: -0.3px;
+    }
+
+    .welcome-text p {
+      color: #94A3B8;
+      font-size: 0.95rem;
+      margin-top: 0.2rem;
+    }
+
+    /* ----- FORM STYLES ----- */
+    .input-group {
+      margin-bottom: 1.3rem;
+      position: relative;
+    }
+
+    .floating-label {
+      position: relative;
+    }
+
+    .floating-label input {
+      width: 100%;
+      padding: 1.2rem 1rem 0.8rem 3rem;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      font-size: 0.95rem;
+      color: #F8FAFC;
+      outline: none;
+      transition: all 0.25s ease;
+      background-color: #0f172a;
+    }
+
+    .floating-label input:focus {
+      border-color: #3B82F6;
+      box-shadow: 0 0 18px rgba(59,130,246,0.5);
+      background: rgba(15,23,42,0.95);
+    }
+
+    .floating-label label {
+      position: absolute;
+      left: 3rem;
+      top: 1rem;
+      color: #94A3B8;
+      font-size: 0.9rem;
+      transition: 0.2s ease;
+      pointer-events: none;
+      background: transparent;
+    }
+
+    .floating-label input:focus ~ label,
+    .floating-label input:not(:placeholder-shown) ~ label {
+      top: 0.25rem;
+      font-size: 0.7rem;
+      color: #3B82F6;
+      font-weight: 500;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      color: #64748B;
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      background: none;
+      border: none;
+      color: #94A3B8;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 0.2rem;
+    }
+
+    .row-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 1rem 0 1.8rem;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #cbd5e1;
+      cursor: pointer;
+    }
+
+    .forgot-link {
+      color: #3B82F6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.9rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #3B82F6, #2563EB);
+      color: white;
+      box-shadow: 0 10px 20px -8px rgba(59,130,246,0.5);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 15px 25px -8px #3B82F6;
+      transform: translateY(-2px);
+    }
+
+    .btn-social {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #F8FAFC;
+      margin-top: 0.8rem;
+      justify-content: center;
+    }
+
+    .btn-social:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .btn-social svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      color: #64748B;
+      margin: 1.8rem 0 1rem;
+      font-size: 0.8rem;
+    }
+
+    .line {
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .error-message {
+      color: #f87171;
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      min-height: 1.4rem;
+    }
+
+    .security-badges {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      color: #94A3B8;
+      font-size: 0.75rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .security-badges i {
+      margin-right: 0.3rem;
+      color: #22C55E;
+      font-size: 0.8rem;
+    }
+
+    .footer {
+      text-align: center;
+      color: #64748B;
+      font-size: 0.7rem;
+      margin-top: 1.8rem;
+      line-height: 1.8;
+    }
+
+    .footer a {
+      color: #94A3B8;
+      text-decoration: none;
+      margin: 0 0.3rem;
+    }
+
+    .footer a:hover {
+      color: #3B82F6;
+    }
+
+    /* ----- RESPONSIVE BREAKPOINTS ----- */
+    @media (max-width: 1024px) {
+      .main-container {
+        max-width: 95%;
+        min-height: auto;
+      }
+      .glass-card {
+        padding: 2rem 1.8rem;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .main-container {
+        flex-direction: column;
+        border-radius: 2rem;
+        margin: 1rem 0;
+      }
+      .left-panel, .right-panel {
+        width: 100%;
+      }
+      .left-panel {
+        padding: 2.5rem 2rem;
+        min-height: 280px;
+        border-radius: 2rem 2rem 0 0;
+      }
+      .right-panel {
+        padding: 2rem 1.5rem;
+      }
+      .badge-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .badge-item {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+      }
+      .quote {
+        font-size: 1rem;
+        margin: 1.2rem 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 0.5rem;
+      }
+      .main-container {
+        border-radius: 1.5rem;
+      }
+      .left-panel {
+        padding: 2rem 1.5rem;
+        min-height: 240px;
+      }
+      .brand-title {
+        font-size: 2rem;
+      }
+      .tagline {
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+      }
+      .badge-list {
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .badge-item {
+        width: 100%;
+        justify-content: center;
+      }
+      .right-panel {
+        padding: 1.5rem 1rem;
+      }
+      .glass-card {
+        padding: 1.8rem 1.2rem;
+        border-radius: 24px;
+      }
+      .welcome-text h2 {
+        font-size: 1.6rem;
+      }
+      .logo-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 1.4rem;
+      }
+      .floating-label input {
+        padding: 1rem 1rem 0.7rem 2.8rem;
+        font-size: 0.9rem;
+      }
+      .input-icon {
+        left: 0.8rem;
+        font-size: 1rem;
+      }
+      .floating-label label {
+        left: 2.8rem;
+        font-size: 0.8rem;
+      }
+      .row-flex {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .security-badges {
+        gap: 0.8rem;
+        font-size: 0.7rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .glass-card {
+        padding: 1.5rem 1rem;
+      }
+      .btn {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+      }
+    }
+  </style>
+  <!-- Google Identity Services script for Google authentication -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <!-- Animated background elements -->
+  <div class="animated-bg">
+    <div class="bg-gradient-circle circle1"></div>
+    <div class="bg-gradient-circle circle2"></div>
+    <div class="bg-gradient-circle circle3"></div>
+    <div class="grid-pattern"></div>
+    <div class="particles"></div>
+  </div>
+
+  <!-- Main split container -->
+  <div class="main-container">
+    <!-- LEFT SIDE: image & branding -->
+    <div class="left-panel">
+      <div class="left-content">
+        <h1 class="brand-title">AssessForge</h1>
+        <div class="tagline">Secure Online Assessments</div>
+        <p class="quote">“Conduct secure, intelligent, and scalable online examinations from anywhere.”</p>
+        <div class="badge-list">
+          <div class="badge-item"><i class="fas fa-shield-haltered"></i> Enterprise Security</div>
+          <div class="badge-item"><i class="fas fa-robot"></i> AI Ready</div>
+          <div class="badge-item"><i class="fas fa-cloud"></i> Cloud Based</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE: glass card form -->
+    <div class="right-panel">
+      <div class="glass-card">
+        <div class="logo-area">
+          <div class="logo-icon">AF</div>
+          <div class="welcome-text">
+            <h2>Welcome Back</h2>
+            <p>Sign in to your HR Dashboard.</p>
+          </div>
+        </div>
+
+        <form id="loginForm" novalidate>
+          <!-- Email -->
+          <div class="input-group floating-label">
+            <i class="fas fa-envelope input-icon"></i>
+            <input type="email" id="email" placeholder=" " autocomplete="email" inputmode="email">
+            <label>Email Address</label>
+          </div>
+          <div id="emailError" class="error-message"></div>
+
+          <!-- Password -->
+          <div class="input-group floating-label">
+            <i class="fas fa-lock input-icon"></i>
+            <input type="password" id="password" placeholder=" " autocomplete="current-password">
+            <label>Password</label>
+            <button type="button" class="password-toggle" id="togglePassword" aria-label="Toggle password visibility">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          <div id="passwordError" class="error-message"></div>
+
+          <div class="row-flex">
+            <label class="checkbox-label">
+              <input type="checkbox" id="remember"> Remember Me
+            </label>
+            <a href="#" class="forgot-link">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="signInBtn">
+            <span id="btnText">Sign In</span>
+            <i id="spinner" class="fas fa-spinner fa-pulse" style="display:none;"></i>
+          </button>
+
+          <div class="divider"><span class="line"></span> <span>OR</span> <span class="line"></span></div>
+
+          <!-- Google Sign-Up button with official SVG and connected authentication -->
+          <button type="button" class="btn btn-social" id="googleSignUpBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            Signup with Google
+          </button>
+        </form>
+
+        <!-- Security indicators -->
+        <div class="security-badges">
+          <span><i class="fas fa-lock"></i> SSL Secured</span>
+          <span><i class="fas fa-shield-alt"></i> Enterprise Protected</span>
+          <span><i class="fas fa-cloud-upload-alt"></i> Cloud Hosted</span>
+        </div>
+        <div class="footer">
+          © 2026 AssessForge · Secure Online Assessment Platform<br>
+          <a href="#">Privacy Policy</a> · 
+          <a href="#">Terms of Service</a> · 
+          <a href="#">Support</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // DOM elements
+      const form = document.getElementById('loginForm');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+      const togglePassword = document.getElementById('togglePassword');
+      const signInBtn = document.getElementById('signInBtn');
+      const btnText = document.getElementById('btnText');
+      const spinner = document.getElementById('spinner');
+      const googleBtn = document.getElementById('googleSignUpBtn');
+
+      // Toggle password visibility
+      togglePassword.addEventListener('click', function(e) {
+        e.preventDefault();
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        const icon = this.querySelector('i');
+        if (type === 'password') {
+          icon.className = 'fas fa-eye';
+        } else {
+          icon.className = 'fas fa-eye-slash';
+        }
+      });
+
+      // Validation helpers
+      function showError(element, message) {
+        element.innerHTML = message ? `<i class="fas fa-exclamation-circle"></i> ${message}` : '';
+      }
+
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
+
+      function clearErrors() {
+        showError(emailError, '');
+        showError(passwordError, '');
+      }
+
+      // Form submission with validation & loading animation
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        clearErrors();
+        
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        let isValid = true;
+
+        if (!email) {
+          showError(emailError, 'Email address is required.');
+          isValid = false;
+        } else if (!validateEmail(email)) {
+          showError(emailError, 'Please enter a valid email.');
+          isValid = false;
+        }
+
+        if (!password) {
+          showError(passwordError, 'Password is required.');
+          isValid = false;
+        } else if (password.length < 6) {
+          showError(passwordError, 'Password must be at least 6 characters.');
+          isValid = false;
+        }
+
+        if (!isValid) return;
+
+        btnText.style.display = 'none';
+        spinner.style.display = 'inline-block';
+        signInBtn.disabled = true;
+        signInBtn.style.opacity = '0.8';
+
+        setTimeout(() => {
+          btnText.style.display = 'inline';
+          spinner.style.display = 'none';
+          signInBtn.disabled = false;
+          signInBtn.style.opacity = '1';
+          alert('✅ Demo: Sign in successful (AssessForge HR Dashboard)');
+        }, 1800);
+      });
+
+      // ----- Google Authentication Integration (using Google Identity Services) -----
+      function handleGoogleSignUp() {
+        // Initialize Google Identity Services with OAuth 2.0 implicit flow
+        // This uses the client-side library loaded from CDN.
+        if (typeof google !== 'undefined' && google.accounts) {
+          const client = google.accounts.oauth2.initTokenClient({
+            client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com', // Replace with real client ID
+            scope: 'email profile openid',
+            callback: async (tokenResponse) => {
+              if (tokenResponse && tokenResponse.access_token) {
+                // Fetch user info from Google using the access token
+                try {
+                  const userInfoResponse = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+                    headers: { Authorization: `Bearer ${tokenResponse.access_token}` }
+                  });
+                  const userInfo = await userInfoResponse.json();
+                  
+                  // Display success with user details
+                  alert(`✅ Google Sign-Up successful!\nWelcome ${userInfo.name || userInfo.email}\nEmail: ${userInfo.email}`);
+                  
+                  // Here you would typically send the token/userInfo to your backend
+                  console.log('Google user info:', userInfo);
+                  
+                  // Optionally auto-fill email field
+                  if (userInfo.email) {
+                    emailInput.value = userInfo.email;
+                  }
+                } catch (error) {
+                  console.error('Error fetching user info:', error);
+                  alert('Google authentication succeeded but failed to retrieve user details.');
+                }
+              }
+            },
+            error_callback: (error) => {
+              console.error('Google sign-up error:', error);
+              alert('Google Sign-Up failed. Please try again or use email/password.');
+            }
+          });
+          client.requestAccessToken();
+        } else {
+          alert('Google Identity Services are loading. Please try again in a moment.');
+        }
+      }
+
+      // Attach Google Sign-Up handler
+      googleBtn.addEventListener('click', handleGoogleSignUp);
+
+      // Additionally, if Google library loads late, ensure button works
+      window.addEventListener('load', function() {
+        if (typeof google === 'undefined' || !google.accounts) {
+          console.warn('Google Identity Services script may be blocked. Ensure client ID is configured.');
+        }
+      });
+
+      // Ripple effect on buttons
+      const styleSheet = document.createElement("style");
+      styleSheet.textContent = `
+        .btn {
+          position: relative;
+          overflow: hidden;
+        }
+        .ripple-effect {
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.3);
+          transform: scale(0);
+          animation: ripple 0.6s linear;
+          pointer-events: none;
+        }
+        @keyframes ripple {
+          to { transform: scale(4); opacity: 0; }
+        }
+      `;
+      document.head.appendChild(styleSheet);
+
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const ripple = document.createElement('span');
+          ripple.className = 'ripple-effect';
+          const rect = btn.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          ripple.style.width = ripple.style.height = `${size}px`;
+          ripple.style.left = `${e.clientX - rect.left - size/2}px`;
+          ripple.style.top = `${e.clientY - rect.top - size/2}px`;
+          btn.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 600);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

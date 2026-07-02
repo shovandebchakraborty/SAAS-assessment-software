@@ -1,0 +1,3837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AssessForge – Secure, smart, and scalable online assessment platform for enterprises. Conduct exams with confidence using enterprise-grade security, real-time monitoring, and powerful analytics." />
+  <meta name="keywords" content="online assessment, exam platform, SaaS, enterprise assessment, secure exams, question bank, analytics" />
+  <meta name="author" content="AssessForge" />
+  <meta property="og:title" content="AssessForge – Secure Online Assessments" />
+  <meta property="og:description" content="Conduct secure online assessments with confidence. Create exams, monitor candidates, and evaluate results from one powerful cloud platform." />
+  <meta property="og:type" content="website" />
+  <title>AssessForge – Secure. Smart. Scalable Online Assessments.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__ring">
+      <div class="loader__ring-inner"></div>
+    </div>
+    <span class="loader__text">AssessForge</span>
+  </div>
+
+  <!-- Floating Background Shapes -->
+  <div class="bg-shapes" aria-hidden="true">
+    <div class="bg-shape bg-shape--1"></div>
+    <div class="bg-shape bg-shape--2"></div>
+    <div class="bg-shape bg-shape--3"></div>
+    <div class="bg-shape bg-shape--4"></div>
+  </div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="navbar" id="navbar" role="banner">
+    <nav class="navbar__inner container" role="navigation" aria-label="Main navigation">
+      <a href="#home" class="navbar__logo" aria-label="AssessForge Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="28" height="28" rx="7" fill="url(#logoGrad)"/>
+            <path d="M8 14L12 18L20 10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#3B82F6"/>
+                <stop offset="1" stop-color="#8B5CF6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="logo-text">AssessForge</span>
+      </a>
+
+      <ul class="navbar__links" role="list">
+        <li><a href="#home" class="nav-link active" aria-current="page">Home</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#security" class="nav-link">Security</a></li>
+        <li><a href="#pricing" class="nav-link">Pricing</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <a href="#login" class="btn btn--ghost">Login</a>
+        <a href="#get-started" class="btn btn--primary btn--glow">Get Started</a>
+      </div>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero__grid">
+
+          <!-- Left Column -->
+          <div class="hero__content fade-in">
+            <div class="hero__badge">
+              <span class="badge-dot" aria-hidden="true"></span>
+              <span>Trusted by 500+ Organizations Worldwide</span>
+            </div>
+
+            <h1 class="hero__heading" id="hero-heading">
+              Conduct Secure Online Assessments <span class="gradient-text">with Confidence.</span>
+            </h1>
+
+            <p class="hero__subtext">
+              Create exams, customize advanced security, monitor candidates, and evaluate results effortlessly from one powerful cloud platform.
+            </p>
+
+            <div class="hero__actions">
+              <a href="#get-started" class="btn btn--primary btn--large btn--glow btn--ripple">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Start Free Trial
+              </a>
+              <a href="#demo" class="btn btn--outline btn--large">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 5.5l4 2.5-4 2.5V5.5z" fill="currentColor"/></svg>
+                Watch Demo
+              </a>
+            </div>
+
+            <!-- Animated Stats -->
+            <div class="hero__stats" role="list">
+              <div class="stat" role="listitem">
+                <span class="stat__number" data-target="10000" data-suffix="K+">0</span>
+                <span class="stat__label">Exams Conducted</span>
+              </div>
+              <div class="stat" role="listitem">
+                <span class="stat__number" data-target="500" data-suffix="+">0</span>
+                <span class="stat__label">Organizations</span>
+              </div>
+              <div class="stat" role="listitem">
+                <span class="stat__number" data-target="100" data-suffix="K+">0</span>
+                <span class="stat__label">Candidates</span>
+              </div>
+              <div class="stat" role="listitem">
+                <span class="stat__number" data-target="99.9" data-suffix="%" data-decimal="true">0</span>
+                <span class="stat__label">Uptime</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column – Hero Visual -->
+          <div class="hero__visual fade-in fade-in--delay">
+            <div class="hero__image-wrapper">
+              <div class="hero__image-frame" aria-label="AssessForge dashboard preview">
+                <!-- Dashboard mockup inside hero -->
+                <div class="mini-dashboard">
+                  <div class="mini-dashboard__header">
+                    <div class="mini-db-dots" aria-hidden="true">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <span class="mini-db-title">AssessForge Dashboard</span>
+                    <div class="mini-db-status">
+                      <span class="status-dot status-dot--green" aria-hidden="true"></span>
+                      Live
+                    </div>
+                  </div>
+
+                  <div class="mini-dashboard__body">
+                    <div class="mini-stat-row">
+                      <div class="mini-stat">
+                        <span class="mini-stat__value text-blue">24</span>
+                        <span class="mini-stat__label">Active Exams</span>
+                      </div>
+                      <div class="mini-stat">
+                        <span class="mini-stat__value text-purple">1,248</span>
+                        <span class="mini-stat__label">Candidates</span>
+                      </div>
+                      <div class="mini-stat">
+                        <span class="mini-stat__value text-green">98.4%</span>
+                        <span class="mini-stat__label">Pass Rate</span>
+                      </div>
+                    </div>
+
+                    <div class="mini-chart" aria-label="Weekly assessment activity chart">
+                      <div class="mini-chart__bars">
+                        <div class="bar" style="--h:60%" aria-label="Monday: 60%"></div>
+                        <div class="bar" style="--h:80%" aria-label="Tuesday: 80%"></div>
+                        <div class="bar" style="--h:45%" aria-label="Wednesday: 45%"></div>
+                        <div class="bar" style="--h:90%" aria-label="Thursday: 90%"></div>
+                        <div class="bar" style="--h:70%" aria-label="Friday: 70%"></div>
+                        <div class="bar bar--active" style="--h:95%" aria-label="Saturday: 95%"></div>
+                        <div class="bar" style="--h:55%" aria-label="Sunday: 55%"></div>
+                      </div>
+                      <div class="mini-chart__labels" aria-hidden="true">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                      </div>
+                    </div>
+
+                    <div class="mini-activity">
+                      <div class="mini-activity__item">
+                        <span class="activity-dot activity-dot--blue" aria-hidden="true"></span>
+                        <span>JavaScript Assessment started</span>
+                        <span class="activity-time">2m ago</span>
+                      </div>
+                      <div class="mini-activity__item">
+                        <span class="activity-dot activity-dot--green" aria-hidden="true"></span>
+                        <span>Python Quiz results ready</span>
+                        <span class="activity-time">14m ago</span>
+                      </div>
+                      <div class="mini-activity__item">
+                        <span class="activity-dot activity-dot--amber" aria-hidden="true"></span>
+                        <span>Security alert: tab switch</span>
+                        <span class="activity-time">31m ago</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Floating security badge -->
+                <div class="floating-badge floating-badge--security" aria-label="Security monitoring active">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1L2 3v4c0 3 2 5 5 6 3-1 5-3 5-6V3L7 1z" fill="#22C55E" fill-opacity="0.2" stroke="#22C55E" stroke-width="1.2"/></svg>
+                  <span>Security Active</span>
+                </div>
+
+                <!-- Floating result badge -->
+                <div class="floating-badge floating-badge--result" aria-label="Score: 94/100">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7l3.5 3.5L12 3" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>Score: 94/100</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRUSTED COMPANIES ===== -->
+    <section class="trusted" aria-labelledby="trusted-heading">
+      <div class="container">
+        <p class="trusted__label" id="trusted-heading">Trusted by Modern Organizations</p>
+        <div class="trusted__logos" aria-label="Company logos">
+          <div class="trusted__logos-track">
+            <span class="company-logo" aria-label="TechCorp">TechCorp</span>
+            <span class="company-logo" aria-label="GlobalHR">GlobalHR</span>
+            <span class="company-logo" aria-label="CloudSystems">CloudSystems</span>
+            <span class="company-logo" aria-label="DataPrime">DataPrime</span>
+            <span class="company-logo" aria-label="NexaGroup">NexaGroup</span>
+            <span class="company-logo" aria-label="Skillify">Skillify</span>
+            <span class="company-logo" aria-label="TalentOS">TalentOS</span>
+            <span class="company-logo" aria-label="CoreTech">CoreTech</span>
+            <!-- Duplicate for seamless loop -->
+            <span class="company-logo" aria-hidden="true">TechCorp</span>
+            <span class="company-logo" aria-hidden="true">GlobalHR</span>
+            <span class="company-logo" aria-hidden="true">CloudSystems</span>
+            <span class="company-logo" aria-hidden="true">DataPrime</span>
+            <span class="company-logo" aria-hidden="true">NexaGroup</span>
+            <span class="company-logo" aria-hidden="true">Skillify</span>
+            <span class="company-logo" aria-hidden="true">TalentOS</span>
+            <span class="company-logo" aria-hidden="true">CoreTech</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES SECTION ===== -->
+    <section class="features section" id="features" aria-labelledby="features-heading">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-eyebrow">Platform Capabilities</span>
+          <h2 class="section-title" id="features-heading">Everything You Need to <span class="gradient-text">Run Assessments</span></h2>
+          <p class="section-subtitle">A complete suite of tools built for HR teams, educators, and organizations of every size.</p>
+        </div>
+
+        <div class="features__grid">
+
+          <article class="feature-card fade-in" aria-labelledby="feat-1">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="11" width="8" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="3" width="8" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="16" width="8" height="5" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <h3 class="feature-card__title" id="feat-1">Exam Creation</h3>
+            <p class="feature-card__text">Build exams in minutes with a rich editor. Set time limits, randomize questions, and configure scoring rubrics with precision.</p>
+          </article>
+
+          <article class="feature-card fade-in" aria-labelledby="feat-2">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 8h10M7 12h6M7 16h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="feature-card__title" id="feat-2">Question Bank</h3>
+            <p class="feature-card__text">Maintain a centralized library of thousands of questions, tagged by subject, difficulty, and category for effortless reuse.</p>
+          </article>
+
+          <article class="feature-card fade-in" aria-labelledby="feat-3">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 class="feature-card__title" id="feat-3">MCQ & Multi-Type Questions</h3>
+            <p class="feature-card__text">Support for MCQ, true/false, fill-in-the-blank, code challenges, essay, and drag-and-drop question formats.</p>
+          </article>
+
+          <article class="feature-card fade-in" aria-labelledby="feat-4">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-6 4 12 3-7 2 1h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 class="feature-card__title" id="feat-4">Real-Time Results</h3>
+            <p class="feature-card__text">Watch scores populate live as candidates submit. Instant grading with configurable pass/fail thresholds.</p>
+          </article>
+
+          <article class="feature-card fade-in" aria-labelledby="feat-5">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5.5 3.5 9 8 10.5C17.5 21 21 17.5 21 12V6L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 class="feature-card__title" id="feat-5">Automatic Evaluation</h3>
+            <p class="feature-card__text">AI-assisted grading handles objective questions instantly. Focus your team's attention on subjective responses only.</p>
+          </article>
+
+          <article class="feature-card fade-in" aria-labelledby="feat-6">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="7" r="3.5" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 20c0-3.5 3.1-6 7-6s7 2.5 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17 14c2 0 4 1.2 4 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="feature-card__title" id="feat-6">Candidate Management</h3>
+            <p class="feature-card__text">Invite candidates via email or link, manage bulk registrations, and track individual progress through every stage.</p>
+          </article>
+
+          <article class="feature-card fade-in" aria-labelledby="feat-7">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="14" width="4" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9.5" y="9" width="4" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="16" y="4" width="5" height="17" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <h3 class="feature-card__title" id="feat-7">Performance Analytics</h3>
+            <p class="feature-card__text">Deep-dive reports, cohort comparisons, question-level difficulty analysis, and exportable data for every assessment.</p>
+          </article>
+
+          <article class="feature-card fade-in" aria-labelledby="feat-8">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 8h20" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="5.5" r="1" fill="currentColor"/><circle cx="8" cy="5.5" r="1" fill="currentColor"/><circle cx="11" cy="5.5" r="1" fill="currentColor"/></svg>
+            </div>
+            <h3 class="feature-card__title" id="feat-8">Organization Dashboard</h3>
+            <p class="feature-card__text">Multi-org support with role-based access, team management, white-labeling, and consolidated billing under one account.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECURITY SECTION ===== -->
+    <section class="security section" id="security" aria-labelledby="security-heading">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-eyebrow">Zero Compromise</span>
+          <h2 class="section-title" id="security-heading">Enterprise-Grade <span class="gradient-text">Exam Security</span></h2>
+          <p class="section-subtitle">Every exam is protected by a layered defence system that monitors, detects, and responds to suspicious activity in real time.</p>
+        </div>
+
+        <div class="security__layout">
+          <!-- Security Cards -->
+          <div class="security__cards">
+
+            <article class="security-card fade-in" aria-labelledby="sec-1">
+              <div class="security-card__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M4 4V3a2 2 0 014 0v1" stroke="currentColor" stroke-width="1.5"/></svg>
+              </div>
+              <div>
+                <h3 class="security-card__title" id="sec-1">Full Screen Lock</h3>
+                <p class="security-card__text">Forces the exam into full-screen mode and flags any attempt to exit.</p>
+              </div>
+              <span class="security-card__tag" aria-label="Critical security feature">Critical</span>
+            </article>
+
+            <article class="security-card fade-in" aria-labelledby="sec-2">
+              <div class="security-card__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="1" y="3" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 3V2m6 1V2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 8v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <h3 class="security-card__title" id="sec-2">Tab Switch Detection</h3>
+                <p class="security-card__text">Detects every browser tab change and logs it with timestamps automatically.</p>
+              </div>
+              <span class="security-card__tag" aria-label="Critical security feature">Critical</span>
+            </article>
+
+            <article class="security-card fade-in" aria-labelledby="sec-3">
+              <div class="security-card__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 9h6M7 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 8l-2 1 2 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <h3 class="security-card__title" id="sec-3">Copy & Paste Protection</h3>
+                <p class="security-card__text">Disables clipboard actions, right-click menus, and text selection during exams.</p>
+              </div>
+              <span class="security-card__tag security-card__tag--high" aria-label="High priority security feature">High</span>
+            </article>
+
+            <article class="security-card fade-in" aria-labelledby="sec-4">
+              <div class="security-card__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 9l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 7h16" stroke="currentColor" stroke-width="1.5"/></svg>
+              </div>
+              <div>
+                <h3 class="security-card__title" id="sec-4">Developer Tools Detection</h3>
+                <p class="security-card__text">Identifies when browser DevTools are opened and triggers an immediate alert.</p>
+              </div>
+              <span class="security-card__tag" aria-label="Critical security feature">Critical</span>
+            </article>
+
+            <article class="security-card fade-in" aria-labelledby="sec-5">
+              <div class="security-card__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 2.5v2M10 15.5v2M2.5 10h2M15.5 10h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <h3 class="security-card__title" id="sec-5">Browser Monitoring</h3>
+                <p class="security-card__text">Continuous tracking of window focus, screen visibility, and resize events throughout the exam.</p>
+              </div>
+              <span class="security-card__tag security-card__tag--high" aria-label="High priority security feature">High</span>
+            </article>
+
+            <article class="security-card fade-in" aria-labelledby="sec-6">
+              <div class="security-card__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 16V8l6-5 6 5v8" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="7" y="11" width="6" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+              </div>
+              <div>
+                <h3 class="security-card__title" id="sec-6">Auto Submission on Violations</h3>
+                <p class="security-card__text">Configurable thresholds trigger automatic exam submission when violation counts are exceeded.</p>
+              </div>
+              <span class="security-card__tag" aria-label="Critical security feature">Critical</span>
+            </article>
+
+            <article class="security-card fade-in" aria-labelledby="sec-7">
+              <div class="security-card__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 6h12M4 10h12M4 14h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="16" cy="14" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
+              </div>
+              <div>
+                <h3 class="security-card__title" id="sec-7">Candidate Activity Logs</h3>
+                <p class="security-card__text">A full, exportable audit trail of every candidate action with precise millisecond timestamps.</p>
+              </div>
+              <span class="security-card__tag security-card__tag--high" aria-label="High priority security feature">High</span>
+            </article>
+
+            <article class="security-card fade-in" aria-labelledby="sec-8">
+              <div class="security-card__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <h3 class="security-card__title" id="sec-8">Configurable Security Rules</h3>
+                <p class="security-card__text">Toggle each security feature per exam. Define thresholds, warning messages, and escalation paths your way.</p>
+              </div>
+              <span class="security-card__tag security-card__tag--moderate" aria-label="Moderate priority security feature">Configurable</span>
+            </article>
+
+          </div>
+
+          <!-- Security Visual -->
+          <div class="security__visual fade-in">
+            <div class="security-terminal" aria-label="Security monitoring terminal">
+              <div class="terminal__header" aria-hidden="true">
+                <div class="terminal-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <span class="terminal-title">security-monitor.log</span>
+              </div>
+              <div class="terminal__body" aria-live="polite">
+                <div class="log-line">
+                  <span class="log-time">09:41:02</span>
+                  <span class="log-tag log-tag--info">INFO</span>
+                  <span class="log-msg">Exam session initialized — Candidate #4821</span>
+                </div>
+                <div class="log-line">
+                  <span class="log-time">09:41:03</span>
+                  <span class="log-tag log-tag--ok">OK</span>
+                  <span class="log-msg">Fullscreen mode enforced</span>
+                </div>
+                <div class="log-line">
+                  <span class="log-time">09:44:17</span>
+                  <span class="log-tag log-tag--warn">WARN</span>
+                  <span class="log-msg">Tab switch detected — violation #1</span>
+                </div>
+                <div class="log-line">
+                  <span class="log-time">09:44:17</span>
+                  <span class="log-tag log-tag--info">INFO</span>
+                  <span class="log-msg">Candidate warned, exam paused</span>
+                </div>
+                <div class="log-line">
+                  <span class="log-time">09:51:34</span>
+                  <span class="log-tag log-tag--warn">WARN</span>
+                  <span class="log-msg">DevTools opened — violation #2</span>
+                </div>
+                <div class="log-line">
+                  <span class="log-time">09:51:34</span>
+                  <span class="log-tag log-tag--error">ALERT</span>
+                  <span class="log-msg">Threshold reached — auto-submitting exam</span>
+                </div>
+                <div class="log-line">
+                  <span class="log-time">09:51:35</span>
+                  <span class="log-tag log-tag--ok">DONE</span>
+                  <span class="log-msg">Exam submitted. Activity log exported.</span>
+                </div>
+                <div class="log-line log-line--cursor">
+                  <span class="log-time">09:51:36</span>
+                  <span class="log-msg"><span class="cursor" aria-hidden="true">█</span></span>
+                </div>
+              </div>
+              <div class="security-badges" aria-label="Security status">
+                <div class="sec-badge">
+                  <span class="sec-badge__dot sec-badge__dot--green" aria-hidden="true"></span>
+                  Fullscreen Locked
+                </div>
+                <div class="sec-badge">
+                  <span class="sec-badge__dot sec-badge__dot--green" aria-hidden="true"></span>
+                  Tab Watch Active
+                </div>
+                <div class="sec-badge">
+                  <span class="sec-badge__dot sec-badge__dot--blue" aria-hidden="true"></span>
+                  Clipboard Blocked
+                </div>
+                <div class="sec-badge">
+                  <span class="sec-badge__dot sec-badge__dot--blue" aria-hidden="true"></span>
+                  DevTools Blocked
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DASHBOARD PREVIEW ===== -->
+    <section class="dashboard-section section" aria-labelledby="dashboard-heading">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-eyebrow">Admin Panel</span>
+          <h2 class="section-title" id="dashboard-heading">One Dashboard. <span class="gradient-text">Complete Control.</span></h2>
+          <p class="section-subtitle">Monitor every active exam, candidate, and result from a single powerful interface.</p>
+        </div>
+
+        <div class="dashboard-mockup fade-in" role="img" aria-label="AssessForge admin dashboard mockup">
+          <div class="db-sidebar">
+            <div class="db-sidebar__logo" aria-hidden="true">
+              <span class="logo-icon-sm">AF</span>
+            </div>
+            <nav class="db-nav" aria-label="Dashboard navigation">
+              <a href="#" class="db-nav__item db-nav__item--active" aria-current="page" aria-label="Dashboard">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="1" y="1" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="1" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="11" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+              </a>
+              <a href="#" class="db-nav__item" aria-label="Exams">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="2" y="2" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 7h8M5 10h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </a>
+              <a href="#" class="db-nav__item" aria-label="Candidates">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 16c0-3 2.7-5 6-5s6 2 6 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </a>
+              <a href="#" class="db-nav__item" aria-label="Analytics">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 14h3V8H2v6zm5 0h3V4H7v10zm5 0h3V10h-3v4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="#" class="db-nav__item" aria-label="Security">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 2L3 5v4c0 4 2.5 6.5 6 7.5 3.5-1 6-3.5 6-7.5V5L9 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </a>
+            </nav>
+          </div>
+
+          <div class="db-main">
+            <div class="db-topbar">
+              <div class="db-topbar__title">
+                <h3>Overview</h3>
+                <span>Wednesday, 2 July 2025</span>
+              </div>
+              <div class="db-topbar__actions" aria-hidden="true">
+                <div class="db-search">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.2"/><path d="M9.5 9.5L12 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                  <span>Search...</span>
+                </div>
+                <div class="db-avatar">HR</div>
+              </div>
+            </div>
+
+            <div class="db-kpi-row" role="list">
+              <div class="db-kpi" role="listitem">
+                <span class="db-kpi__label">Active Exams</span>
+                <span class="db-kpi__value">24</span>
+                <span class="db-kpi__delta db-kpi__delta--up" aria-label="3 more than last week">▲ 3 this week</span>
+              </div>
+              <div class="db-kpi" role="listitem">
+                <span class="db-kpi__label">Live Candidates</span>
+                <span class="db-kpi__value">1,248</span>
+                <span class="db-kpi__delta db-kpi__delta--up" aria-label="14% increase">▲ 14%</span>
+              </div>
+              <div class="db-kpi" role="listitem">
+                <span class="db-kpi__label">Results Pending</span>
+                <span class="db-kpi__value">67</span>
+                <span class="db-kpi__delta db-kpi__delta--neutral" aria-label="Same as last week">→ Same as last week</span>
+              </div>
+              <div class="db-kpi" role="listitem">
+                <span class="db-kpi__label">Security Alerts</span>
+                <span class="db-kpi__value text-amber">12</span>
+                <span class="db-kpi__delta db-kpi__delta--down" aria-label="5 fewer than yesterday">▼ 5 today</span>
+              </div>
+            </div>
+
+            <div class="db-content-row">
+              <div class="db-chart-card">
+                <div class="db-chart-card__header">
+                  <span>Assessment Activity</span>
+                  <span class="db-chart-period">Last 7 days</span>
+                </div>
+                <div class="db-bar-chart" aria-label="Assessment activity bar chart for last 7 days">
+                  <div class="db-bar-chart__bars">
+                    <div class="db-bar" style="--h:55%" aria-label="Day 1: moderate activity">
+                      <span class="db-bar__tooltip" aria-hidden="true">54 exams</span>
+                    </div>
+                    <div class="db-bar" style="--h:72%" aria-label="Day 2: high activity">
+                      <span class="db-bar__tooltip" aria-hidden="true">71 exams</span>
+                    </div>
+                    <div class="db-bar" style="--h:48%" aria-label="Day 3: low activity">
+                      <span class="db-bar__tooltip" aria-hidden="true">47 exams</span>
+                    </div>
+                    <div class="db-bar" style="--h:88%" aria-label="Day 4: very high activity">
+                      <span class="db-bar__tooltip" aria-hidden="true">87 exams</span>
+                    </div>
+                    <div class="db-bar" style="--h:65%" aria-label="Day 5: moderate-high activity">
+                      <span class="db-bar__tooltip" aria-hidden="true">64 exams</span>
+                    </div>
+                    <div class="db-bar db-bar--active" style="--h:95%" aria-label="Day 6: peak activity">
+                      <span class="db-bar__tooltip" aria-hidden="true">94 exams</span>
+                    </div>
+                    <div class="db-bar" style="--h:40%" aria-label="Day 7: low activity">
+                      <span class="db-bar__tooltip" aria-hidden="true">39 exams</span>
+                    </div>
+                  </div>
+                  <div class="db-bar-chart__labels" aria-hidden="true">
+                    <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="db-list-card">
+                <div class="db-list-card__header">
+                  <span>Recent Activity</span>
+                  <a href="#" class="db-view-all">View all →</a>
+                </div>
+                <ul class="db-activity-list" aria-label="Recent exam activity">
+                  <li class="db-activity-item">
+                    <span class="activity-icon activity-icon--blue" aria-hidden="true">▶</span>
+                    <div class="activity-info">
+                      <span class="activity-name">JavaScript Fundamentals</span>
+                      <span class="activity-sub">142 candidates · 2h left</span>
+                    </div>
+                    <span class="activity-badge activity-badge--live" aria-label="Status: Live">Live</span>
+                  </li>
+                  <li class="db-activity-item">
+                    <span class="activity-icon activity-icon--green" aria-hidden="true">✓</span>
+                    <div class="activity-info">
+                      <span class="activity-name">Python Data Structures</span>
+                      <span class="activity-sub">98 candidates · Graded</span>
+                    </div>
+                    <span class="activity-badge activity-badge--done" aria-label="Status: Done">Done</span>
+                  </li>
+                  <li class="db-activity-item">
+                    <span class="activity-icon activity-icon--amber" aria-hidden="true">⚠</span>
+                    <div class="activity-info">
+                      <span class="activity-name">HR Culture Fit Survey</span>
+                      <span class="activity-sub">63 candidates · 3 alerts</span>
+                    </div>
+                    <span class="activity-badge activity-badge--alert" aria-label="Status: Alert">Alert</span>
+                  </li>
+                  <li class="db-activity-item">
+                    <span class="activity-icon activity-icon--purple" aria-hidden="true">⏳</span>
+                    <div class="activity-info">
+                      <span class="activity-name">Cloud Architecture Exam</span>
+                      <span class="activity-sub">Scheduled · Tomorrow 9am</span>
+                    </div>
+                    <span class="activity-badge activity-badge--sched" aria-label="Status: Scheduled">Sched.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="how-it-works section" aria-labelledby="how-heading">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-eyebrow">Getting Started</span>
+          <h2 class="section-title" id="how-heading">Up and Running <span class="gradient-text">in Four Steps</span></h2>
+          <p class="section-subtitle">From registration to results, the entire cycle takes minutes, not days.</p>
+        </div>
+
+        <div class="steps" role="list">
+          <div class="step fade-in" role="listitem">
+            <div class="step__number" aria-hidden="true">01</div>
+            <div class="step__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="5" stroke="currentColor" stroke-width="1.8"/><path d="M5 24c0-4.5 4-8 9-8s9 3.5 9 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="step__title">HR Registers</h3>
+            <p class="step__text">Create your organization account in under 2 minutes. No card required to start.</p>
+          </div>
+
+          <div class="step-connector" aria-hidden="true">
+            <div class="connector-line"></div>
+            <div class="connector-arrow">→</div>
+          </div>
+
+          <div class="step fade-in" role="listitem">
+            <div class="step__number" aria-hidden="true">02</div>
+            <div class="step__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="4" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M9 12h10M9 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 8h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="step__title">Creates Assessment</h3>
+            <p class="step__text">Build exams from scratch or import from your question bank. Set security rules.</p>
+          </div>
+
+          <div class="step-connector" aria-hidden="true">
+            <div class="connector-line"></div>
+            <div class="connector-arrow">→</div>
+          </div>
+
+          <div class="step fade-in" role="listitem">
+            <div class="step__number" aria-hidden="true">03</div>
+            <div class="step__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="6" width="20" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M4 11h20" stroke="currentColor" stroke-width="1.8"/><circle cx="14" cy="17" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <h3 class="step__title">Candidates Attend</h3>
+            <p class="step__text">Candidates receive a secure link and complete the exam in a monitored environment.</p>
+          </div>
+
+          <div class="step-connector" aria-hidden="true">
+            <div class="connector-line"></div>
+            <div class="connector-arrow">→</div>
+          </div>
+
+          <div class="step fade-in" role="listitem">
+            <div class="step__number" aria-hidden="true">04</div>
+            <div class="step__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="5" y="18" width="4" height="6" rx="1" stroke="currentColor" stroke-width="1.8"/><rect x="12" y="12" width="4" height="12" rx="1" stroke="currentColor" stroke-width="1.8"/><rect x="19" y="6" width="4" height="18" rx="1" stroke="currentColor" stroke-width="1.8"/><path d="M7 14l5-5 4 3 5-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 class="step__title">Instant Results</h3>
+            <p class="step__text">Scores, analytics, and reports are ready the moment the last candidate submits.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE ===== -->
+    <section class="why-choose section" aria-labelledby="why-heading">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-eyebrow">The AssessForge Difference</span>
+          <h2 class="section-title" id="why-heading">Built for Teams That <span class="gradient-text">Can't Afford to Fail</span></h2>
+        </div>
+
+        <div class="why__grid">
+          <article class="why-card fade-in" aria-labelledby="why-1">
+            <div class="why-card__icon" aria-hidden="true">☁</div>
+            <h3 class="why-card__title" id="why-1">Cloud-Based</h3>
+            <p class="why-card__text">Zero installation. Access your entire assessment suite from any browser, anywhere in the world.</p>
+          </article>
+          <article class="why-card fade-in" aria-labelledby="why-2">
+            <div class="why-card__icon" aria-hidden="true">🔒</div>
+            <h3 class="why-card__title" id="why-2">Secure by Design</h3>
+            <p class="why-card__text">Security isn't a feature you toggle on — it's the foundation every exam is built on from the first line of code.</p>
+          </article>
+          <article class="why-card fade-in" aria-labelledby="why-3">
+            <div class="why-card__icon" aria-hidden="true">⚡</div>
+            <h3 class="why-card__title" id="why-3">Fast Deployment</h3>
+            <p class="why-card__text">Go from sign-up to published exam in under 15 minutes. No onboarding calls or lengthy setup wizards.</p>
+          </article>
+          <article class="why-card fade-in" aria-labelledby="why-4">
+            <div class="why-card__icon" aria-hidden="true">🎯</div>
+            <h3 class="why-card__title" id="why-4">Easy to Use</h3>
+            <p class="why-card__text">A thoughtfully designed interface that HR managers master in one session — not one semester.</p>
+          </article>
+          <article class="why-card fade-in" aria-labelledby="why-5">
+            <div class="why-card__icon" aria-hidden="true">🏢</div>
+            <h3 class="why-card__title" id="why-5">Multi-Org Support</h3>
+            <p class="why-card__text">Manage multiple departments, subsidiaries, or clients from a single parent account with full isolation.</p>
+          </article>
+          <article class="why-card fade-in" aria-labelledby="why-6">
+            <div class="why-card__icon" aria-hidden="true">📊</div>
+            <h3 class="why-card__title" id="why-6">Advanced Analytics</h3>
+            <p class="why-card__text">Surface insights that go beyond pass rates — spot knowledge gaps, rank cohorts, and report to leadership with one click.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials section" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-eyebrow">Social Proof</span>
+          <h2 class="section-title" id="testimonials-heading">Trusted by <span class="gradient-text">Assessment Teams</span> Globally</h2>
+        </div>
+
+        <div class="testimonials__grid">
+
+          <article class="testimonial-card fade-in" aria-labelledby="test-1">
+            <div class="testimonial-card__stars" aria-label="5 stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">
+              <p>"We replaced three different tools with AssessForge and our HR team's efficiency doubled within the first month. The security logs alone justify the cost."</p>
+            </blockquote>
+            <footer class="testimonial-card__author">
+              <div class="testimonial-avatar" aria-hidden="true">SK</div>
+              <div class="testimonial-info">
+                <cite class="testimonial-name" id="test-1">Sarah Kim</cite>
+                <span class="testimonial-role">VP of Talent Acquisition</span>
+                <span class="testimonial-company">TechCorp Global</span>
+              </div>
+            </footer>
+          </article>
+
+          <article class="testimonial-card testimonial-card--featured fade-in" aria-labelledby="test-2">
+            <div class="testimonial-card__stars" aria-label="5 stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">
+              <p>"Running a 500-candidate technical assessment used to take a week of coordination. With AssessForge it's a Tuesday afternoon project. The auto-grading is frighteningly accurate."</p>
+            </blockquote>
+            <footer class="testimonial-card__author">
+              <div class="testimonial-avatar testimonial-avatar--purple" aria-hidden="true">MR</div>
+              <div class="testimonial-info">
+                <cite class="testimonial-name" id="test-2">Marcus Rivera</cite>
+                <span class="testimonial-role">Engineering Director</span>
+                <span class="testimonial-company">CloudSystems Inc.</span>
+              </div>
+            </footer>
+          </article>
+
+          <article class="testimonial-card fade-in" aria-labelledby="test-3">
+            <div class="testimonial-card__stars" aria-label="5 stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">
+              <p>"The question bank feature transformed how we maintain exam integrity across 12 regional offices. Consistent quality, consistent scoring, consistent decisions."</p>
+            </blockquote>
+            <footer class="testimonial-card__author">
+              <div class="testimonial-avatar testimonial-avatar--green" aria-hidden="true">AP</div>
+              <div class="testimonial-info">
+                <cite class="testimonial-name" id="test-3">Ananya Patel</cite>
+                <span class="testimonial-role">Head of L&D</span>
+                <span class="testimonial-company">NexaGroup Asia</span>
+              </div>
+            </footer>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRICING ===== -->
+    <section class="pricing section" id="pricing" aria-labelledby="pricing-heading">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-eyebrow">Simple Pricing</span>
+          <h2 class="section-title" id="pricing-heading">Start Free. <span class="gradient-text">Scale Confidently.</span></h2>
+          <p class="section-subtitle">All plans include unlimited candidates and zero setup fees. Cancel anytime.</p>
+        </div>
+
+        <div class="pricing__toggle fade-in" role="group" aria-label="Billing period selection">
+          <button class="pricing-toggle-btn pricing-toggle-btn--active" data-period="monthly" aria-pressed="true">Monthly</button>
+          <button class="pricing-toggle-btn" data-period="annual" aria-pressed="false">Annual <span class="save-badge">Save 20%</span></button>
+        </div>
+
+        <div class="pricing__grid">
+
+          <article class="pricing-card fade-in" aria-labelledby="plan-starter">
+            <div class="pricing-card__header">
+              <h3 class="plan-name" id="plan-starter">Starter</h3>
+              <p class="plan-desc">For small teams exploring online assessment.</p>
+            </div>
+            <div class="pricing-card__price">
+              <span class="price-amount" data-monthly="$0" data-annual="$0">$0</span>
+              <span class="price-period">/ month</span>
+            </div>
+            <ul class="pricing-card__features" role="list">
+              <li class="feat-item feat-item--yes">Up to 3 active exams</li>
+              <li class="feat-item feat-item--yes">100 candidates / month</li>
+              <li class="feat-item feat-item--yes">Basic question types</li>
+              <li class="feat-item feat-item--yes">Standard security</li>
+              <li class="feat-item feat-item--yes">Email support</li>
+              <li class="feat-item feat-item--no">Advanced analytics</li>
+              <li class="feat-item feat-item--no">API access</li>
+              <li class="feat-item feat-item--no">Multi-org support</li>
+            </ul>
+            <a href="#" class="btn btn--outline btn--full">Get Started Free</a>
+          </article>
+
+          <article class="pricing-card pricing-card--featured fade-in" aria-labelledby="plan-pro" aria-describedby="plan-popular-badge">
+            <div class="pricing-card__badge" id="plan-popular-badge">Most Popular</div>
+            <div class="pricing-card__header">
+              <h3 class="plan-name" id="plan-pro">Professional</h3>
+              <p class="plan-desc">For growing teams running frequent assessments.</p>
+            </div>
+            <div class="pricing-card__price">
+              <span class="price-amount" data-monthly="$79" data-annual="$63">$79</span>
+              <span class="price-period">/ month</span>
+            </div>
+            <ul class="pricing-card__features" role="list">
+              <li class="feat-item feat-item--yes">Unlimited active exams</li>
+              <li class="feat-item feat-item--yes">2,000 candidates / month</li>
+              <li class="feat-item feat-item--yes">All question types</li>
+              <li class="feat-item feat-item--yes">Enterprise security suite</li>
+              <li class="feat-item feat-item--yes">Priority support</li>
+              <li class="feat-item feat-item--yes">Advanced analytics</li>
+              <li class="feat-item feat-item--yes">API access</li>
+              <li class="feat-item feat-item--no">Multi-org support</li>
+            </ul>
+            <a href="#" class="btn btn--primary btn--full btn--glow">Start Free Trial</a>
+          </article>
+
+          <article class="pricing-card fade-in" aria-labelledby="plan-enterprise">
+            <div class="pricing-card__header">
+              <h3 class="plan-name" id="plan-enterprise">Enterprise</h3>
+              <p class="plan-desc">For large organizations with custom requirements.</p>
+            </div>
+            <div class="pricing-card__price">
+              <span class="price-amount" data-monthly="Custom" data-annual="Custom">Custom</span>
+              <span class="price-period">/ month</span>
+            </div>
+            <ul class="pricing-card__features" role="list">
+              <li class="feat-item feat-item--yes">Unlimited everything</li>
+              <li class="feat-item feat-item--yes">Unlimited candidates</li>
+              <li class="feat-item feat-item--yes">All question types</li>
+              <li class="feat-item feat-item--yes">Custom security policies</li>
+              <li class="feat-item feat-item--yes">Dedicated SLA + support</li>
+              <li class="feat-item feat-item--yes">Advanced analytics</li>
+              <li class="feat-item feat-item--yes">Full API access</li>
+              <li class="feat-item feat-item--yes">Multi-org support</li>
+            </ul>
+            <a href="#" class="btn btn--outline btn--full">Contact Sales</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="faq section" id="faq" aria-labelledby="faq-heading">
+      <div class="container faq__container">
+        <div class="section-header fade-in">
+          <span class="section-eyebrow">Common Questions</span>
+          <h2 class="section-title" id="faq-heading">Answers to the <span class="gradient-text">Hard Questions</span></h2>
+        </div>
+
+        <div class="faq__list fade-in" role="list">
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-1">
+              <span>Is the platform secure enough for professional certification exams?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-ans-1" role="region" hidden>
+              <p>Yes. AssessForge was built with professional certification requirements in mind. Our layered security stack includes full-screen enforcement, tab-switch detection, clipboard blocking, developer tools monitoring, and configurable auto-submission rules — all with a tamper-proof audit trail. We're SOC 2 Type II compliant and provide activity logs you can present as evidence in disputes.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-2">
+              <span>Can I customize which security features are active per exam?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-ans-2" role="region" hidden>
+              <p>Absolutely. Every security rule is independently configurable at the exam level. You can enable or disable full-screen lock, set a custom number of permitted tab switches before auto-submission, define warning messages in multiple languages, and choose whether violations trigger immediate submission or just logging. The Professional and Enterprise plans expose additional granular controls.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-3">
+              <span>Do candidates need to create an account to take an exam?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-ans-3" role="region" hidden>
+              <p>No. Candidates receive a unique, time-limited exam link by email. They can join directly in their browser without creating a password or installing anything. If your organization requires identity verification, we support OTP-based email confirmation before the exam begins, which can be toggled on per assessment.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-4">
+              <span>Can results and reports be exported?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-ans-4" role="region" hidden>
+              <p>Yes. Every result set is exportable as CSV, Excel, or PDF — including individual candidate breakdowns, question-level analytics, score distributions, and full activity logs. Enterprise customers can automate exports via webhook or our REST API to push results directly into their HRIS, ATS, or LMS.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-5">
+              <span>Is there a public API for integration with other systems?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-ans-5" role="region" hidden>
+              <p>Yes. Our REST API (available on Professional and Enterprise plans) exposes endpoints for exam management, candidate enrollment, result retrieval, and security event streaming. We provide official SDK libraries for Node.js and Python, thorough API documentation, and a Postman collection. Webhooks are available for real-time event delivery to your infrastructure.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="cta-section section" id="contact" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="cta-inner fade-in">
+          <div class="cta-glow" aria-hidden="true"></div>
+          <span class="section-eyebrow">Take the Next Step</span>
+          <h2 class="cta-heading" id="cta-heading">Ready to Conduct Secure Online <span class="gradient-text">Assessments?</span></h2>
+          <p class="cta-subtext">Join 500+ organizations that run smarter, safer exams with AssessForge. Free to start, no card required.</p>
+          <div class="cta-actions">
+            <a href="#" class="btn btn--primary btn--large btn--glow btn--ripple">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Start Free Trial
+            </a>
+            <a href="#" class="btn btn--outline btn--large">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Contact Sales
+            </a>
+          </div>
+          <p class="cta-note">No credit card · Free for 14 days · Cancel anytime</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div class="footer__brand">
+          <a href="#home" class="navbar__logo footer__logo-link" aria-label="AssessForge Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="28" height="28" rx="7" fill="url(#logoGrad2)"/>
+                <path d="M8 14L12 18L20 10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                  <linearGradient id="logoGrad2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#3B82F6"/>
+                    <stop offset="1" stop-color="#8B5CF6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+            <span class="logo-text">AssessForge</span>
+          </a>
+          <p class="footer__desc">The enterprise assessment platform built for teams that demand security, speed, and scale from day one.</p>
+          <div class="footer__social" aria-label="Social media links">
+            <a href="#" class="social-link" aria-label="Twitter/X">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Product</h4>
+          <ul class="footer__links" role="list">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#security">Security</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#">Changelog</a></li>
+            <li><a href="#">Roadmap</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Documentation</h4>
+          <ul class="footer__links" role="list">
+            <li><a href="#">Getting Started</a></li>
+            <li><a href="#">API Reference</a></li>
+            <li><a href="#">SDKs</a></li>
+            <li><a href="#">Webhooks</a></li>
+            <li><a href="#">Security Guide</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Support</h4>
+          <ul class="footer__links" role="list">
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#">Status Page</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Legal</h4>
+          <ul class="footer__links" role="list">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">DPA</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2025 AssessForge, Inc. All rights reserved.</p>
+        <p class="footer__tagline">Secure. Smart. Scalable.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" hidden>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+<style>
+    /* ============================================================
+   AssessForge — Premium Landing Page Stylesheet
+   Dark, enterprise-grade design with glassmorphism & motion
+   ============================================================ */
+
+/* ── CSS Custom Properties ── */
+:root {
+  /* Colors */
+  --color-bg:           #0B0F19;
+  --color-bg2:          #111827;
+  --color-card:         rgba(255, 255, 255, 0.04);
+  --color-card-hover:   rgba(255, 255, 255, 0.07);
+  --color-accent-blue:  #3B82F6;
+  --color-accent-purple:#8B5CF6;
+  --color-success:      #22C55E;
+  --color-warning:      #F59E0B;
+  --color-danger:       #EF4444;
+  --color-text:         #F8FAFC;
+  --color-text-muted:   #94A3B8;
+  --color-border:       rgba(255, 255, 255, 0.08);
+  --color-border-glow:  rgba(59, 130, 246, 0.25);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-purple));
+  --gradient-glow:    linear-gradient(135deg, rgba(59,130,246,0.15), rgba(139,92,246,0.15));
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Spacing */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 5rem;
+  --space-4xl: 7rem;
+
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* Shadows */
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:   0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,0.5);
+  --shadow-blue: 0 0 24px rgba(59,130,246,0.3);
+  --shadow-glow: 0 0 40px rgba(59,130,246,0.2), 0 0 80px rgba(139,92,246,0.1);
+
+  /* Layout */
+  --max-width: 1200px;
+  --navbar-h:  68px;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+ul, ol { list-style: none; }
+
+img, svg { display: block; max-width: 100%; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ── Utility ── */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-xl);
+}
+
+.section {
+  padding-block: var(--space-4xl);
+}
+
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-blue   { color: var(--color-accent-blue); }
+.text-purple { color: var(--color-accent-purple); }
+.text-green  { color: var(--color-success); }
+.text-amber  { color: var(--color-warning); }
+
+/* ── Loading Screen ── */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  z-index: 9999;
+  transition: opacity var(--transition-slow), visibility var(--transition-slow);
+}
+
+.loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader__ring {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent-blue);
+  animation: spin 0.8s linear infinite;
+}
+
+.loader__ring-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--color-accent-purple);
+  animation: spin 1.4s linear infinite reverse;
+  transform: scale(0.7);
+}
+
+.loader__text {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Background Shapes ── */
+.bg-shapes {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+  animation: float 8s ease-in-out infinite;
+}
+
+.bg-shape--1 {
+  width: 600px; height: 600px;
+  background: var(--color-accent-blue);
+  top: -200px; left: -200px;
+  animation-delay: 0s;
+}
+
+.bg-shape--2 {
+  width: 500px; height: 500px;
+  background: var(--color-accent-purple);
+  top: 30%; right: -150px;
+  animation-delay: 2s;
+}
+
+.bg-shape--3 {
+  width: 400px; height: 400px;
+  background: var(--color-accent-blue);
+  bottom: 20%; left: 20%;
+  animation-delay: 4s;
+  opacity: 0.07;
+}
+
+.bg-shape--4 {
+  width: 300px; height: 300px;
+  background: var(--color-accent-purple);
+  bottom: -100px; right: 30%;
+  animation-delay: 6s;
+  opacity: 0.09;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  33%       { transform: translateY(-30px) scale(1.03); }
+  66%       { transform: translateY(15px) scale(0.97); }
+}
+
+/* ── Main content above bg ── */
+main, header, footer { position: relative; z-index: 1; }
+
+/* ── Section Headers ── */
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-blue);
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.25);
+  border-radius: var(--radius-full);
+  padding: 4px 14px;
+  margin-bottom: var(--space-md);
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+}
+
+.section-subtitle {
+  font-size: 1.0625rem;
+  color: var(--color-text-muted);
+  max-width: 580px;
+  margin-inline: auto;
+  line-height: 1.7;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--gradient-primary);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  color: var(--color-text-muted);
+  border: 1px solid transparent;
+}
+
+.btn--ghost:hover {
+  color: var(--color-text);
+  border-color: var(--color-border);
+  background: var(--color-card);
+}
+
+.btn--outline {
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+}
+
+.btn--outline:hover {
+  border-color: rgba(255,255,255,0.2);
+  background: var(--color-card-hover);
+  transform: translateY(-1px);
+}
+
+.btn--large {
+  padding: 13px 28px;
+  font-size: 0.9375rem;
+  border-radius: var(--radius-lg);
+}
+
+.btn--full {
+  width: 100%;
+  justify-content: center;
+}
+
+.btn--glow {
+  box-shadow: 0 0 16px rgba(59,130,246,0.3);
+}
+
+.btn--glow:hover {
+  box-shadow: 0 0 28px rgba(59,130,246,0.5), 0 0 48px rgba(139,92,246,0.25);
+}
+
+/* Ripple effect */
+.btn--ripple .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ── Fade-in animations ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in--delay {
+  transition-delay: 0.15s;
+}
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--navbar-h);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  transition: background var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.navbar.scrolled {
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--color-border);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo-icon svg { flex-shrink: 0; }
+
+.logo-text {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-left: auto;
+}
+
+.nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background var(--transition-fast);
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--color-text);
+  background: var(--color-card);
+}
+
+.nav-link.active {
+  color: var(--color-text);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 2px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.navbar__hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
+}
+
+.navbar__hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar__hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.navbar__hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: calc(100vh - var(--navbar-h));
+  display: flex;
+  align-items: center;
+  padding-block: var(--space-3xl) var(--space-4xl);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  margin-bottom: var(--space-xl);
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-success);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+  50%       { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+}
+
+.hero__heading {
+  font-size: clamp(2rem, 4.5vw, 3.375rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-lg);
+}
+
+.hero__subtext {
+  font-size: 1.0625rem;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  max-width: 520px;
+  margin-bottom: var(--space-xl);
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2xl);
+}
+
+.hero__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.stat__number {
+  display: block;
+  font-size: 1.625rem;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+.stat__label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+/* ── Hero Visual ── */
+.hero__visual {
+  position: relative;
+}
+
+.hero__image-wrapper {
+  position: relative;
+}
+
+.hero__image-frame {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: visible;
+}
+
+/* Mini dashboard */
+.mini-dashboard {
+  background: var(--color-bg2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg), 0 0 0 1px var(--color-border);
+}
+
+.mini-dashboard__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mini-db-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.mini-db-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-border);
+}
+
+.mini-db-dots span:nth-child(1) { background: #FF5F57; }
+.mini-db-dots span:nth-child(2) { background: #FEBC2E; }
+.mini-db-dots span:nth-child(3) { background: #28C840; }
+
+.mini-db-title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  flex: 1;
+  text-align: center;
+}
+
+.mini-db-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-success);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.status-dot--green {
+  background: var(--color-success);
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+.mini-dashboard__body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.mini-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: var(--space-md);
+}
+
+.mini-stat {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  text-align: center;
+}
+
+.mini-stat__value {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.mini-stat__label {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  margin-top: 3px;
+}
+
+/* Mini chart bars */
+.mini-chart {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.mini-chart__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 60px;
+}
+
+.bar {
+  flex: 1;
+  height: var(--h);
+  background: rgba(59,130,246,0.3);
+  border-radius: 3px 3px 0 0;
+  transition: background var(--transition-base);
+}
+
+.bar--active, .bar:hover {
+  background: var(--color-accent-blue);
+}
+
+.mini-chart__labels {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.mini-chart__labels span {
+  flex: 1;
+  text-align: center;
+  font-size: 0.6rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+/* Mini activity */
+.mini-activity {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mini-activity__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.725rem;
+  color: var(--color-text-muted);
+}
+
+.mini-activity__item span:nth-child(2) {
+  flex: 1;
+  color: var(--color-text);
+}
+
+.activity-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.activity-dot--blue   { background: var(--color-accent-blue); }
+.activity-dot--green  { background: var(--color-success); }
+.activity-dot--amber  { background: var(--color-warning); }
+
+.activity-time {
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+/* Floating badges */
+.floating-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.floating-badge--security {
+  bottom: -20px;
+  left: -20px;
+  background: rgba(34,197,94,0.1);
+  border-color: rgba(34,197,94,0.3);
+  color: var(--color-success);
+  animation: float-badge 3s ease-in-out infinite;
+}
+
+.floating-badge--result {
+  top: -16px;
+  right: -16px;
+  background: rgba(59,130,246,0.1);
+  border-color: rgba(59,130,246,0.3);
+  color: var(--color-accent-blue);
+  animation: float-badge 3s ease-in-out infinite 1.5s;
+}
+
+@keyframes float-badge {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* ── TRUSTED COMPANIES ── */
+.trusted {
+  padding-block: var(--space-2xl);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.trusted__label {
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-xl);
+}
+
+.trusted__logos {
+  overflow: hidden;
+  position: relative;
+}
+
+.trusted__logos::before,
+.trusted__logos::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+}
+
+.trusted__logos::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-bg), transparent);
+}
+
+.trusted__logos::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-bg), transparent);
+}
+
+.trusted__logos-track {
+  display: flex;
+  gap: var(--space-2xl);
+  animation: scroll-logos 28s linear infinite;
+  width: max-content;
+}
+
+.company-logo {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  transition: color var(--transition-base);
+  cursor: default;
+  white-space: nowrap;
+  padding-inline: var(--space-md);
+}
+
+.company-logo:hover {
+  color: rgba(255,255,255,0.7);
+}
+
+@keyframes scroll-logos {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── FEATURES ── */
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+.feature-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  border-radius: inherit;
+}
+
+.feature-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--gradient-primary);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  background: var(--color-card-hover);
+}
+
+.feature-card:hover::after {
+  opacity: 0.5;
+}
+
+.feature-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-md);
+  color: var(--color-accent-blue);
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+.feature-card:hover .feature-card__icon {
+  background: rgba(59,130,246,0.18);
+  box-shadow: 0 0 12px rgba(59,130,246,0.25);
+}
+
+.feature-card__title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+  position: relative;
+}
+
+.feature-card__text {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  position: relative;
+}
+
+/* ── SECURITY ── */
+.security {
+  background: linear-gradient(180deg, transparent, rgba(59,130,246,0.03) 50%, transparent);
+}
+
+.security__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.security__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.security-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.security-card:hover {
+  border-color: rgba(59,130,246,0.3);
+  background: var(--color-card-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(59,130,246,0.1);
+}
+
+.security-card__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgba(59,130,246,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-blue);
+  flex-shrink: 0;
+}
+
+.security-card__title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.security-card__text {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.security-card__tag {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background: rgba(239,68,68,0.1);
+  color: var(--color-danger);
+  border: 1px solid rgba(239,68,68,0.2);
+}
+
+.security-card__tag--high {
+  background: rgba(245,158,11,0.1);
+  color: var(--color-warning);
+  border-color: rgba(245,158,11,0.2);
+}
+
+.security-card__tag--moderate {
+  background: rgba(59,130,246,0.1);
+  color: var(--color-accent-blue);
+  border-color: rgba(59,130,246,0.2);
+}
+
+/* Security Terminal */
+.security-terminal {
+  background: #0a0d14;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  font-family: var(--font-mono);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(59,130,246,0.1);
+  position: sticky;
+  top: calc(var(--navbar-h) + var(--space-xl));
+}
+
+.terminal__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.terminal-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.terminal-dots span:nth-child(1) { background: #FF5F57; }
+.terminal-dots span:nth-child(2) { background: #FEBC2E; }
+.terminal-dots span:nth-child(3) { background: #28C840; }
+
+.terminal-title {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  flex: 1;
+  text-align: center;
+}
+
+.terminal__body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.log-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.log-time {
+  color: rgba(255,255,255,0.25);
+  flex-shrink: 0;
+  font-size: 0.65rem;
+}
+
+.log-tag {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 1px 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  min-width: 44px;
+  text-align: center;
+}
+
+.log-tag--info   { background: rgba(59,130,246,0.15);  color: var(--color-accent-blue); }
+.log-tag--ok     { background: rgba(34,197,94,0.15);   color: var(--color-success); }
+.log-tag--warn   { background: rgba(245,158,11,0.15);  color: var(--color-warning); }
+.log-tag--error  { background: rgba(239,68,68,0.15);   color: var(--color-danger); }
+
+.log-msg {
+  color: var(--color-text-muted);
+  flex: 1;
+}
+
+.cursor {
+  animation: blink 1s step-end infinite;
+  color: var(--color-accent-blue);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.security-badges {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: var(--space-md) var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.sec-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+.sec-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sec-badge__dot--green { background: var(--color-success); }
+.sec-badge__dot--blue  { background: var(--color-accent-blue); }
+
+/* ── DASHBOARD MOCKUP ── */
+.dashboard-mockup {
+  display: flex;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--color-bg2);
+  box-shadow: var(--shadow-lg), 0 0 60px rgba(59,130,246,0.05);
+  min-height: 480px;
+}
+
+.db-sidebar {
+  width: 60px;
+  background: rgba(255,255,255,0.025);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0;
+  gap: var(--space-lg);
+  flex-shrink: 0;
+}
+
+.db-sidebar__logo {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: var(--space-sm);
+}
+
+.db-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.db-nav__item {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+}
+
+.db-nav__item:hover {
+  background: var(--color-card);
+  color: var(--color-text);
+}
+
+.db-nav__item--active {
+  background: rgba(59,130,246,0.15);
+  color: var(--color-accent-blue);
+}
+
+.db-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.db-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.db-topbar__title h3 {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.db-topbar__title span {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+
+.db-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.db-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.db-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.db-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.db-kpi {
+  background: var(--color-bg2);
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.db-kpi__label {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.db-kpi__value {
+  font-size: 1.375rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.db-kpi__delta {
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.db-kpi__delta--up      { color: var(--color-success); }
+.db-kpi__delta--down    { color: var(--color-warning); }
+.db-kpi__delta--neutral { color: var(--color-text-muted); }
+
+.db-content-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--color-border);
+  flex: 1;
+}
+
+.db-chart-card,
+.db-list-card {
+  background: var(--color-bg2);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.db-chart-card__header,
+.db-list-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.db-chart-period,
+.db-view-all {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.db-view-all { color: var(--color-accent-blue); }
+.db-view-all:hover { text-decoration: underline; }
+
+/* DB bar chart */
+.db-bar-chart { flex: 1; }
+
+.db-bar-chart__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 100px;
+}
+
+.db-bar {
+  flex: 1;
+  height: var(--h);
+  background: rgba(59,130,246,0.25);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: background var(--transition-base);
+  cursor: default;
+}
+
+.db-bar:hover,
+.db-bar--active {
+  background: var(--color-accent-blue);
+}
+
+.db-bar__tooltip {
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 3px 7px;
+  font-size: 0.65rem;
+  white-space: nowrap;
+  color: var(--color-text);
+  pointer-events: none;
+  opacity: 0;
+  transition: all var(--transition-fast);
+}
+
+.db-bar:hover .db-bar__tooltip {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.db-bar-chart__labels {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.db-bar-chart__labels span {
+  flex: 1;
+  text-align: center;
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+}
+
+/* DB activity list */
+.db-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.db-activity-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.activity-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.625rem;
+  flex-shrink: 0;
+}
+
+.activity-icon--blue   { background: rgba(59,130,246,0.15);  color: var(--color-accent-blue); }
+.activity-icon--green  { background: rgba(34,197,94,0.15);   color: var(--color-success); }
+.activity-icon--amber  { background: rgba(245,158,11,0.15);  color: var(--color-warning); }
+.activity-icon--purple { background: rgba(139,92,246,0.15);  color: var(--color-accent-purple); }
+
+.activity-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-name {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.activity-sub {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+}
+
+.activity-badge {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.activity-badge--live  { background: rgba(34,197,94,0.15);   color: var(--color-success); }
+.activity-badge--done  { background: rgba(59,130,246,0.15);  color: var(--color-accent-blue); }
+.activity-badge--alert { background: rgba(245,158,11,0.15);  color: var(--color-warning); }
+.activity-badge--sched { background: rgba(139,92,246,0.15);  color: var(--color-accent-purple); }
+
+/* ── HOW IT WORKS ── */
+.steps {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-md);
+  position: relative;
+}
+
+.step {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  text-align: center;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.step::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.step:hover {
+  transform: translateY(-4px);
+  border-color: rgba(59,130,246,0.3);
+  box-shadow: 0 8px 24px rgba(59,130,246,0.1);
+}
+
+.step:hover::before { opacity: 1; }
+
+.step__number {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-accent-blue);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-md);
+  opacity: 0.8;
+}
+
+.step__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  background: rgba(59,130,246,0.08);
+  border: 1px solid rgba(59,130,246,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-blue);
+  margin: 0 auto var(--space-md);
+}
+
+.step__title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+
+.step__text {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.step-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.connector-line {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(to right, var(--color-accent-blue), var(--color-accent-purple));
+  opacity: 0.5;
+}
+
+.connector-arrow {
+  font-size: 1.125rem;
+  color: var(--color-accent-blue);
+  opacity: 0.7;
+  line-height: 1;
+}
+
+/* ── WHY CHOOSE ── */
+.why__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.why-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: all var(--transition-base);
+}
+
+.why-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.14);
+  background: var(--color-card-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.why-card__icon {
+  font-size: 1.75rem;
+  margin-bottom: var(--space-md);
+  display: block;
+  filter: saturate(0.8);
+}
+
+.why-card__title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+
+.why-card__text {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials {
+  background: linear-gradient(180deg, transparent, rgba(139,92,246,0.03) 50%, transparent);
+}
+
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.testimonial-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  transition: all var(--transition-base);
+}
+
+.testimonial-card--featured {
+  background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08));
+  border-color: rgba(59,130,246,0.2);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-blue);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.testimonial-card--featured:hover {
+  transform: translateY(-12px);
+}
+
+.testimonial-card__stars {
+  color: var(--color-warning);
+  font-size: 0.875rem;
+  letter-spacing: 2px;
+  margin-bottom: var(--space-md);
+}
+
+.testimonial-card__quote {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+  font-style: normal;
+}
+
+.testimonial-card__quote p::before { content: '\201C'; }
+.testimonial-card__quote p::after  { content: '\201D'; }
+
+.testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.testimonial-avatar--purple {
+  background: linear-gradient(135deg, #8B5CF6, #EC4899);
+}
+
+.testimonial-avatar--green {
+  background: linear-gradient(135deg, #22C55E, #3B82F6);
+}
+
+.testimonial-name {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-style: normal;
+  margin-bottom: 2px;
+}
+
+.testimonial-role,
+.testimonial-company {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.testimonial-company {
+  color: var(--color-accent-blue);
+  font-weight: 500;
+}
+
+/* ── PRICING ── */
+.pricing {
+  background: linear-gradient(180deg, transparent, rgba(59,130,246,0.02) 50%, transparent);
+}
+
+.pricing__toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.pricing-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  transition: all var(--transition-fast);
+}
+
+.pricing-toggle-btn--active {
+  background: var(--color-card-hover);
+  border-color: rgba(255,255,255,0.14);
+  color: var(--color-text);
+}
+
+.save-badge {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: rgba(34,197,94,0.15);
+  color: var(--color-success);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(34,197,94,0.25);
+}
+
+.pricing__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.pricing-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.pricing-card--featured {
+  background: linear-gradient(135deg, rgba(59,130,246,0.07), rgba(139,92,246,0.07));
+  border-color: rgba(59,130,246,0.25);
+  transform: scale(1.03);
+  box-shadow: var(--shadow-blue), var(--shadow-lg);
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+}
+
+.pricing-card--featured:hover {
+  transform: scale(1.03) translateY(-4px);
+}
+
+.pricing-card__badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gradient-primary);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(59,130,246,0.35);
+}
+
+.pricing-card__header {
+  margin-bottom: var(--space-lg);
+}
+
+.plan-name {
+  font-size: 1.125rem;
+  font-weight: 800;
+  margin-bottom: var(--space-xs);
+}
+
+.plan-desc {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.pricing-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.price-amount {
+  font-size: 2.25rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.price-period {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.pricing-card__features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: var(--space-xl);
+}
+
+.feat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8125rem;
+}
+
+.feat-item--yes { color: var(--color-text); }
+.feat-item--no  { color: var(--color-text-muted); opacity: 0.5; text-decoration: line-through; }
+
+.feat-item::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.feat-item--yes::before {
+  background-color: rgba(34,197,94,0.15);
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5l2 2 4-4' stroke='%2322C55E' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.feat-item--no::before {
+  background-color: rgba(255,255,255,0.05);
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 3l4 4M7 3L3 7' stroke='%2394A3B8' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* ── FAQ ── */
+.faq__container {
+  max-width: 740px;
+}
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.faq-item {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--transition-base);
+}
+
+.faq-item:has(.faq-question[aria-expanded="true"]) {
+  border-color: rgba(59,130,246,0.3);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-lg) var(--space-xl);
+  text-align: left;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  gap: var(--space-md);
+  transition: background var(--transition-fast);
+}
+
+.faq-question:hover {
+  background: var(--color-card-hover);
+}
+
+.faq-icon {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  transition: transform var(--transition-base), color var(--transition-fast);
+  line-height: 1;
+}
+
+.faq-question[aria-expanded="true"] .faq-icon {
+  transform: rotate(45deg);
+  color: var(--color-accent-blue);
+}
+
+.faq-answer {
+  padding: 0 var(--space-xl);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--transition-slow), padding var(--transition-base);
+}
+
+.faq-answer:not([hidden]) {
+  max-height: 300px;
+  padding-bottom: var(--space-lg);
+}
+
+.faq-answer p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
+/* ── CTA SECTION ── */
+.cta-section {
+  padding-block: var(--space-4xl);
+}
+
+.cta-inner {
+  position: relative;
+  background: linear-gradient(135deg, rgba(59,130,246,0.07) 0%, rgba(139,92,246,0.07) 100%);
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4xl) var(--space-xl);
+  text-align: center;
+  overflow: hidden;
+}
+
+.cta-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+  50%       { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+}
+
+.cta-heading {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+.cta-subtext {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  max-width: 520px;
+  margin-inline: auto;
+  margin-bottom: var(--space-xl);
+  line-height: 1.7;
+  position: relative;
+}
+
+.cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+.cta-note {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  position: relative;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--color-bg2);
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-3xl) var(--space-xl);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.footer__logo-link {
+  margin-bottom: var(--space-md);
+  display: inline-flex;
+}
+
+.footer__desc {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  max-width: 280px;
+  margin-bottom: var(--space-lg);
+}
+
+.footer__social {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.social-link {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+}
+
+.social-link:hover {
+  background: var(--color-card-hover);
+  color: var(--color-text);
+  border-color: rgba(255,255,255,0.14);
+}
+
+.footer__col-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  letter-spacing: 0.02em;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer__links a {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.footer__links a:hover { color: var(--color-text); }
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer__copy,
+.footer__tagline {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.footer__tagline {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+/* ── BACK TO TOP ── */
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg2);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+  z-index: 50;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.back-to-top:not([hidden]) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--color-card-hover);
+  color: var(--color-text);
+  border-color: rgba(255,255,255,0.14);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Focus styles ── */
+:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .fade-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+
+/* ── Large tablets (≤ 1024px) ── */
+@media (max-width: 1024px) {
+  .features__grid        { grid-template-columns: repeat(2, 1fr); }
+  .security__layout      { grid-template-columns: 1fr; }
+  .security__visual      { order: -1; }
+  .security-terminal     { position: static; }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  .step-connector { display: none; }
+
+  .hero__grid            { grid-template-columns: 1fr; gap: var(--space-2xl); }
+  .hero__visual          { order: -1; }
+  .hero__stats           { grid-template-columns: repeat(4, 1fr); }
+
+  .footer__grid          { grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
+  .footer__brand         { grid-column: 1 / -1; }
+
+  .db-kpi-row            { grid-template-columns: repeat(2, 1fr); }
+  .db-content-row        { grid-template-columns: 1fr; }
+}
+
+/* ── Tablets (≤ 768px) ── */
+@media (max-width: 768px) {
+  :root { --space-4xl: 4rem; }
+
+  .navbar__links,
+  .navbar__actions {
+    display: none;
+  }
+
+  .navbar__links.nav-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: var(--navbar-h);
+    left: 0;
+    right: 0;
+    background: rgba(11, 15, 25, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-md);
+    gap: var(--space-xs);
+    z-index: 99;
+  }
+
+  .navbar__actions.nav-open {
+    display: flex;
+    position: absolute;
+    top: calc(var(--navbar-h) + 200px);
+    left: 0;
+    right: 0;
+    background: rgba(11, 15, 25, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-md);
+    flex-direction: column;
+    z-index: 99;
+  }
+
+  .navbar__hamburger { display: flex; }
+
+  .hero__heading     { font-size: 2rem; }
+  .hero__stats       { grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+
+  .section-title     { font-size: 1.75rem; }
+
+  .features__grid    { grid-template-columns: 1fr; }
+  .security__cards   { grid-template-columns: 1fr; }
+
+  .why__grid               { grid-template-columns: 1fr; }
+  .testimonials__grid      { grid-template-columns: 1fr; }
+  .testimonial-card--featured { transform: none; }
+
+  .pricing__grid     { grid-template-columns: 1fr; }
+  .pricing-card--featured { transform: none; }
+
+  .dashboard-mockup  { flex-direction: column; min-height: auto; }
+  .db-sidebar        { width: 100%; height: 52px; flex-direction: row; padding: 0 var(--space-md); border-right: none; border-bottom: 1px solid var(--color-border); }
+  .db-nav            { flex-direction: row; }
+  .db-sidebar__logo  { margin-bottom: 0; margin-right: var(--space-md); }
+  .db-kpi-row        { grid-template-columns: repeat(2, 1fr); }
+  .db-content-row    { grid-template-columns: 1fr; }
+
+  .footer__grid      { grid-template-columns: 1fr; }
+  .footer__bottom    { flex-direction: column; gap: var(--space-sm); text-align: center; }
+}
+
+/* ── Mobile (≤ 480px) ── */
+@media (max-width: 480px) {
+  .container          { padding-inline: var(--space-md); }
+  .hero__actions      { flex-direction: column; }
+  .btn--large         { width: 100%; justify-content: center; }
+  .hero__stats        { grid-template-columns: 1fr 1fr; }
+  .cta-actions        { flex-direction: column; }
+  .back-to-top        { bottom: var(--space-md); right: var(--space-md); }
+}
+</style>
+
+<script>
+    /**
+ * AssessForge — Landing Page JavaScript
+ * Handles: loader, navbar, scroll animations, counters,
+ *          FAQ accordion, pricing toggle, ripple effects,
+ *          mobile menu, back-to-top, active nav links
+ */
+
+'use strict';
+
+/* ═══════════════════════════════════════════
+   LOADING SCREEN
+═══════════════════════════════════════════ */
+const loader = document.getElementById('loader');
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    if (loader) {
+      loader.classList.add('loaded');
+      loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+    }
+  }, 700);
+});
+
+/* ═══════════════════════════════════════════
+   STICKY NAVBAR
+═══════════════════════════════════════════ */
+const navbar = document.getElementById('navbar');
+
+function handleNavbarScroll() {
+  if (!navbar) return;
+  if (window.scrollY > 20) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+}
+
+window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+handleNavbarScroll(); // Run once on load
+
+/* ═══════════════════════════════════════════
+   MOBILE HAMBURGER MENU
+═══════════════════════════════════════════ */
+const hamburger   = document.getElementById('hamburger');
+const navLinks    = document.querySelector('.navbar__links');
+const navActions  = document.querySelector('.navbar__actions');
+
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+
+    if (navLinks)   navLinks.classList.toggle('nav-open', isOpen);
+    if (navActions) navActions.classList.toggle('nav-open', isOpen);
+
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close menu when a link is clicked
+  if (navLinks) {
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        navLinks.classList.remove('nav-open');
+        if (navActions) navActions.classList.remove('nav-open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+}
+
+/* ═══════════════════════════════════════════
+   ACTIVE NAV LINK ON SCROLL
+═══════════════════════════════════════════ */
+const sections  = document.querySelectorAll('section[id]');
+const allNavLinks = document.querySelectorAll('.nav-link');
+
+function updateActiveNavLink() {
+  const scrollPos = window.scrollY + 100;
+
+  sections.forEach(section => {
+    const top    = section.offsetTop;
+    const bottom = top + section.offsetHeight;
+    const id     = section.getAttribute('id');
+
+    if (scrollPos >= top && scrollPos < bottom) {
+      allNavLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        link.setAttribute('aria-current', link.getAttribute('href') === `#${id}` ? 'page' : 'false');
+      });
+    }
+  });
+}
+
+window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+
+/* ═══════════════════════════════════════════
+   INTERSECTION OBSERVER — FADE IN
+═══════════════════════════════════════════ */
+const fadeEls = document.querySelectorAll('.fade-in');
+
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      // Stagger siblings inside a grid or flex parent
+      const siblings = Array.from(entry.target.parentElement.querySelectorAll('.fade-in:not(.visible)'));
+      const delay = siblings.indexOf(entry.target) * 80;
+
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, delay);
+
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+fadeEls.forEach(el => fadeObserver.observe(el));
+
+/* ═══════════════════════════════════════════
+   ANIMATED COUNTERS
+═══════════════════════════════════════════ */
+const counterEls = document.querySelectorAll('[data-target]');
+let countersStarted = false;
+
+function animateCounter(el) {
+  const target    = parseFloat(el.dataset.target);
+  const suffix    = el.dataset.suffix || '';
+  const isDecimal = el.dataset.decimal === 'true';
+  const duration  = 1800;
+  const startTime = performance.now();
+
+  // Determine display multiplier for K+ format
+  const displayTarget = target <= 99.9 ? target : target / (suffix.includes('K') ? 1000 : 1);
+
+  function update(now) {
+    const elapsed  = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease-out cubic
+    const eased    = 1 - Math.pow(1 - progress, 3);
+    const value    = displayTarget * eased;
+
+    if (isDecimal) {
+      el.textContent = value.toFixed(1) + suffix;
+    } else {
+      el.textContent = Math.floor(value) + suffix;
+    }
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      el.textContent = (isDecimal ? displayTarget.toFixed(1) : Math.floor(displayTarget)) + suffix;
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+function startCounters() {
+  if (countersStarted) return;
+  countersStarted = true;
+  counterEls.forEach(el => animateCounter(el));
+}
+
+const statsSection = document.querySelector('.hero__stats');
+if (statsSection) {
+  const statsObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      startCounters();
+      statsObserver.disconnect();
+    }
+  }, { threshold: 0.5 });
+
+  statsObserver.observe(statsSection);
+}
+
+/* ═══════════════════════════════════════════
+   FAQ ACCORDION
+═══════════════════════════════════════════ */
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+  const btn    = item.querySelector('.faq-question');
+  const answer = item.querySelector('.faq-answer');
+
+  if (!btn || !answer) return;
+
+  btn.addEventListener('click', () => {
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+    // Close all other items
+    faqItems.forEach(other => {
+      if (other !== item) {
+        const otherBtn    = other.querySelector('.faq-question');
+        const otherAnswer = other.querySelector('.faq-answer');
+        if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        if (otherAnswer) otherAnswer.setAttribute('hidden', '');
+      }
+    });
+
+    // Toggle current
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    if (isOpen) {
+      answer.setAttribute('hidden', '');
+    } else {
+      answer.removeAttribute('hidden');
+    }
+  });
+});
+
+/* ═══════════════════════════════════════════
+   PRICING TOGGLE
+═══════════════════════════════════════════ */
+const pricingToggleBtns = document.querySelectorAll('.pricing-toggle-btn');
+const priceAmounts      = document.querySelectorAll('.price-amount');
+
+pricingToggleBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const period = btn.dataset.period;
+
+    // Update button states
+    pricingToggleBtns.forEach(b => {
+      b.classList.toggle('pricing-toggle-btn--active', b === btn);
+      b.setAttribute('aria-pressed', String(b === btn));
+    });
+
+    // Update prices
+    priceAmounts.forEach(el => {
+      const newPrice = el.dataset[period];
+      if (newPrice !== undefined) {
+        // Animate the price change
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(-6px)';
+        setTimeout(() => {
+          el.textContent = newPrice;
+          el.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 150);
+      }
+    });
+  });
+});
+
+/* ═══════════════════════════════════════════
+   RIPPLE EFFECT ON BUTTONS
+═══════════════════════════════════════════ */
+document.querySelectorAll('.btn--ripple').forEach(btn => {
+  btn.addEventListener('click', function (e) {
+    const rect     = this.getBoundingClientRect();
+    const size     = Math.max(rect.width, rect.height);
+    const x        = e.clientX - rect.left - size / 2;
+    const y        = e.clientY - rect.top  - size / 2;
+
+    const ripple   = document.createElement('span');
+    ripple.classList.add('ripple');
+    ripple.style.cssText = `
+      width: ${size}px;
+      height: ${size}px;
+      left: ${x}px;
+      top: ${y}px;
+    `;
+
+    this.appendChild(ripple);
+
+    ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+  });
+});
+
+/* ═══════════════════════════════════════════
+   BACK TO TOP BUTTON
+═══════════════════════════════════════════ */
+const backToTop = document.getElementById('backToTop');
+
+function handleBackToTop() {
+  if (!backToTop) return;
+  if (window.scrollY > 400) {
+    backToTop.removeAttribute('hidden');
+  } else {
+    backToTop.setAttribute('hidden', '');
+  }
+}
+
+if (backToTop) {
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+window.addEventListener('scroll', handleBackToTop, { passive: true });
+handleBackToTop();
+
+/* ═══════════════════════════════════════════
+   SMOOTH SCROLL FOR ANCHOR LINKS
+═══════════════════════════════════════════ */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+
+    const target = document.querySelector(targetId);
+    if (!target) return;
+
+    e.preventDefault();
+
+    const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-h') || '68');
+    const top    = target.getBoundingClientRect().top + window.scrollY - offset;
+
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+
+/* ═══════════════════════════════════════════
+   TYPING ANIMATION FOR TERMINAL LOG
+   (adds log lines progressively on scroll)
+═══════════════════════════════════════════ */
+const terminal = document.querySelector('.terminal__body');
+let terminalAnimated = false;
+
+if (terminal) {
+  const lines = terminal.querySelectorAll('.log-line');
+
+  // Hide all lines initially (except the container)
+  lines.forEach((line, index) => {
+    line.style.opacity = '0';
+    line.style.transform = 'translateX(-8px)';
+    line.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+  });
+
+  const termObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !terminalAnimated) {
+      terminalAnimated = true;
+
+      lines.forEach((line, index) => {
+        setTimeout(() => {
+          line.style.opacity = '1';
+          line.style.transform = 'translateX(0)';
+        }, index * 200);
+      });
+
+      termObserver.disconnect();
+    }
+  }, { threshold: 0.3 });
+
+  termObserver.observe(terminal);
+}
+
+/* ═══════════════════════════════════════════
+   DASHBOARD BARS ANIMATION
+═══════════════════════════════════════════ */
+const dashboardBars = document.querySelectorAll('.db-bar');
+let barsAnimated = false;
+
+if (dashboardBars.length) {
+  const barsObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !barsAnimated) {
+      barsAnimated = true;
+
+      dashboardBars.forEach(bar => {
+        const targetH = bar.style.getPropertyValue('--h');
+        bar.style.setProperty('--h', '0%');
+
+        setTimeout(() => {
+          bar.style.transition = 'height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          bar.style.setProperty('--h', targetH);
+        }, 50);
+      });
+
+      // Also animate mini chart bars
+      document.querySelectorAll('.bar').forEach(bar => {
+        const targetH = bar.style.getPropertyValue('--h');
+        bar.style.setProperty('--h', '0%');
+
+        setTimeout(() => {
+          bar.style.transition = 'height 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          bar.style.setProperty('--h', targetH);
+        }, 100);
+      });
+
+      barsObserver.disconnect();
+    }
+  }, { threshold: 0.2 });
+
+  const dashSection = document.querySelector('.dashboard-section');
+  if (dashSection) barsObserver.observe(dashSection);
+}
+
+/* ═══════════════════════════════════════════
+   PARALLAX BACKGROUND SHAPES (subtle)
+═══════════════════════════════════════════ */
+const bgShapes = document.querySelectorAll('.bg-shape');
+
+let ticking = false;
+
+function updateParallax() {
+  const scrollY = window.scrollY;
+
+  bgShapes.forEach((shape, index) => {
+    const speed  = 0.05 + (index * 0.02);
+    const offset = scrollY * speed;
+    shape.style.transform = `translateY(${offset}px)`;
+  });
+
+  ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(updateParallax);
+    ticking = true;
+  }
+}, { passive: true });
+
+/* ═══════════════════════════════════════════
+   KEYBOARD ACCESSIBILITY — CLOSE MENU ON ESC
+═══════════════════════════════════════════ */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (hamburger && hamburger.classList.contains('open')) {
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      if (navLinks)   navLinks.classList.remove('nav-open');
+      if (navActions) navActions.classList.remove('nav-open');
+      document.body.style.overflow = '';
+      hamburger.focus();
+    }
+  }
+});
+
+/* ═══════════════════════════════════════════
+   CONSOLE EASTER EGG
+═══════════════════════════════════════════ */
+console.log(
+  '%c AssessForge ',
+  'background: linear-gradient(135deg, #3B82F6, #8B5CF6); color: white; font-size: 16px; font-weight: 800; padding: 6px 14px; border-radius: 6px;'
+);
+console.log('%cSecure. Smart. Scalable Online Assessments.', 'color: #94A3B8; font-size: 12px;');
+</script>
+</body>
+</html>

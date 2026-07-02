@@ -1,0 +1,2524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AssessForge — HR Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────── */
+:root {
+  --bg:        #0B1220;
+  --surface:   #111827;
+  --surface2:  #1a2336;
+  --sidebar:   #101624;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.12);
+
+  --primary:   #3B82F6;
+  --primary-d: #2563EB;
+  --primary-g: rgba(59,130,246,0.15);
+  --accent:    #8B5CF6;
+  --accent-g:  rgba(139,92,246,0.15);
+  --success:   #22C55E;
+  --success-g: rgba(34,197,94,0.12);
+  --warning:   #F59E0B;
+  --warning-g: rgba(245,158,11,0.12);
+  --danger:    #EF4444;
+  --danger-g:  rgba(239,68,68,0.12);
+  --cyan:      #06B6D4;
+  --cyan-g:    rgba(6,182,212,0.12);
+
+  --txt:       #F1F5F9;
+  --txt2:      #94A3B8;
+  --txt3:      #475569;
+
+  --sidebar-w: 260px;
+  --header-h:  64px;
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+
+  --shadow:    0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,0.5);
+  --glow-blue: 0 0 20px rgba(59,130,246,0.25);
+  --glow-purple: 0 0 20px rgba(139,92,246,0.25);
+
+  --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
+  --transition-slow: 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ─────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--txt);
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input, select, textarea { font-family: inherit; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+table { border-collapse: collapse; width: 100%; }
+
+/* ─────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--txt3); }
+
+/* ─────────────────────────────────────────
+   LAYOUT SHELL
+───────────────────────────────────────── */
+.app { display: flex; height: 100vh; overflow: hidden; }
+
+/* ─────────────────────────────────────────
+   SIDEBAR
+───────────────────────────────────────── */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: width var(--transition-slow), transform var(--transition-slow);
+  z-index: 100;
+  overflow: hidden;
+}
+.sidebar.collapsed { width: 68px; }
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 18px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.logo-mark {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 800; color: #fff;
+  flex-shrink: 0;
+  box-shadow: var(--glow-blue);
+}
+.logo-text {
+  font-size: 17px; font-weight: 700;
+  background: linear-gradient(135deg, #fff 40%, var(--accent));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+  opacity: 1; transition: opacity var(--transition);
+}
+.sidebar.collapsed .logo-text { opacity: 0; pointer-events: none; }
+.sidebar.collapsed .sidebar-logo { justify-content: center; }
+
+.sidebar-toggle {
+  position: absolute; top: 20px; left: calc(var(--sidebar-w) - 14px);
+  width: 28px; height: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--txt2);
+  transition: left var(--transition-slow), transform var(--transition);
+  z-index: 101;
+  font-size: 12px;
+}
+.sidebar.collapsed .sidebar-toggle { left: 54px; transform: rotate(180deg); }
+.sidebar-toggle:hover { color: var(--txt); background: var(--surface2); }
+
+.sidebar-nav { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 12px 0; }
+
+.nav-section-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+  color: var(--txt3); text-transform: uppercase;
+  padding: 16px 20px 6px;
+  white-space: nowrap;
+  opacity: 1; transition: opacity var(--transition);
+}
+.sidebar.collapsed .nav-section-label { opacity: 0; height: 0; padding: 0; overflow: hidden; }
+
+.nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 18px;
+  border-radius: var(--r-sm);
+  margin: 1px 8px;
+  color: var(--txt2);
+  font-size: 13.5px; font-weight: 500;
+  transition: all var(--transition);
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+}
+.nav-item .nav-icon {
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 16px;
+}
+.nav-item .nav-label { opacity: 1; transition: opacity var(--transition); }
+.sidebar.collapsed .nav-item .nav-label { opacity: 0; pointer-events: none; }
+.sidebar.collapsed .nav-item { justify-content: center; padding: 10px; }
+
+.nav-item:hover { color: var(--txt); background: rgba(255,255,255,0.05); }
+.nav-item.active {
+  color: var(--primary);
+  background: var(--primary-g);
+}
+.nav-item.active::before {
+  content: '';
+  position: absolute; left: -8px; top: 50%; transform: translateY(-50%);
+  width: 3px; height: 24px;
+  background: var(--primary);
+  border-radius: 0 2px 2px 0;
+}
+
+.nav-badge {
+  margin-left: auto;
+  background: var(--danger);
+  color: #fff; font-size: 10px; font-weight: 700;
+  padding: 2px 6px; border-radius: 99px;
+  min-width: 18px; text-align: center;
+  opacity: 1; transition: opacity var(--transition);
+}
+.sidebar.collapsed .nav-badge { display: none; }
+
+.sidebar-footer {
+  padding: 12px 8px;
+  border-top: 1px solid var(--border);
+}
+
+/* ─────────────────────────────────────────
+   MAIN CONTENT
+───────────────────────────────────────── */
+.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+
+/* TOPBAR */
+.topbar {
+  height: var(--header-h);
+  background: rgba(11,18,32,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 16px;
+  padding: 0 24px;
+  flex-shrink: 0;
+  z-index: 50;
+  position: sticky; top: 0;
+}
+.topbar-breadcrumb {
+  font-size: 13px; color: var(--txt2);
+  display: flex; align-items: center; gap: 6px;
+}
+.topbar-breadcrumb span { color: var(--txt); font-weight: 600; }
+
+.topbar-search {
+  flex: 1; max-width: 360px; margin-left: auto;
+  position: relative;
+}
+.topbar-search input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 8px 14px 8px 36px;
+  color: var(--txt); font-size: 13px;
+  transition: border-color var(--transition);
+}
+.topbar-search input:focus { outline: none; border-color: var(--primary); }
+.topbar-search input::placeholder { color: var(--txt3); }
+.topbar-search .search-icon {
+  position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+  color: var(--txt3); font-size: 14px;
+}
+
+.topbar-actions { display: flex; align-items: center; gap: 8px; }
+.topbar-btn {
+  width: 36px; height: 36px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--txt2); font-size: 16px;
+  transition: all var(--transition);
+  position: relative;
+}
+.topbar-btn:hover { color: var(--txt); background: var(--surface); border-color: var(--border2); }
+.topbar-btn .dot {
+  position: absolute; top: 6px; right: 6px;
+  width: 7px; height: 7px;
+  background: var(--danger); border-radius: 50%;
+  border: 1.5px solid var(--bg);
+}
+
+.avatar-btn {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; color: #fff;
+  border: 2px solid var(--border2);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.avatar-btn:hover { border-color: var(--primary); box-shadow: var(--glow-blue); }
+
+/* PAGE CONTENT */
+.page-content {
+  flex: 1; overflow-y: auto; overflow-x: hidden;
+  padding: 28px;
+  scroll-behavior: smooth;
+}
+
+/* PAGES */
+.page { display: none; animation: pageIn var(--transition-slow) ease; }
+.page.active { display: block; }
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 24px; gap: 16px; flex-wrap: wrap;
+}
+.page-title { font-size: 22px; font-weight: 700; color: var(--txt); }
+.page-subtitle { font-size: 13px; color: var(--txt2); margin-top: 2px; }
+
+/* ─────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 18px;
+  border-radius: var(--r-sm);
+  font-size: 13px; font-weight: 600;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(59,130,246,0.35);
+}
+.btn-primary:hover { background: var(--primary-d); box-shadow: 0 4px 20px rgba(59,130,246,0.5); transform: translateY(-1px); }
+.btn-ghost {
+  background: var(--surface2);
+  color: var(--txt2);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { color: var(--txt); background: var(--surface); border-color: var(--border2); }
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+}
+.btn-danger:hover { background: #DC2626; transform: translateY(-1px); }
+.btn-success {
+  background: var(--success);
+  color: #fff;
+}
+.btn-success:hover { background: #16A34A; }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+.btn-icon { width: 32px; height: 32px; padding: 0; justify-content: center; border-radius: var(--r-sm); }
+
+/* ─────────────────────────────────────────
+   CARDS
+───────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.card:hover { border-color: var(--border2); }
+.card-pad { padding: 20px; }
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+}
+.card-title { font-size: 14px; font-weight: 600; color: var(--txt); }
+.card-subtitle { font-size: 12px; color: var(--txt2); }
+
+/* ─────────────────────────────────────────
+   STAT CARDS
+───────────────────────────────────────── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative; overflow: hidden;
+  transition: all var(--transition);
+  cursor: default;
+}
+.stat-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent-color, var(--primary));
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+}
+.stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--border2); }
+.stat-icon-row { display: flex; align-items: center; justify-content: space-between; }
+.stat-icon {
+  width: 42px; height: 42px;
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  background: var(--icon-bg, var(--primary-g));
+}
+.stat-badge {
+  font-size: 11px; font-weight: 600;
+  padding: 3px 8px; border-radius: 99px;
+  background: var(--badge-bg, var(--success-g));
+  color: var(--badge-color, var(--success));
+}
+.stat-value { font-size: 28px; font-weight: 800; color: var(--txt); line-height: 1; }
+.stat-label { font-size: 12px; color: var(--txt2); font-weight: 500; }
+.stat-trend { font-size: 11px; color: var(--txt3); }
+.stat-trend .up { color: var(--success); }
+.stat-trend .down { color: var(--danger); }
+
+/* ─────────────────────────────────────────
+   GRID LAYOUTS
+───────────────────────────────────────── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px; }
+
+/* ─────────────────────────────────────────
+   CHARTS (Canvas)
+───────────────────────────────────────── */
+.chart-wrap { position: relative; width: 100%; }
+canvas { display: block; max-width: 100%; }
+
+/* ─────────────────────────────────────────
+   TABLES
+───────────────────────────────────────── */
+.table-wrap { overflow-x: auto; }
+.data-table { width: 100%; font-size: 13px; }
+.data-table th {
+  text-align: left;
+  padding: 11px 16px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+  color: var(--txt3); text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--txt2);
+  vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: rgba(255,255,255,0.02); }
+.data-table td strong { color: var(--txt); font-weight: 600; }
+
+/* ─────────────────────────────────────────
+   BADGES / PILLS
+───────────────────────────────────────── */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 9px; border-radius: 99px;
+  font-size: 11px; font-weight: 600; white-space: nowrap;
+}
+.badge-success { background: var(--success-g); color: var(--success); }
+.badge-danger  { background: var(--danger-g);  color: var(--danger);  }
+.badge-warning { background: var(--warning-g); color: var(--warning); }
+.badge-primary { background: var(--primary-g); color: var(--primary); }
+.badge-accent  { background: var(--accent-g);  color: var(--accent);  }
+.badge-cyan    { background: var(--cyan-g);    color: var(--cyan);    }
+.badge-neutral { background: rgba(255,255,255,0.07); color: var(--txt2); }
+
+.pulse-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  display: inline-block; flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.dot-success { background: var(--success); }
+.dot-danger  { background: var(--danger);  }
+.dot-warning { background: var(--warning); }
+.dot-primary { background: var(--primary); }
+
+/* ─────────────────────────────────────────
+   PROGRESS BARS
+───────────────────────────────────────── */
+.progress-bar {
+  height: 6px; background: var(--surface2);
+  border-radius: 99px; overflow: hidden;
+  min-width: 80px;
+}
+.progress-fill {
+  height: 100%; border-radius: 99px;
+  transition: width 1s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ─────────────────────────────────────────
+   ACTIVITY FEED
+───────────────────────────────────────── */
+.activity-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.activity-item:last-child { border-bottom: none; }
+.activity-avatar {
+  width: 32px; height: 32px; flex-shrink: 0;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+}
+.activity-content { flex: 1; min-width: 0; }
+.activity-name { font-size: 13px; font-weight: 600; color: var(--txt); }
+.activity-desc { font-size: 12px; color: var(--txt2); margin-top: 1px; }
+.activity-time { font-size: 11px; color: var(--txt3); flex-shrink: 0; }
+
+/* ─────────────────────────────────────────
+   FORMS
+───────────────────────────────────────── */
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 12px; font-weight: 600; color: var(--txt2); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.form-control {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 9px 12px;
+  color: var(--txt); font-size: 13px;
+  transition: border-color var(--transition);
+}
+.form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(59,130,246,0.12); }
+.form-control::placeholder { color: var(--txt3); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.form-section-title { font-size: 13px; font-weight: 700; color: var(--txt); margin: 20px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+/* ─────────────────────────────────────────
+   TOGGLE / SWITCH
+───────────────────────────────────────── */
+.toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.toggle-row:last-child { border-bottom: none; }
+.toggle-info { flex: 1; }
+.toggle-name { font-size: 13px; font-weight: 600; color: var(--txt); }
+.toggle-desc { font-size: 12px; color: var(--txt2); margin-top: 2px; }
+.toggle {
+  position: relative; width: 42px; height: 24px; flex-shrink: 0;
+}
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute; inset: 0;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 99px;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute; left: 3px; bottom: 3px;
+  width: 16px; height: 16px;
+  background: var(--txt3);
+  border-radius: 50%;
+  transition: all var(--transition);
+}
+.toggle input:checked + .toggle-slider { background: var(--primary); border-color: var(--primary); }
+.toggle input:checked + .toggle-slider::before { transform: translateX(18px); background: #fff; }
+
+/* ─────────────────────────────────────────
+   MODALS
+───────────────────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--transition);
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-xl);
+  width: 100%; max-width: 620px;
+  max-height: 90vh; overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  transform: scale(0.95) translateY(10px);
+  transition: transform var(--transition);
+}
+.modal-overlay.open .modal { transform: scale(1) translateY(0); }
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.modal-title { font-size: 16px; font-weight: 700; }
+.modal-close {
+  width: 32px; height: 32px;
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--txt2); font-size: 18px;
+  transition: all var(--transition);
+}
+.modal-close:hover { background: var(--surface2); color: var(--txt); }
+.modal-body { padding: 24px; }
+.modal-footer {
+  display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+}
+
+/* ─────────────────────────────────────────
+   TABS
+───────────────────────────────────────── */
+.tabs {
+  display: flex; gap: 4px;
+  background: var(--surface2);
+  border-radius: var(--r-sm);
+  padding: 4px;
+  margin-bottom: 20px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px; font-weight: 500;
+  color: var(--txt2);
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.tab-btn.active { background: var(--primary); color: #fff; }
+.tab-btn:hover:not(.active) { color: var(--txt); background: rgba(255,255,255,0.05); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ─────────────────────────────────────────
+   QUESTION ITEM (drag & drop)
+───────────────────────────────────────── */
+.q-item {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 14px;
+  margin-bottom: 10px;
+  display: flex; align-items: flex-start; gap: 12px;
+  transition: all var(--transition);
+  cursor: grab;
+}
+.q-item:hover { border-color: var(--border2); }
+.q-item.dragging { opacity: 0.5; cursor: grabbing; }
+.q-drag { color: var(--txt3); font-size: 16px; flex-shrink: 0; padding-top: 2px; }
+.q-content { flex: 1; min-width: 0; }
+.q-text { font-size: 13px; font-weight: 600; color: var(--txt); margin-bottom: 6px; }
+.q-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.q-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+/* ─────────────────────────────────────────
+   SECTION (Exam schedule)
+───────────────────────────────────────── */
+.exam-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.exam-item:last-child { border-bottom: none; }
+.exam-date {
+  width: 44px; height: 44px;
+  background: var(--primary-g);
+  border-radius: var(--r-sm);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.exam-date .day { font-size: 16px; font-weight: 800; color: var(--primary); line-height: 1; }
+.exam-date .mon { font-size: 10px; font-weight: 600; color: var(--txt2); text-transform: uppercase; }
+.exam-info { flex: 1; min-width: 0; }
+.exam-name { font-size: 13px; font-weight: 600; color: var(--txt); }
+.exam-course { font-size: 12px; color: var(--txt2); }
+.exam-stat { font-size: 12px; color: var(--txt3); flex-shrink: 0; }
+
+/* ─────────────────────────────────────────
+   SECURITY CENTER
+───────────────────────────────────────── */
+.security-section {
+  margin-bottom: 20px;
+}
+.security-section-title {
+  font-size: 12px; font-weight: 700; color: var(--txt3);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+/* ─────────────────────────────────────────
+   LIVE EXAM — candidate grid
+───────────────────────────────────────── */
+.candidate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.candidate-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 14px;
+  transition: all var(--transition);
+}
+.candidate-tile:hover { border-color: var(--border2); box-shadow: var(--shadow); }
+.c-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.c-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: #fff;
+}
+.c-name { font-size: 12px; font-weight: 600; color: var(--txt); }
+.c-id   { font-size: 11px; color: var(--txt3); }
+.c-progress-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--txt3); margin-bottom: 4px; margin-top: 8px; }
+
+/* ─────────────────────────────────────────
+   NOTIFICATIONS
+───────────────────────────────────────── */
+.notif-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px;
+  border-radius: var(--r-md);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+  transition: all var(--transition);
+}
+.notif-item:hover { border-color: var(--border2); }
+.notif-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.notif-content { flex: 1; }
+.notif-title { font-size: 13px; font-weight: 600; color: var(--txt); }
+.notif-desc { font-size: 12px; color: var(--txt2); margin-top: 2px; }
+.notif-time { font-size: 11px; color: var(--txt3); flex-shrink: 0; }
+.notif-unread { border-left: 3px solid var(--primary); }
+
+/* ─────────────────────────────────────────
+   LOADING SKELETON
+───────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--surface) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+/* ─────────────────────────────────────────
+   DONUT CHART (pure CSS)
+───────────────────────────────────────── */
+.donut-wrap { position: relative; display: inline-block; }
+.donut-center {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.donut-val { font-size: 22px; font-weight: 800; color: var(--txt); }
+.donut-lbl { font-size: 11px; color: var(--txt2); }
+
+/* ─────────────────────────────────────────
+   REGISTRATION
+───────────────────────────────────────── */
+.reg-id-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 5px 10px;
+  font-size: 12px; font-weight: 600;
+  color: var(--primary);
+  font-family: 'JetBrains Mono', monospace;
+  transition: all var(--transition);
+}
+.reg-id-chip:hover { border-color: var(--primary); }
+
+/* ─────────────────────────────────────────
+   MINI KPI STRIP
+───────────────────────────────────────── */
+.kpi-strip {
+  display: flex; gap: 1px;
+  background: var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.kpi-cell {
+  flex: 1;
+  background: var(--surface);
+  padding: 14px 18px;
+  text-align: center;
+}
+.kpi-val { font-size: 20px; font-weight: 800; color: var(--txt); }
+.kpi-lbl { font-size: 11px; color: var(--txt3); margin-top: 2px; }
+
+/* ─────────────────────────────────────────
+   SETTINGS PROFILE
+───────────────────────────────────────── */
+.settings-nav {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.settings-nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  font-size: 13px; font-weight: 500;
+  color: var(--txt2);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.settings-nav-item:hover,
+.settings-nav-item.active { color: var(--txt); background: var(--primary-g); color: var(--primary); }
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .grid-2-1 { grid-template-columns: 1fr; }
+}
+@media (max-width: 960px) {
+  .grid-2  { grid-template-columns: 1fr; }
+  .grid-3  { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  :root { --sidebar-w: 240px; }
+  .sidebar { position: fixed; height: 100vh; transform: translateX(-100%); }
+  .sidebar.mobile-open { transform: translateX(0); box-shadow: 4px 0 40px rgba(0,0,0,0.5); }
+  .sidebar-overlay { display: block !important; }
+  .page-content { padding: 16px; }
+  .form-row, .form-row-3 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .candidate-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr; }
+}
+
+.sidebar-overlay {
+  display: none; position: fixed; inset: 0; z-index: 99;
+  background: rgba(0,0,0,0.5);
+}
+
+/* ─────────────────────────────────────────
+   TOAST NOTIFICATION
+───────────────────────────────────────── */
+.toast-container {
+  position: fixed; bottom: 24px; right: 24px;
+  z-index: 2000; display: flex; flex-direction: column; gap: 10px;
+}
+.toast {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-md);
+  padding: 12px 16px;
+  min-width: 280px; max-width: 380px;
+  box-shadow: var(--shadow-lg);
+  animation: toastIn 0.3s ease;
+}
+@keyframes toastIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+.toast-icon { font-size: 18px; flex-shrink: 0; }
+.toast-content { flex: 1; }
+.toast-title { font-size: 13px; font-weight: 600; color: var(--txt); }
+.toast-desc { font-size: 12px; color: var(--txt2); }
+.toast-close { color: var(--txt3); font-size: 16px; cursor: pointer; }
+
+/* ─────────────────────────────────────────
+   MISC UTILITIES
+───────────────────────────────────────── */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.mt-1 { margin-top: 6px; }
+.mt-2 { margin-top: 12px; }
+.mt-3 { margin-top: 20px; }
+.mb-1 { margin-bottom: 6px; }
+.mb-2 { margin-bottom: 12px; }
+.mb-3 { margin-bottom: 20px; }
+.text-sm { font-size: 12px; }
+.text-muted { color: var(--txt2); }
+.text-primary { color: var(--primary); }
+.text-success { color: var(--success); }
+.text-danger { color: var(--danger); }
+.text-warning { color: var(--warning); }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+.w-full { width: 100%; }
+.divider { height: 1px; background: var(--border); margin: 16px 0; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR OVERLAY (mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeMobileSidebar()"></div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- MODAL: Create Assessment -->
+<div class="modal-overlay" id="modalCreateAssessment">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Create Assessment</div>
+      <button class="modal-close" onclick="closeModal('modalCreateAssessment')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Assessment Name</label>
+          <input class="form-control" type="text" placeholder="e.g. Data Structures Midterm">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Course</label>
+          <select class="form-control">
+            <option>Computer Science</option>
+            <option>Data Science</option>
+            <option>Business Administration</option>
+            <option>Software Engineering</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row-3">
+        <div class="form-group">
+          <label class="form-label">Duration (minutes)</label>
+          <input class="form-control" type="number" placeholder="90">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Passing Marks (%)</label>
+          <input class="form-control" type="number" placeholder="60">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Total Marks</label>
+          <input class="form-control" type="number" placeholder="100">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Start Date & Time</label>
+          <input class="form-control" type="datetime-local">
+        </div>
+        <div class="form-group">
+          <label class="form-label">End Date & Time</label>
+          <input class="form-control" type="datetime-local">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Instructions</label>
+        <textarea class="form-control" rows="3" placeholder="Enter exam instructions for candidates..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Status</label>
+        <select class="form-control">
+          <option>Draft</option>
+          <option>Published</option>
+          <option>Scheduled</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modalCreateAssessment')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveAssessment()">✦ Create Assessment</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Add Question -->
+<div class="modal-overlay" id="modalAddQuestion">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add Question</div>
+      <button class="modal-close" onclick="closeModal('modalAddQuestion')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Question Type</label>
+          <select class="form-control" id="qType" onchange="toggleQType()">
+            <option value="mcq">Multiple Choice (MCQ)</option>
+            <option value="multi">Multiple Select</option>
+            <option value="tf">True / False</option>
+            <option value="fill">Fill in the Blank</option>
+            <option value="short">Short Answer</option>
+          </select>
+        </div>
+        <div class="form-row" style="grid-template-columns:1fr 1fr;gap:8px;margin:0">
+          <div class="form-group">
+            <label class="form-label">Marks</label>
+            <input class="form-control" type="number" placeholder="2">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Negative Marks</label>
+            <input class="form-control" type="number" placeholder="0.5">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Question Text</label>
+        <textarea class="form-control" rows="3" placeholder="Enter your question here..."></textarea>
+      </div>
+      <div id="qOptions">
+        <p class="form-section-title">Answer Options</p>
+        <div class="form-group" style="display:flex;gap:8px;align-items:center">
+          <input type="radio" name="correct" value="A" checked>
+          <input class="form-control" type="text" placeholder="Option A">
+        </div>
+        <div class="form-group" style="display:flex;gap:8px;align-items:center">
+          <input type="radio" name="correct" value="B">
+          <input class="form-control" type="text" placeholder="Option B">
+        </div>
+        <div class="form-group" style="display:flex;gap:8px;align-items:center">
+          <input type="radio" name="correct" value="C">
+          <input class="form-control" type="text" placeholder="Option C">
+        </div>
+        <div class="form-group" style="display:flex;gap:8px;align-items:center">
+          <input type="radio" name="correct" value="D">
+          <input class="form-control" type="text" placeholder="Option D">
+        </div>
+        <p class="text-sm text-muted">● Select the radio button next to the correct answer</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modalAddQuestion')">Cancel</button>
+      <button class="btn btn-primary" onclick="addQuestion()">Add Question</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Generate Reg IDs -->
+<div class="modal-overlay" id="modalGenIds">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Generate Registration IDs</div>
+      <button class="modal-close" onclick="closeModal('modalGenIds')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="tabs" id="genIdTabs">
+        <button class="tab-btn active" onclick="switchTab('genIdTabs','genIdTabPanels',0)">Auto-Generate</button>
+        <button class="tab-btn" onclick="switchTab('genIdTabs','genIdTabPanels',1)">Manual Entry</button>
+        <button class="tab-btn" onclick="switchTab('genIdTabs','genIdTabPanels',2)">Upload CSV</button>
+      </div>
+      <div id="genIdTabPanels">
+        <div class="tab-panel active">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Count</label>
+              <input class="form-control" type="number" placeholder="50" value="50">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Prefix</label>
+              <input class="form-control" type="text" placeholder="AF2025" value="AF2025">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Assign to Course</label>
+            <select class="form-control">
+              <option>Computer Science — Batch A</option>
+              <option>Data Science — Batch B</option>
+              <option>Business Administration</option>
+            </select>
+          </div>
+        </div>
+        <div class="tab-panel">
+          <div class="form-group">
+            <label class="form-label">Registration IDs (one per line)</label>
+            <textarea class="form-control" rows="5" placeholder="AF2025001&#10;AF2025002&#10;AF2025003"></textarea>
+          </div>
+        </div>
+        <div class="tab-panel">
+          <div style="border:2px dashed var(--border2);border-radius:var(--r-md);padding:32px;text-align:center;color:var(--txt2)">
+            <div style="font-size:32px;margin-bottom:8px">📂</div>
+            <div style="font-size:13px;font-weight:600;color:var(--txt)">Drop CSV file here</div>
+            <div style="font-size:12px;margin-top:4px">or <a style="color:var(--primary);cursor:pointer">browse files</a></div>
+            <div style="font-size:11px;margin-top:8px;color:var(--txt3)">Expected columns: reg_id, name, email, course</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modalGenIds')">Cancel</button>
+      <button class="btn btn-primary" onclick="generateIds()">Generate IDs</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP SHELL -->
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">AF</div>
+      <span class="logo-text">AssessForge</span>
+    </div>
+
+    <div class="sidebar-nav">
+      <span class="nav-section-label">Overview</span>
+      <div class="nav-item active" onclick="navigate('dashboard')">
+        <span class="nav-icon">⬡</span>
+        <span class="nav-label">Dashboard</span>
+      </div>
+      <div class="nav-item" onclick="navigate('analytics')">
+        <span class="nav-icon">◈</span>
+        <span class="nav-label">Analytics</span>
+      </div>
+
+      <span class="nav-section-label">Exam Management</span>
+      <div class="nav-item" onclick="navigate('assessments')">
+        <span class="nav-icon">▦</span>
+        <span class="nav-label">Assessments</span>
+      </div>
+      <div class="nav-item" onclick="navigate('questions')">
+        <span class="nav-icon">◉</span>
+        <span class="nav-label">Question Bank</span>
+      </div>
+      <div class="nav-item" onclick="navigate('registration')">
+        <span class="nav-icon">⊞</span>
+        <span class="nav-label">Registration IDs</span>
+      </div>
+      <div class="nav-item" onclick="navigate('live')">
+        <span class="nav-icon">⬕</span>
+        <span class="nav-label">Live Exams</span>
+        <span class="nav-badge">3</span>
+      </div>
+
+      <span class="nav-section-label">Monitoring</span>
+      <div class="nav-item" onclick="navigate('candidates')">
+        <span class="nav-icon">⊙</span>
+        <span class="nav-label">Candidates</span>
+      </div>
+      <div class="nav-item" onclick="navigate('security')">
+        <span class="nav-icon">⬡</span>
+        <span class="nav-label">Security Center</span>
+        <span class="nav-badge">2</span>
+      </div>
+      <div class="nav-item" onclick="navigate('results')">
+        <span class="nav-icon">◈</span>
+        <span class="nav-label">Results</span>
+      </div>
+
+      <span class="nav-section-label">Operations</span>
+      <div class="nav-item" onclick="navigate('reports')">
+        <span class="nav-icon">▦</span>
+        <span class="nav-label">Reports</span>
+      </div>
+      <div class="nav-item" onclick="navigate('notifications')">
+        <span class="nav-icon">◎</span>
+        <span class="nav-label">Notifications</span>
+        <span class="nav-badge">7</span>
+      </div>
+      <div class="nav-item" onclick="navigate('settings')">
+        <span class="nav-icon">⊕</span>
+        <span class="nav-label">Settings</span>
+      </div>
+
+      <div class="divider"></div>
+      <div class="nav-item" onclick="navigate('profile')">
+        <span class="nav-icon">⊙</span>
+        <span class="nav-label">Profile</span>
+      </div>
+      <div class="nav-item" style="color:var(--danger)" onclick="showToast('success','Logged out','See you next time!')">
+        <span class="nav-icon">⊗</span>
+        <span class="nav-label">Logout</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <button onclick="toggleSidebar()" style="color:var(--txt2);font-size:18px;margin-right:4px">☰</button>
+      <div class="topbar-breadcrumb" id="topbarBreadcrumb">
+        <span>Dashboard</span>
+      </div>
+      <div class="topbar-search">
+        <span class="search-icon">⌕</span>
+        <input type="text" placeholder="Search assessments, candidates…">
+      </div>
+      <div class="topbar-actions">
+        <button class="topbar-btn" onclick="navigate('notifications')">
+          🔔<span class="dot"></span>
+        </button>
+        <button class="topbar-btn">⚙</button>
+        <div class="avatar-btn" onclick="navigate('profile')">HR</div>
+      </div>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <main class="page-content">
+
+      <!-- ══════════════════════════════════
+           PAGE: DASHBOARD
+      ══════════════════════════════════ -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Good morning, Admin 👋</div>
+            <div class="page-subtitle">Here's what's happening with your assessments today.</div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-ghost btn-sm">↓ Export Report</button>
+            <button class="btn btn-primary btn-sm" onclick="openModal('modalCreateAssessment')">✦ New Assessment</button>
+          </div>
+        </div>
+
+        <!-- STAT CARDS -->
+        <div class="stats-grid">
+          <div class="stat-card" style="--accent-color:var(--primary);--icon-bg:var(--primary-g)">
+            <div class="stat-icon-row">
+              <div class="stat-icon">▦</div>
+              <div class="stat-badge" style="--badge-bg:var(--primary-g);--badge-color:var(--primary)">+12%</div>
+            </div>
+            <div>
+              <div class="stat-value">148</div>
+              <div class="stat-label">Total Assessments</div>
+              <div class="stat-trend mt-1"><span class="up">↑ 18</span> from last month</div>
+            </div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--accent);--icon-bg:var(--accent-g)">
+            <div class="stat-icon-row">
+              <div class="stat-icon" style="background:var(--accent-g)">⬕</div>
+              <div class="stat-badge" style="--badge-bg:var(--accent-g);--badge-color:var(--accent)">Live</div>
+            </div>
+            <div>
+              <div class="stat-value">3</div>
+              <div class="stat-label">Active Exams</div>
+              <div class="stat-trend mt-1"><span class="pulse-dot dot-success"></span> Running now</div>
+            </div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--cyan);--icon-bg:var(--cyan-g)">
+            <div class="stat-icon-row">
+              <div class="stat-icon" style="background:var(--cyan-g)">⊞</div>
+              <div class="stat-badge" style="--badge-bg:var(--cyan-g);--badge-color:var(--cyan)">+8%</div>
+            </div>
+            <div>
+              <div class="stat-value">2,847</div>
+              <div class="stat-label">Registered Candidates</div>
+              <div class="stat-trend mt-1"><span class="up">↑ 214</span> this week</div>
+            </div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--success);--icon-bg:var(--success-g)">
+            <div class="stat-icon-row">
+              <div class="stat-icon" style="background:var(--success-g)">⊙</div>
+              <div class="stat-badge" style="--badge-bg:var(--success-g);--badge-color:var(--success)">Online</div>
+            </div>
+            <div>
+              <div class="stat-value">247</div>
+              <div class="stat-label">Live Candidates</div>
+              <div class="stat-trend mt-1"><span class="pulse-dot dot-success"></span> Active right now</div>
+            </div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--danger);--icon-bg:var(--danger-g)">
+            <div class="stat-icon-row">
+              <div class="stat-icon" style="background:var(--danger-g)">⚠</div>
+              <div class="stat-badge" style="--badge-bg:var(--danger-g);--badge-color:var(--danger)">Alert</div>
+            </div>
+            <div>
+              <div class="stat-value">12</div>
+              <div class="stat-label">Security Alerts</div>
+              <div class="stat-trend mt-1"><span class="down">↑ 5</span> since yesterday</div>
+            </div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--warning);--icon-bg:var(--warning-g)">
+            <div class="stat-icon-row">
+              <div class="stat-icon" style="background:var(--warning-g)">◈</div>
+              <div class="stat-badge" style="--badge-bg:var(--success-g);--badge-color:var(--success)">+22%</div>
+            </div>
+            <div>
+              <div class="stat-value">1,394</div>
+              <div class="stat-label">Completed Exams</div>
+              <div class="stat-trend mt-1"><span class="up">↑ 251</span> this month</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHARTS ROW -->
+        <div class="grid-2-1">
+          <div class="card card-pad">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Exam Activity — Last 7 Days</div>
+                <div class="card-subtitle">Completed vs. attempted exams per day</div>
+              </div>
+              <select class="form-control" style="width:auto;padding:5px 10px;font-size:12px">
+                <option>Last 7 days</option><option>Last 30 days</option><option>Last 90 days</option>
+              </select>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="activityChart" height="220"></canvas>
+            </div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-header">
+              <div class="card-title">Pass / Fail Rate</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:16px">
+              <canvas id="donutChart" width="180" height="180"></canvas>
+              <div style="display:flex;gap:20px">
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px"><span style="width:10px;height:10px;background:var(--success);border-radius:50%;display:inline-block"></span>Pass 74%</div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px"><span style="width:10px;height:10px;background:var(--danger);border-radius:50%;display:inline-block"></span>Fail 26%</div>
+              </div>
+              <div class="kpi-strip w-full" style="margin:0">
+                <div class="kpi-cell"><div class="kpi-val text-success">74%</div><div class="kpi-lbl">Pass Rate</div></div>
+                <div class="kpi-cell"><div class="kpi-val">82.4</div><div class="kpi-lbl">Avg Score</div></div>
+                <div class="kpi-cell"><div class="kpi-val text-primary">98</div><div class="kpi-lbl">Top Score</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTIVITY + UPCOMING -->
+        <div class="grid-2">
+          <div class="card card-pad">
+            <div class="card-header">
+              <div class="card-title">Recent Activity</div>
+              <a style="font-size:12px;color:var(--primary);cursor:pointer">View all</a>
+            </div>
+            <div id="activityFeed"></div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-header">
+              <div class="card-title">Upcoming Exams</div>
+              <a style="font-size:12px;color:var(--primary);cursor:pointer">Schedule</a>
+            </div>
+            <div id="upcomingExams"></div>
+          </div>
+        </div>
+
+        <!-- SCORE DISTRIBUTION -->
+        <div class="card card-pad">
+          <div class="card-header">
+            <div class="card-title">Score Distribution</div>
+            <div class="card-subtitle">All assessments — current semester</div>
+          </div>
+          <canvas id="barChart" height="140"></canvas>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           PAGE: ASSESSMENTS
+      ══════════════════════════════════ -->
+      <div class="page" id="page-assessments">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Assessment Management</div>
+            <div class="page-subtitle">Create, manage, and publish your assessments</div>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('modalCreateAssessment')">✦ New Assessment</button>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+          <input class="form-control" type="text" placeholder="Search assessments…" style="max-width:280px">
+          <select class="form-control" style="max-width:160px"><option>All Status</option><option>Published</option><option>Draft</option><option>Archived</option></select>
+          <select class="form-control" style="max-width:160px"><option>All Courses</option><option>Computer Science</option><option>Data Science</option></select>
+        </div>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Assessment Name</th>
+                  <th>Course</th>
+                  <th>Duration</th>
+                  <th>Passing</th>
+                  <th>Scheduled</th>
+                  <th>Candidates</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="assessmentTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           PAGE: QUESTION BANK
+      ══════════════════════════════════ -->
+      <div class="page" id="page-questions">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Question Bank</div>
+            <div class="page-subtitle">Manage questions across all assessments</div>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('modalAddQuestion')">✦ Add Question</button>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+          <select class="form-control" style="max-width:220px"><option>Data Structures Midterm</option><option>Algorithms Final</option><option>ML Fundamentals Quiz</option></select>
+          <select class="form-control" style="max-width:160px"><option>All Types</option><option>MCQ</option><option>True/False</option><option>Fill in Blank</option></select>
+          <input class="form-control" type="text" placeholder="Search questions…" style="max-width:240px">
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div style="font-size:13px;color:var(--txt2)">24 questions · Drag to reorder</div>
+          <div style="display:flex;gap:8px">
+            <span class="badge badge-primary">MCQ: 14</span>
+            <span class="badge badge-accent">Multi: 4</span>
+            <span class="badge badge-cyan">T/F: 4</span>
+            <span class="badge badge-warning">Fill: 2</span>
+          </div>
+        </div>
+
+        <div id="questionList"></div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           PAGE: REGISTRATION IDs
+      ══════════════════════════════════ -->
+      <div class="page" id="page-registration">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Registration ID Management</div>
+            <div class="page-subtitle">Generate and manage candidate registration IDs</div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <button class="btn btn-ghost btn-sm">↓ Download CSV</button>
+            <button class="btn btn-primary btn-sm" onclick="openModal('modalGenIds')">✦ Generate IDs</button>
+          </div>
+        </div>
+
+        <div class="stats-grid" style="grid-template-columns:repeat(4,1fr)">
+          <div class="stat-card" style="--accent-color:var(--primary)">
+            <div class="stat-icon" style="background:var(--primary-g)">⊞</div>
+            <div class="stat-value">500</div><div class="stat-label">Total IDs</div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--success)">
+            <div class="stat-icon" style="background:var(--success-g)">⊙</div>
+            <div class="stat-value">347</div><div class="stat-label">Assigned</div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--warning)">
+            <div class="stat-icon" style="background:var(--warning-g)">◎</div>
+            <div class="stat-value">153</div><div class="stat-label">Unassigned</div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--accent)">
+            <div class="stat-icon" style="background:var(--accent-g)">◈</div>
+            <div class="stat-value">284</div><div class="stat-label">Used</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Registration ID</th>
+                  <th>Candidate Name</th>
+                  <th>Email</th>
+                  <th>Course</th>
+                  <th>Assigned Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="regTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           PAGE: CANDIDATES
+      ══════════════════════════════════ -->
+      <div class="page" id="page-candidates">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Candidate Monitoring</div>
+            <div class="page-subtitle">Live view of candidates currently in exams</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <span class="badge badge-success"><span class="pulse-dot dot-success"></span> 247 Online</span>
+            <button class="btn btn-ghost btn-sm">Refresh</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Reg ID</th>
+                  <th>Student Name</th>
+                  <th>Course</th>
+                  <th>Login Time</th>
+                  <th>Progress</th>
+                  <th>Violations</th>
+                  <th>Network</th>
+                  <th>Fullscreen</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="candidateTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           PAGE: SECURITY CENTER
+      ══════════════════════════════════ -->
+      <div class="page" id="page-security">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Security Center</div>
+            <div class="page-subtitle">Configure proctoring and anti-cheating settings per assessment</div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <select class="form-control" style="max-width:240px"><option>Data Structures Midterm</option><option>ML Fundamentals Quiz</option></select>
+            <button class="btn btn-primary btn-sm" onclick="showToast('success','Security settings saved','Configuration applied to selected assessment.')">Save Settings</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card card-pad">
+            <div class="security-section">
+              <div class="security-section-title">Browser Controls</div>
+              <div id="securityBrowser"></div>
+            </div>
+            <div class="security-section">
+              <div class="security-section-title">Detection & Monitoring</div>
+              <div id="securityDetect"></div>
+            </div>
+          </div>
+          <div>
+            <div class="card card-pad mb-3">
+              <div class="security-section">
+                <div class="security-section-title">Recording & Proctoring</div>
+                <div id="securityProctor"></div>
+              </div>
+            </div>
+            <div class="card card-pad">
+              <div class="security-section-title">Violation Thresholds</div>
+              <div class="form-group">
+                <label class="form-label">Warning Limit (before auto-submit)</label>
+                <input class="form-control" type="number" value="3">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Auto-submit on violations</label>
+                <select class="form-control"><option>Yes — immediately</option><option>After warning limit</option><option>No</option></select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Auto-save interval (seconds)</label>
+                <input class="form-control" type="number" value="30">
+              </div>
+              <div style="background:var(--danger-g);border:1px solid rgba(239,68,68,0.2);border-radius:var(--r-sm);padding:12px;font-size:12px;color:var(--txt2)">
+                <strong style="color:var(--danger)">⚠ Current Alerts:</strong><br>
+                2 candidates flagged for tab switching in active exams. <a style="color:var(--danger);cursor:pointer" onclick="navigate('candidates')">View candidates →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           PAGE: LIVE EXAMS
+      ══════════════════════════════════ -->
+      <div class="page" id="page-live">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Live Exams</div>
+            <div class="page-subtitle">3 exams currently running</div>
+          </div>
+          <div style="display:flex;gap:8px">
+            <select class="form-control" style="max-width:220px"><option>All Live Exams</option><option>Data Structures</option></select>
+            <button class="btn btn-ghost btn-sm">⊞ Grid</button>
+            <button class="btn btn-ghost btn-sm">☰ Table</button>
+          </div>
+        </div>
+
+        <!-- LIVE EXAM BARS -->
+        <div class="grid-3" style="margin-bottom:16px">
+          <div class="card card-pad" style="border-left:3px solid var(--primary)">
+            <div style="font-size:13px;font-weight:700;color:var(--txt)">Data Structures Midterm</div>
+            <div style="font-size:12px;color:var(--txt2);margin:4px 0">CS Batch A · 90 min</div>
+            <div class="progress-bar mt-2"><div class="progress-fill" style="width:62%;background:var(--primary)"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--txt3);margin-top:4px"><span>62% elapsed</span><span>89 candidates</span></div>
+          </div>
+          <div class="card card-pad" style="border-left:3px solid var(--accent)">
+            <div style="font-size:13px;font-weight:700;color:var(--txt)">ML Fundamentals Quiz</div>
+            <div style="font-size:12px;color:var(--txt2);margin:4px 0">DS Batch B · 60 min</div>
+            <div class="progress-bar mt-2"><div class="progress-fill" style="width:28%;background:var(--accent)"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--txt3);margin-top:4px"><span>28% elapsed</span><span>124 candidates</span></div>
+          </div>
+          <div class="card card-pad" style="border-left:3px solid var(--success)">
+            <div style="font-size:13px;font-weight:700;color:var(--txt)">Business Ethics Exam</div>
+            <div style="font-size:12px;color:var(--txt2);margin:4px 0">BBA · 120 min</div>
+            <div class="progress-bar mt-2"><div class="progress-fill" style="width:85%;background:var(--success)"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--txt3);margin-top:4px"><span>85% elapsed</span><span>34 candidates</span></div>
+          </div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="card-header">
+            <div class="card-title">Live Candidate Grid</div>
+            <div style="font-size:12px;color:var(--txt2)">Refreshes every 30s</div>
+          </div>
+          <div class="candidate-grid" id="liveCandidateGrid"></div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           PAGE: RESULTS
+      ══════════════════════════════════ -->
+      <div class="page" id="page-results">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Results & Rankings</div>
+            <div class="page-subtitle">Comprehensive result analysis and candidate rankings</div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <select class="form-control" style="max-width:240px"><option>Data Structures Midterm</option><option>ML Quiz</option></select>
+            <button class="btn btn-ghost btn-sm">↓ Export PDF</button>
+          </div>
+        </div>
+
+        <div class="kpi-strip mb-3">
+          <div class="kpi-cell"><div class="kpi-val text-success">74%</div><div class="kpi-lbl">Pass Rate</div></div>
+          <div class="kpi-cell"><div class="kpi-val text-danger">26%</div><div class="kpi-lbl">Fail Rate</div></div>
+          <div class="kpi-cell"><div class="kpi-val">82.4</div><div class="kpi-lbl">Avg Score</div></div>
+          <div class="kpi-cell"><div class="kpi-val text-primary">98</div><div class="kpi-lbl">Highest</div></div>
+          <div class="kpi-cell"><div class="kpi-val text-warning">41</div><div class="kpi-lbl">Lowest</div></div>
+          <div class="kpi-cell"><div class="kpi-val">89</div><div class="kpi-lbl">Total Appeared</div></div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom:20px">
+          <div class="card card-pad">
+            <div class="card-header"><div class="card-title">Score Distribution</div></div>
+            <canvas id="resultBarChart" height="180"></canvas>
+          </div>
+          <div class="card card-pad">
+            <div class="card-header"><div class="card-title">Question-wise Performance</div></div>
+            <canvas id="qPerformanceChart" height="180"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header card-pad" style="padding-bottom:0">
+            <div class="card-title">Candidate Rankings</div>
+            <input class="form-control" type="text" placeholder="Search by name or ID…" style="max-width:200px">
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Reg ID</th>
+                  <th>Candidate Name</th>
+                  <th>Score</th>
+                  <th>Percentage</th>
+                  <th>Time Taken</th>
+                  <th>Violations</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody id="resultsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           PAGE: ANALYTICS
+      ══════════════════════════════════ -->
+      <div class="page" id="page-analytics">
+        <div class="page-header">
+          <div class="page-title">Analytics</div>
+          <div style="display:flex;gap:10px">
+            <select class="form-control" style="max-width:160px"><option>Last 30 Days</option><option>Last 90 Days</option><option>This Year</option></select>
+            <button class="btn btn-ghost btn-sm">↓ Export</button>
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-bottom:20px">
+          <div class="card card-pad">
+            <div class="card-header"><div class="card-title">Assessments Over Time</div></div>
+            <canvas id="analyticsLine" height="160"></canvas>
+          </div>
+          <div class="card card-pad">
+            <div class="card-header"><div class="card-title">Violations by Type</div></div>
+            <canvas id="violationPie" height="160"></canvas>
+          </div>
+          <div class="card card-pad">
+            <div class="card-header"><div class="card-title">Course Pass Rates</div></div>
+            <canvas id="courseBar" height="160"></canvas>
+          </div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="card-header"><div class="card-title">Security Violation Analytics</div></div>
+          <canvas id="violationLine" height="130"></canvas>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           PAGE: REPORTS
+      ══════════════════════════════════ -->
+      <div class="page" id="page-reports">
+        <div class="page-header">
+          <div class="page-title">Reports</div>
+          <button class="btn btn-primary btn-sm" onclick="showToast('success','Report generated','Your report is ready to download.')">✦ Generate Report</button>
+        </div>
+        <div class="grid-2">
+          <div class="card card-pad">
+            <div class="card-title mb-2">Assessment Summary Report</div>
+            <div class="text-sm text-muted mb-3">Overview of all assessments with pass rates, averages, and candidate stats.</div>
+            <div class="form-group"><label class="form-label">Date Range</label><div style="display:flex;gap:8px"><input class="form-control" type="date"><input class="form-control" type="date"></div></div>
+            <div class="form-group"><label class="form-label">Course</label><select class="form-control"><option>All Courses</option></select></div>
+            <div class="form-group"><label class="form-label">Format</label><select class="form-control"><option>PDF</option><option>CSV</option><option>Excel</option></select></div>
+            <button class="btn btn-primary w-full" onclick="showToast('success','Report queued','Assessment summary report will be ready shortly.')">Generate</button>
+          </div>
+          <div class="card card-pad">
+            <div class="card-title mb-2">Candidate Performance Report</div>
+            <div class="text-sm text-muted mb-3">Individual candidate scores, rankings, and violation history.</div>
+            <div class="form-group"><label class="form-label">Assessment</label><select class="form-control"><option>Data Structures Midterm</option><option>ML Quiz</option></select></div>
+            <div class="form-group"><label class="form-label">Include Violations</label><select class="form-control"><option>Yes</option><option>No</option></select></div>
+            <div class="form-group"><label class="form-label">Sort By</label><select class="form-control"><option>Rank</option><option>Score</option><option>Name</option></select></div>
+            <button class="btn btn-primary w-full" onclick="showToast('success','Report queued','Candidate performance report will be ready shortly.')">Generate</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           PAGE: NOTIFICATIONS
+      ══════════════════════════════════ -->
+      <div class="page" id="page-notifications">
+        <div class="page-header">
+          <div class="page-title">Notifications</div>
+          <button class="btn btn-ghost btn-sm" onclick="showToast('success','All cleared','Notifications marked as read.')">Mark all read</button>
+        </div>
+        <div id="notifList"></div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           PAGE: SETTINGS
+      ══════════════════════════════════ -->
+      <div class="page" id="page-settings">
+        <div class="page-header">
+          <div class="page-title">Settings</div>
+        </div>
+        <div style="display:grid;grid-template-columns:220px 1fr;gap:20px">
+          <div class="card card-pad" style="height:fit-content">
+            <div class="settings-nav" id="settingsNav">
+              <div class="settings-nav-item active" onclick="switchSettings(0)">🏢 Organization</div>
+              <div class="settings-nav-item" onclick="switchSettings(1)">📧 Email & Notifications</div>
+              <div class="settings-nav-item" onclick="switchSettings(2)">🔐 Security Policies</div>
+              <div class="settings-nav-item" onclick="switchSettings(3)">🎨 Appearance</div>
+              <div class="settings-nav-item" onclick="switchSettings(4)">🔌 Integrations</div>
+            </div>
+          </div>
+          <div class="card card-pad" id="settingsContent">
+            <div class="form-section-title">Organization Details</div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Organization Name</label><input class="form-control" value="Acme University"></div>
+              <div class="form-group"><label class="form-label">Domain</label><input class="form-control" value="acme.edu"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Admin Email</label><input class="form-control" type="email" value="admin@acme.edu"></div>
+            <div class="form-group"><label class="form-label">Timezone</label><select class="form-control"><option>Asia/Kolkata (IST)</option><option>America/New_York (EST)</option></select></div>
+            <div class="form-group"><label class="form-label">Date Format</label><select class="form-control"><option>DD/MM/YYYY</option><option>MM/DD/YYYY</option><option>YYYY-MM-DD</option></select></div>
+            <button class="btn btn-primary" onclick="showToast('success','Settings saved','Organization settings updated successfully.')">Save Changes</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           PAGE: PROFILE
+      ══════════════════════════════════ -->
+      <div class="page" id="page-profile">
+        <div class="page-header">
+          <div class="page-title">My Profile</div>
+          <button class="btn btn-primary btn-sm" onclick="showToast('success','Profile saved','Your profile has been updated.')">Save Changes</button>
+        </div>
+        <div class="grid-2">
+          <div class="card card-pad">
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
+              <div style="width:72px;height:72px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#fff;flex-shrink:0">HR</div>
+              <div>
+                <div style="font-size:16px;font-weight:700;color:var(--txt)">Admin User</div>
+                <div style="font-size:13px;color:var(--txt2)">HR Manager · Acme University</div>
+                <button class="btn btn-ghost btn-sm mt-1">Change Photo</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">First Name</label><input class="form-control" value="Admin"></div>
+              <div class="form-group"><label class="form-label">Last Name</label><input class="form-control" value="User"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Email</label><input class="form-control" type="email" value="admin@acme.edu"></div>
+            <div class="form-group"><label class="form-label">Phone</label><input class="form-control" value="+91 98765 43210"></div>
+            <div class="form-group"><label class="form-label">Role</label><input class="form-control" value="HR Manager" readonly style="opacity:0.6"></div>
+          </div>
+          <div>
+            <div class="card card-pad mb-3">
+              <div class="form-section-title" style="margin-top:0">Change Password</div>
+              <div class="form-group"><label class="form-label">Current Password</label><input class="form-control" type="password" placeholder="••••••••"></div>
+              <div class="form-group"><label class="form-label">New Password</label><input class="form-control" type="password" placeholder="••••••••"></div>
+              <div class="form-group"><label class="form-label">Confirm Password</label><input class="form-control" type="password" placeholder="••••••••"></div>
+              <button class="btn btn-ghost" onclick="showToast('success','Password changed','Your password was updated securely.')">Update Password</button>
+            </div>
+            <div class="card card-pad">
+              <div class="form-section-title" style="margin-top:0">Two-Factor Authentication</div>
+              <div class="toggle-row">
+                <div class="toggle-info"><div class="toggle-name">Enable 2FA</div><div class="toggle-desc">Add extra security with authenticator app</div></div>
+                <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main><!-- /page-content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<script>
+// ────────────────────────────────────────────────────────────────────
+// DATA
+// ────────────────────────────────────────────────────────────────────
+const assessmentData = [
+  { name:'Data Structures Midterm', course:'Computer Science', duration:'90 min', passing:'60%', date:'Jul 15, 2025', candidates:89, status:'Published' },
+  { name:'ML Fundamentals Quiz',    course:'Data Science',     duration:'60 min', passing:'65%', date:'Jul 18, 2025', candidates:124, status:'Published' },
+  { name:'Business Ethics Exam',    course:'BBA',              duration:'120 min',passing:'55%', date:'Jul 12, 2025', candidates:34, status:'Live' },
+  { name:'Algorithms Final',        course:'Computer Science', duration:'180 min',passing:'70%', date:'Jul 28, 2025', candidates:67, status:'Draft' },
+  { name:'Database Design Quiz',    course:'Software Eng.',    duration:'45 min', passing:'60%', date:'Aug 1, 2025',  candidates:52, status:'Scheduled' },
+  { name:'Network Security Exam',   course:'Cyber Security',   duration:'90 min', passing:'65%', date:'Aug 5, 2025',  candidates:38, status:'Draft' },
+  { name:'Python Programming Test', course:'Data Science',     duration:'60 min', passing:'60%', date:'Jun 30, 2025', candidates:118, status:'Archived' },
+];
+
+const candidateData = [
+  { id:'AF2025001', name:'Arjun Sharma',     course:'CS', login:'09:02',  q:'Q18/30', pct:60, violations:0, net:'Good',   fs:true  },
+  { id:'AF2025002', name:'Priya Mehta',      course:'CS', login:'09:04',  q:'Q22/30', pct:73, violations:1, net:'Good',   fs:true  },
+  { id:'AF2025003', name:'Rahul Gupta',      course:'DS', login:'09:01',  q:'Q14/30', pct:47, violations:2, net:'Weak',   fs:false },
+  { id:'AF2025004', name:'Ananya Singh',     course:'CS', login:'09:03',  q:'Q25/30', pct:83, violations:0, net:'Good',   fs:true  },
+  { id:'AF2025005', name:'Karan Patel',      course:'BBA',login:'09:05',  q:'Q8/30',  pct:27, violations:3, net:'Good',   fs:true  },
+  { id:'AF2025006', name:'Neha Joshi',       course:'DS', login:'09:02',  q:'Q20/30', pct:67, violations:0, net:'Excellent',fs:true },
+  { id:'AF2025007', name:'Vikram Reddy',     course:'CS', login:'09:06',  q:'Q11/30', pct:37, violations:1, net:'Good',   fs:true  },
+  { id:'AF2025008', name:'Sneha Kapoor',     course:'BBA',login:'09:04',  q:'Q27/30', pct:90, violations:0, net:'Excellent',fs:true },
+];
+
+const regData = [
+  { id:'AF2025001', name:'Arjun Sharma',  email:'arjun@acme.edu',  course:'CS Batch A', date:'Jun 20', status:'Used' },
+  { id:'AF2025002', name:'Priya Mehta',   email:'priya@acme.edu',  course:'CS Batch A', date:'Jun 20', status:'Active' },
+  { id:'AF2025003', name:'Rahul Gupta',   email:'rahul@acme.edu',  course:'DS Batch B', date:'Jun 21', status:'Active' },
+  { id:'AF2025004', name:'Ananya Singh',  email:'ananya@acme.edu', course:'CS Batch A', date:'Jun 21', status:'Active' },
+  { id:'AF2025050', name:'—',             email:'—',               course:'—',          date:'—',      status:'Unassigned' },
+  { id:'AF2025051', name:'—',             email:'—',               course:'—',          date:'—',      status:'Unassigned' },
+];
+
+const resultsData = [
+  { rank:1,  id:'AF2025008', name:'Sneha Kapoor',  score:98, pct:98, time:'72 min', viol:0, result:'Pass' },
+  { rank:2,  id:'AF2025004', name:'Ananya Singh',  score:94, pct:94, time:'80 min', viol:0, result:'Pass' },
+  { rank:3,  id:'AF2025006', name:'Neha Joshi',    score:91, pct:91, time:'85 min', viol:0, result:'Pass' },
+  { rank:4,  id:'AF2025001', name:'Arjun Sharma',  score:88, pct:88, time:'88 min', viol:0, result:'Pass' },
+  { rank:5,  id:'AF2025002', name:'Priya Mehta',   score:82, pct:82, time:'89 min', viol:1, result:'Pass' },
+  { rank:6,  id:'AF2025007', name:'Vikram Reddy',  score:71, pct:71, time:'90 min', viol:1, result:'Pass' },
+  { rank:7,  id:'AF2025003', name:'Rahul Gupta',   score:58, pct:58, time:'90 min', viol:2, result:'Fail' },
+  { rank:8,  id:'AF2025005', name:'Karan Patel',   score:41, pct:41, time:'90 min', viol:3, result:'Fail' },
+];
+
+const activityFeed = [
+  { avatar:'AS', color:'#3B82F6', name:'Arjun Sharma',  desc:'Submitted exam — Data Structures Midterm', time:'2 min ago' },
+  { avatar:'PM', color:'#8B5CF6', name:'Priya Mehta',   desc:'Tab switch violation detected',            time:'5 min ago' },
+  { avatar:'RG', color:'#EF4444', name:'Rahul Gupta',   desc:'Attempted to open developer tools',        time:'8 min ago' },
+  { avatar:'NJ', color:'#22C55E', name:'Neha Joshi',    desc:'Logged in to ML Fundamentals Quiz',        time:'12 min ago'},
+  { avatar:'HR', color:'#F59E0B', name:'HR Admin',       desc:'Published — Business Ethics Exam',         time:'25 min ago'},
+  { avatar:'SK', color:'#06B6D4', name:'Sneha Kapoor',  desc:'Completed exam with highest score (98)',   time:'40 min ago'},
+];
+
+const upcomingExams = [
+  { day:'15', mon:'Jul', name:'Data Structures Midterm', course:'CS Batch A', count:'89 candidates' },
+  { day:'18', mon:'Jul', name:'ML Fundamentals Quiz',    course:'DS Batch B', count:'124 candidates'},
+  { day:'28', mon:'Jul', name:'Algorithms Final',        course:'CS All',     count:'67 candidates' },
+  { day:'01', mon:'Aug', name:'Database Design Quiz',    course:'SE Batch A', count:'52 candidates' },
+];
+
+const notifications = [
+  { icon:'⚠️', bg:' var(--danger-g)', title:'Security Violation Detected', desc:'Rahul Gupta attempted developer tools access during Data Structures Midterm.', time:'2 min ago', unread:true },
+  { icon:'🔔', bg:'var(--primary-g)', title:'Exam Starting Soon', desc:'ML Fundamentals Quiz starts in 30 minutes. 124 candidates registered.', time:'28 min ago', unread:true },
+  { icon:'✅', bg:'var(--success-g)', title:'Exam Completed', desc:'Business Ethics Exam — 34 candidates submitted. Results ready.', time:'1 hr ago', unread:true },
+  { icon:'📋', bg:'var(--accent-g)',  title:'New Assessment Published', desc:'Data Structures Midterm has been published and is now visible to candidates.', time:'3 hr ago', unread:false },
+  { icon:'👥', bg:'var(--cyan-g)',    title:'50 New Registrations', desc:'50 candidates registered for the upcoming Algorithms Final exam.', time:'5 hr ago', unread:false },
+  { icon:'📊', bg:'var(--warning-g)', title:'Weekly Report Ready', desc:'Your weekly assessment performance report is ready for download.', time:'1 day ago', unread:false },
+  { icon:'⚙️', bg:'var(--surface2)', title:'System Update', desc:'AssessForge updated to v3.8.2 — improved proctoring algorithms.', time:'2 days ago', unread:false },
+];
+
+const securitySettings = {
+  browser: [
+    { name:'Fullscreen Mode',         desc:'Force exam into fullscreen; exit triggers alert', on:true  },
+    { name:'Disable Right Click',     desc:'Block right-click context menu during exam',      on:true  },
+    { name:'Disable Copy/Paste',      desc:'Prevent copying questions or pasting answers',   on:true  },
+    { name:'Disable Print',           desc:'Block browser print function',                   on:true  },
+    { name:'Disable Refresh',         desc:'Prevent page refresh or reload',                 on:false },
+  ],
+  detect: [
+    { name:'Tab Switch Detection',    desc:'Flag when candidate switches to another tab',    on:true  },
+    { name:'Window Minimize',         desc:'Alert when browser window is minimized',         on:true  },
+    { name:'Browser Focus Loss',      desc:'Detect when browser loses focus',                on:true  },
+    { name:'Developer Tools Block',   desc:'Disable and detect developer tools access',      on:true  },
+    { name:'Mouse Leave Detection',   desc:'Detect cursor leaving exam window',              on:false },
+  ],
+  proctor: [
+    { name:'Webcam Monitoring',       desc:'Capture periodic webcam snapshots',              on:false },
+    { name:'Microphone Monitoring',   desc:'Audio monitoring for malpractice detection',     on:false },
+    { name:'Auto Save Answers',       desc:'Auto-save progress at regular intervals',        on:true  },
+    { name:'IP Lock',                 desc:'Restrict exam to registered IP range',           on:false },
+  ]
+};
+
+const questionData = [
+  { type:'MCQ',   text:'What is the time complexity of binary search?',               marks:2, neg:0.5 },
+  { type:'MCQ',   text:'Which data structure uses LIFO ordering?',                    marks:2, neg:0.5 },
+  { type:'T/F',   text:'A balanced BST guarantees O(log n) for all operations.',      marks:1, neg:0   },
+  { type:'Multi', text:'Which of the following are O(n log n) sorting algorithms?',   marks:3, neg:1   },
+  { type:'MCQ',   text:'What is the worst-case complexity of quicksort?',             marks:2, neg:0.5 },
+  { type:'Fill',  text:'In a min-heap, the root contains the ______ element.',        marks:2, neg:0   },
+  { type:'MCQ',   text:'Which traversal visits the root node first?',                 marks:2, neg:0.5 },
+  { type:'Short', text:'Explain the difference between BFS and DFS in 2-3 sentences.',marks:5, neg:0   },
+];
+
+const colors = ['#3B82F6','#8B5CF6','#22C55E','#F59E0B','#EF4444','#06B6D4'];
+
+// ────────────────────────────────────────────────────────────────────
+// NAVIGATION
+// ────────────────────────────────────────────────────────────────────
+const pages = ['dashboard','assessments','questions','registration','candidates','security','live','results','analytics','reports','notifications','settings','profile'];
+
+function navigate(id) {
+  pages.forEach(p => {
+    document.getElementById('page-'+p)?.classList.remove('active');
+  });
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('page-'+id)?.classList.add('active');
+
+  document.querySelectorAll('.nav-item').forEach(el => {
+    if (el.getAttribute('onclick')?.includes("'"+id+"'")) el.classList.add('active');
+  });
+
+  const labels = { dashboard:'Dashboard', assessments:'Assessments', questions:'Question Bank',
+    registration:'Registration IDs', candidates:'Candidate Monitoring', security:'Security Center',
+    live:'Live Exams', results:'Results', analytics:'Analytics', reports:'Reports',
+    notifications:'Notifications', settings:'Settings', profile:'Profile' };
+  document.getElementById('topbarBreadcrumb').innerHTML = `<span>${labels[id] || id}</span>`;
+  closeMobileSidebar();
+}
+
+// ────────────────────────────────────────────────────────────────────
+// SIDEBAR
+// ────────────────────────────────────────────────────────────────────
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const isMobile = window.innerWidth <= 768;
+  if (isMobile) {
+    sb.classList.toggle('mobile-open');
+    document.getElementById('sidebarOverlay').style.display = sb.classList.contains('mobile-open') ? 'block' : 'none';
+  } else {
+    sb.classList.toggle('collapsed');
+  }
+}
+function closeMobileSidebar() {
+  document.getElementById('sidebar').classList.remove('mobile-open');
+  document.getElementById('sidebarOverlay').style.display = 'none';
+}
+
+// ────────────────────────────────────────────────────────────────────
+// MODALS
+// ────────────────────────────────────────────────────────────────────
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
+
+// ────────────────────────────────────────────────────────────────────
+// TABS
+// ────────────────────────────────────────────────────────────────────
+function switchTab(navId, panelId, idx) {
+  document.getElementById(navId).querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+  document.getElementById(panelId).querySelectorAll('.tab-panel').forEach((p,i) => p.classList.toggle('active', i===idx));
+}
+
+// ────────────────────────────────────────────────────────────────────
+// SETTINGS NAV
+// ────────────────────────────────────────────────────────────────────
+function switchSettings(idx) {
+  document.getElementById('settingsNav').querySelectorAll('.settings-nav-item').forEach((el,i) => el.classList.toggle('active', i===idx));
+}
+
+// ────────────────────────────────────────────────────────────────────
+// TOAST
+// ────────────────────────────────────────────────────────────────────
+function showToast(type, title, desc) {
+  const icons = { success:'✅', error:'❌', warning:'⚠️', info:'ℹ️' };
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `<div class="toast-icon">${icons[type]||'ℹ️'}</div>
+    <div class="toast-content"><div class="toast-title">${title}</div><div class="toast-desc">${desc}</div></div>
+    <button class="toast-close" onclick="this.closest('.toast').remove()">✕</button>`;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+}
+
+// ────────────────────────────────────────────────────────────────────
+// SAVE / ADD ACTIONS
+// ────────────────────────────────────────────────────────────────────
+function saveAssessment() {
+  closeModal('modalCreateAssessment');
+  showToast('success', 'Assessment created', 'Your new assessment has been saved as draft.');
+}
+function addQuestion() {
+  closeModal('modalAddQuestion');
+  showToast('success', 'Question added', 'Question has been added to the assessment.');
+}
+function generateIds() {
+  closeModal('modalGenIds');
+  showToast('success', '50 IDs generated', 'Registration IDs ready. Download CSV from the table.');
+}
+
+// ────────────────────────────────────────────────────────────────────
+// RENDER TABLES & LISTS
+// ────────────────────────────────────────────────────────────────────
+function statusBadge(s) {
+  const map = { Published:'badge-success', Live:'badge-primary', Draft:'badge-neutral', Archived:'badge-accent', Scheduled:'badge-warning', Active:'badge-success', Unassigned:'badge-neutral', Used:'badge-cyan', Pass:'badge-success', Fail:'badge-danger' };
+  return `<span class="badge ${map[s]||'badge-neutral'}">${s}</span>`;
+}
+
+function renderAssessmentTable() {
+  const tbody = document.getElementById('assessmentTable');
+  if (!tbody) return;
+  tbody.innerHTML = assessmentData.map(a => `
+    <tr>
+      <td><strong>${a.name}</strong></td>
+      <td>${a.course}</td>
+      <td>${a.duration}</td>
+      <td>${a.passing}</td>
+      <td>${a.date}</td>
+      <td>${a.candidates}</td>
+      <td>${statusBadge(a.status)}</td>
+      <td>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-ghost btn-sm btn-icon" title="Edit" onclick="showToast('info','Edit','Opening assessment editor…')">✎</button>
+          <button class="btn btn-ghost btn-sm btn-icon" title="View" onclick="navigate('questions')">⊙</button>
+          <button class="btn btn-danger btn-sm btn-icon" title="Delete" onclick="showToast('error','Deleted','Assessment removed.')">⊗</button>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+function renderCandidateTable() {
+  const tbody = document.getElementById('candidateTable');
+  if (!tbody) return;
+  tbody.innerHTML = candidateData.map(c => {
+    const vBadge = c.violations===0 ? `<span class="badge badge-success">0</span>` : c.violations===1 ? `<span class="badge badge-warning">${c.violations}</span>` : `<span class="badge badge-danger">${c.violations}</span>`;
+    const netClass = c.net==='Excellent'?'badge-success':c.net==='Good'?'badge-primary':'badge-warning';
+    return `<tr>
+      <td><span class="reg-id-chip">${c.id}</span></td>
+      <td><strong>${c.name}</strong></td>
+      <td>${c.course}</td>
+      <td>${c.login}</td>
+      <td>
+        <div class="progress-bar"><div class="progress-fill" style="width:${c.pct}%;background:${c.pct>70?'var(--success)':c.pct>40?'var(--warning)':'var(--danger)'}"></div></div>
+        <div style="font-size:11px;color:var(--txt3);margin-top:2px">${c.q} — ${c.pct}%</div>
+      </td>
+      <td>${vBadge}</td>
+      <td><span class="badge ${netClass}">${c.net}</span></td>
+      <td>${c.fs ? '<span class="badge badge-success">✓ Yes</span>' : '<span class="badge badge-danger">✗ No</span>'}</td>
+      <td>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-primary btn-sm" onclick="showToast('info','Viewing','Opening candidate detail view…')">View</button>
+          <button class="btn btn-danger btn-sm" onclick="showToast('warning','Submitted','Candidate exam force-submitted.')">Force Submit</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function renderRegTable() {
+  const tbody = document.getElementById('regTable');
+  if (!tbody) return;
+  tbody.innerHTML = regData.map(r => `
+    <tr>
+      <td><span class="reg-id-chip">${r.id}</span></td>
+      <td><strong>${r.name}</strong></td>
+      <td>${r.email}</td>
+      <td>${r.course}</td>
+      <td>${r.date}</td>
+      <td>${statusBadge(r.status)}</td>
+      <td>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-ghost btn-sm" onclick="showToast('info','Copied','Registration ID copied.')">Copy</button>
+          <button class="btn btn-ghost btn-sm" onclick="showToast('info','Assign','Opening assignment dialog…')">Assign</button>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+function renderResultsTable() {
+  const tbody = document.getElementById('resultsTable');
+  if (!tbody) return;
+  tbody.innerHTML = resultsData.map(r => `
+    <tr>
+      <td><strong>${r.rank}</strong></td>
+      <td><span class="reg-id-chip">${r.id}</span></td>
+      <td><strong>${r.name}</strong></td>
+      <td class="font-mono">${r.score}/100</td>
+      <td>
+        <div class="progress-bar"><div class="progress-fill" style="width:${r.pct}%;background:${r.pct>=60?'var(--success)':'var(--danger)'}"></div></div>
+        <span style="font-size:11px;color:var(--txt3)">${r.pct}%</span>
+      </td>
+      <td>${r.time}</td>
+      <td>${r.viol===0?'<span class="badge badge-success">None</span>':`<span class="badge badge-danger">${r.viol}</span>`}</td>
+      <td>${statusBadge(r.result)}</td>
+    </tr>`).join('');
+}
+
+function renderActivityFeed() {
+  const el = document.getElementById('activityFeed');
+  if (!el) return;
+  el.innerHTML = activityFeed.map(a => `
+    <div class="activity-item">
+      <div class="activity-avatar" style="background:${a.color}20;color:${a.color}">${a.avatar}</div>
+      <div class="activity-content">
+        <div class="activity-name">${a.name}</div>
+        <div class="activity-desc">${a.desc}</div>
+      </div>
+      <div class="activity-time">${a.time}</div>
+    </div>`).join('');
+}
+
+function renderUpcomingExams() {
+  const el = document.getElementById('upcomingExams');
+  if (!el) return;
+  el.innerHTML = upcomingExams.map(e => `
+    <div class="exam-item">
+      <div class="exam-date"><div class="day">${e.day}</div><div class="mon">${e.mon}</div></div>
+      <div class="exam-info">
+        <div class="exam-name">${e.name}</div>
+        <div class="exam-course">${e.course}</div>
+      </div>
+      <div class="exam-stat">${e.count}</div>
+    </div>`).join('');
+}
+
+function renderNotifications() {
+  const el = document.getElementById('notifList');
+  if (!el) return;
+  el.innerHTML = notifications.map(n => `
+    <div class="notif-item ${n.unread?'notif-unread':''}">
+      <div class="notif-icon" style="background:${n.bg}">${n.icon}</div>
+      <div class="notif-content">
+        <div class="notif-title">${n.title}</div>
+        <div class="notif-desc">${n.desc}</div>
+      </div>
+      <div class="notif-time">${n.time}</div>
+    </div>`).join('');
+}
+
+function renderSecurity() {
+  const renderList = (arr, containerId) => {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    el.innerHTML = arr.map(s => `
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <div class="toggle-name">${s.name}</div>
+          <div class="toggle-desc">${s.desc}</div>
+        </div>
+        <label class="toggle"><input type="checkbox" ${s.on?'checked':''}><span class="toggle-slider"></span></label>
+      </div>`).join('');
+  };
+  renderList(securitySettings.browser, 'securityBrowser');
+  renderList(securitySettings.detect,  'securityDetect');
+  renderList(securitySettings.proctor, 'securityProctor');
+}
+
+function renderQuestions() {
+  const el = document.getElementById('questionList');
+  if (!el) return;
+  const typeColor = { MCQ:'badge-primary', Multi:'badge-accent', 'T/F':'badge-cyan', Fill:'badge-warning', Short:'badge-success' };
+  el.innerHTML = questionData.map((q,i) => `
+    <div class="q-item" draggable="true" id="q${i}">
+      <div class="q-drag">⠿</div>
+      <div class="q-content">
+        <div class="q-text">Q${i+1}. ${q.text}</div>
+        <div class="q-meta">
+          <span class="badge ${typeColor[q.type]||'badge-neutral'}">${q.type}</span>
+          <span class="badge badge-neutral">+${q.marks} marks</span>
+          ${q.neg>0?`<span class="badge badge-danger">-${q.neg}</span>`:''}
+        </div>
+      </div>
+      <div class="q-actions">
+        <button class="btn btn-ghost btn-sm btn-icon" onclick="showToast('info','Edit','Opening question editor…')">✎</button>
+        <button class="btn btn-danger btn-sm btn-icon" onclick="showToast('error','Deleted','Question removed.')">⊗</button>
+      </div>
+    </div>`).join('');
+  initDragDrop();
+}
+
+function renderLiveCandidates() {
+  const el = document.getElementById('liveCandidateGrid');
+  if (!el) return;
+  el.innerHTML = candidateData.map((c,i) => `
+    <div class="candidate-tile">
+      <div class="c-header">
+        <div class="c-avatar" style="background:${colors[i%colors.length]}">${c.name.split(' ').map(n=>n[0]).join('')}</div>
+        ${c.violations>0?`<span class="badge badge-danger">⚠ ${c.violations}</span>`:'<span class="badge badge-success">Clean</span>'}
+      </div>
+      <div class="c-name">${c.name}</div>
+      <div class="c-id">${c.id} · ${c.course}</div>
+      <div class="c-progress-label"><span>${c.q}</span><span>${c.pct}%</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${c.pct}%;background:${c.pct>70?'var(--success)':c.pct>40?'var(--warning)':'var(--danger)'}"></div></div>
+      <div style="display:flex;gap:6px;margin-top:8px">
+        <span class="badge badge-neutral" style="font-size:10px">${c.net}</span>
+        <span class="badge ${c.fs?'badge-success':'badge-danger'}" style="font-size:10px">${c.fs?'FS':'!FS'}</span>
+      </div>
+    </div>`).join('');
+}
+
+// ────────────────────────────────────────────────────────────────────
+// DRAG & DROP
+// ────────────────────────────────────────────────────────────────────
+function initDragDrop() {
+  let dragging = null;
+  document.querySelectorAll('.q-item').forEach(item => {
+    item.addEventListener('dragstart', () => { dragging = item; setTimeout(() => item.classList.add('dragging'), 0); });
+    item.addEventListener('dragend',   () => { item.classList.remove('dragging'); dragging = null; });
+    item.addEventListener('dragover',  e => {
+      e.preventDefault();
+      if (!dragging || dragging === item) return;
+      const list = item.parentNode;
+      const afterEl = [...list.querySelectorAll('.q-item:not(.dragging)')].find(el => {
+        const box = el.getBoundingClientRect();
+        return e.clientY < box.top + box.height/2;
+      });
+      if (afterEl) list.insertBefore(dragging, afterEl);
+      else list.appendChild(dragging);
+    });
+  });
+}
+
+// ────────────────────────────────────────────────────────────────────
+// CANVAS CHARTS (lightweight, no library)
+// ────────────────────────────────────────────────────────────────────
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  return `${r},${g},${b}`;
+}
+
+function drawBarChart(canvasId, labels, datasets, opts={}) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth || canvas.parentElement.offsetWidth;
+  canvas.height = opts.height || parseInt(canvas.getAttribute('height')) || 220;
+  const W = canvas.width, H = canvas.height;
+  const pad = { top:20, right:20, bottom:40, left:40 };
+  ctx.clearRect(0, 0, W, H);
+
+  const allVals = datasets.flatMap(d=>d.data);
+  const maxV = Math.max(...allVals) * 1.15;
+  const chartW = W - pad.left - pad.right;
+  const chartH = H - pad.top - pad.bottom;
+  const groupW = chartW / labels.length;
+  const barW = Math.min(groupW / (datasets.length+1), 28);
+
+  // Grid lines
+  for (let i=0; i<=4; i++) {
+    const y = pad.top + chartH - (i/4)*chartH;
+    ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W-pad.right, y); ctx.stroke();
+    ctx.fillStyle = 'rgba(148,163,184,0.6)';
+    ctx.font = '10px Inter, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(Math.round((i/4)*maxV), pad.left-6, y+4);
+  }
+
+  datasets.forEach((ds, di) => {
+    ds.data.forEach((val, li) => {
+      const x = pad.left + li*groupW + di*(barW+2) + (groupW - datasets.length*(barW+2))/2;
+      const barH = (val/maxV)*chartH;
+      const y = pad.top + chartH - barH;
+      const grad = ctx.createLinearGradient(0, y, 0, y+barH);
+      grad.addColorStop(0, ds.color);
+      grad.addColorStop(1, ds.color.replace(')',',0.3)').replace('rgb','rgba'));
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.roundRect(x, y, barW, barH, [4,4,0,0]);
+      ctx.fill();
+    });
+  });
+
+  labels.forEach((lbl, li) => {
+    const x = pad.left + li*groupW + groupW/2;
+    ctx.fillStyle = 'rgba(148,163,184,0.8)';
+    ctx.font = '10px Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(lbl, x, H-pad.bottom+16);
+  });
+
+  if (opts.legend && datasets.length>1) {
+    datasets.forEach((ds,i) => {
+      ctx.fillStyle = ds.color;
+      ctx.fillRect(pad.left + i*90, 4, 10, 10);
+      ctx.fillStyle = 'rgba(148,163,184,0.8)';
+      ctx.font = '10px Inter'; ctx.textAlign = 'left';
+      ctx.fillText(ds.label||ds.color, pad.left + i*90 + 14, 13);
+    });
+  }
+}
+
+function drawLineChart(canvasId, labels, datasets, opts={}) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth || canvas.parentElement.offsetWidth;
+  canvas.height = opts.height || parseInt(canvas.getAttribute('height')) || 220;
+  const W = canvas.width, H = canvas.height;
+  const pad = { top:20, right:20, bottom:40, left:40 };
+  ctx.clearRect(0, 0, W, H);
+
+  const allVals = datasets.flatMap(d=>d.data);
+  const maxV = Math.max(...allVals)*1.2;
+  const chartW = W-pad.left-pad.right, chartH = H-pad.top-pad.bottom;
+  const stepX = chartW/(labels.length-1);
+
+  for (let i=0; i<=4; i++) {
+    const y = pad.top + chartH - (i/4)*chartH;
+    ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+    ctx.setLineDash([4,4]); ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W-pad.right, y); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle='rgba(148,163,184,0.6)'; ctx.font='10px Inter'; ctx.textAlign='right';
+    ctx.fillText(Math.round((i/4)*maxV), pad.left-6, y+4);
+  }
+
+  datasets.forEach(ds => {
+    const points = ds.data.map((v,i) => ({ x: pad.left+i*stepX, y: pad.top+chartH-(v/maxV)*chartH }));
+
+    // Area fill
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, pad.top+chartH);
+    points.forEach(p => ctx.lineTo(p.x, p.y));
+    ctx.lineTo(points[points.length-1].x, pad.top+chartH);
+    ctx.closePath();
+    const grad = ctx.createLinearGradient(0, pad.top, 0, pad.top+chartH);
+    grad.addColorStop(0, ds.color.replace(')',',0.2)').replace('#',`rgba(${hexToRgb(ds.color)},`));
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = grad; ctx.fill();
+
+    // Line
+    ctx.beginPath();
+    points.forEach((p,i) => i===0 ? ctx.moveTo(p.x,p.y) : ctx.lineTo(p.x,p.y));
+    ctx.strokeStyle = ds.color; ctx.lineWidth = 2.5;
+    ctx.setLineDash([]); ctx.stroke();
+
+    // Dots
+    points.forEach(p => {
+      ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI*2);
+      ctx.fillStyle = ds.color; ctx.fill();
+      ctx.strokeStyle = '#111827'; ctx.lineWidth = 2; ctx.stroke();
+    });
+  });
+
+  labels.forEach((lbl,i) => {
+    ctx.fillStyle='rgba(148,163,184,0.8)'; ctx.font='10px Inter'; ctx.textAlign='center';
+    ctx.fillText(lbl, pad.left+i*stepX, H-pad.bottom+16);
+  });
+
+  if (datasets.length>1) {
+    datasets.forEach((ds,i) => {
+      ctx.fillStyle=ds.color; ctx.fillRect(pad.left+i*90,4,10,4);
+      ctx.fillStyle='rgba(148,163,184,0.8)'; ctx.font='10px Inter'; ctx.textAlign='left';
+      ctx.fillText(ds.label, pad.left+i*90+14, 13);
+    });
+  }
+}
+
+function drawDonut(canvasId, data, labels) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  const cx = W/2, cy = H/2, R = Math.min(W,H)/2 - 8, r = R*0.62;
+  const total = data.reduce((a,b)=>a+b,0);
+  let start = -Math.PI/2;
+  data.forEach((val,i) => {
+    const sweep = (val/total)*Math.PI*2;
+    ctx.beginPath(); ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,R,start,start+sweep);
+    ctx.closePath(); ctx.fillStyle = [var_success='#22C55E','#EF4444'][i]; ctx.fill();
+    start += sweep;
+  });
+  // Hole
+  ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+  ctx.fillStyle='#111827'; ctx.fill();
+}
+
+// ────────────────────────────────────────────────────────────────────
+// INIT ALL CHARTS
+// ────────────────────────────────────────────────────────────────────
+function initCharts() {
+  // Dashboard activity line chart
+  drawLineChart('activityChart',
+    ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    [
+      { label:'Completed', data:[42,58,35,71,89,63,94], color:'#3B82F6' },
+      { label:'Attempted', data:[55,72,48,88,103,74,110], color:'#8B5CF6' }
+    ], { height:220, legend:true }
+  );
+
+  // Donut
+  drawDonut('donutChart', [74,26], ['Pass','Fail']);
+
+  // Score distribution bar
+  drawBarChart('barChart',
+    ['0-20','21-40','41-50','51-60','61-70','71-80','81-90','91-100'],
+    [{ label:'Candidates', data:[2,4,8,14,21,18,13,9], color:'#3B82F6' }],
+    { height:140 }
+  );
+
+  // Results page
+  drawBarChart('resultBarChart',
+    ['<40','40-49','50-59','60-69','70-79','80-89','90-100'],
+    [{ label:'Candidates', data:[3,5,7,18,24,19,13], color:'#22C55E' }],
+    { height:180 }
+  );
+
+  drawBarChart('qPerformanceChart',
+    ['Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8'],
+    [{ label:'Correct %', data:[88,72,65,54,81,43,76,91], color:'#8B5CF6' }],
+    { height:180 }
+  );
+
+  // Analytics
+  drawLineChart('analyticsLine',
+    ['Jan','Feb','Mar','Apr','May','Jun','Jul'],
+    [{ label:'Assessments', data:[8,12,10,18,14,22,24], color:'#3B82F6' }],
+    { height:160 }
+  );
+
+  drawDonut('violationPie', [45,28,18,9], ['Tab Switch','DevTools','Copy','Other']);
+
+  drawBarChart('courseBar',
+    ['CS','DS','BBA','SE','Cyber'],
+    [{ label:'Pass Rate', data:[78,71,85,68,74], color:'#22C55E' }],
+    { height:160 }
+  );
+
+  drawLineChart('violationLine',
+    ['Week 1','Week 2','Week 3','Week 4'],
+    [
+      { label:'Tab Switch',  data:[12,18,14,22], color:'#EF4444' },
+      { label:'DevTools',    data:[4,8,6,10],    color:'#F59E0B' }
+    ],
+    { height:130 }
+  );
+}
+
+// ────────────────────────────────────────────────────────────────────
+// ANIMATE STAT VALUES
+// ────────────────────────────────────────────────────────────────────
+function animateValue(el, to, duration=1200) {
+  const start = performance.now();
+  const update = (time) => {
+    const progress = Math.min((time-start)/duration, 1);
+    const ease = 1 - Math.pow(1-progress, 3);
+    el.textContent = Math.floor(ease * to).toLocaleString();
+    if (progress < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+
+// ────────────────────────────────────────────────────────────────────
+// BOOT
+// ────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Render all data
+  renderAssessmentTable();
+  renderCandidateTable();
+  renderRegTable();
+  renderResultsTable();
+  renderActivityFeed();
+  renderUpcomingExams();
+  renderNotifications();
+  renderSecurity();
+  renderQuestions();
+  renderLiveCandidates();
+
+  // Animate stat numbers
+  setTimeout(() => {
+    document.querySelectorAll('.stat-value').forEach(el => {
+      const val = parseInt(el.textContent.replace(/,/g,''));
+      if (!isNaN(val)) animateValue(el, val);
+    });
+  }, 100);
+
+  // Charts after layout
+  setTimeout(() => {
+    initCharts();
+  }, 150);
+
+  // Resize handler
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => initCharts(), 200);
+  });
+
+  // Welcome toast
+  setTimeout(() => {
+    showToast('info', 'Welcome back, Admin', '3 live exams running · 2 new security alerts');
+  }, 800);
+});
+</script>
+</body>
+</html>
