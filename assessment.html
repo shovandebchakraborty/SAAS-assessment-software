@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes" />
+  <meta name="theme-color" content="#4F7DF3" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <title>AssessForge — HR Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <!-- ═══════════════════════════════════════════
      SIDEBAR
 ═══════════════════════════════════════════ -->
-<aside class="sidebar" id="sidebar">
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
   <div class="sidebar-logo">
     <div class="logo-mark">
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -30,25 +36,25 @@
 
   <nav class="sidebar-nav">
     <div class="nav-section-label">Main</div>
-    <a class="nav-item active" data-page="dashboard" href="#" onclick="navigate('dashboard');return false;">
+    <a class="nav-item active" data-page="dashboard" href="#" onclick="navigate('dashboard');return false;" role="menuitem">
       <span class="nav-icon">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="1" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="10" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="10" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/></svg>
       </span>
       <span class="nav-label">Dashboard</span>
     </a>
-    <a class="nav-item" data-page="assessments" href="#" onclick="navigate('assessments');return false;">
+    <a class="nav-item" data-page="assessments" href="#" onclick="navigate('assessments');return false;" role="menuitem">
       <span class="nav-icon">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M14 2H4a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.5"/><path d="M6 6h6M6 9h6M6 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </span>
       <span class="nav-label">Assessments</span>
     </a>
-    <a class="nav-item" data-page="registrations" href="#" onclick="navigate('registrations');return false;">
+    <a class="nav-item" data-page="registrations" href="#" onclick="navigate('registrations');return false;" role="menuitem">
       <span class="nav-icon">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 4V3a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.5"/><path d="M6 9h6M6 12h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </span>
       <span class="nav-label">Registration IDs</span>
     </a>
-    <a class="nav-item" data-page="candidates" href="#" onclick="navigate('candidates');return false;">
+    <a class="nav-item" data-page="candidates" href="#" onclick="navigate('candidates');return false;" role="menuitem">
       <span class="nav-icon">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 15c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </span>
@@ -57,19 +63,25 @@
     </a>
 
     <div class="nav-section-label">Manage</div>
-    <a class="nav-item" data-page="security" href="#" onclick="navigate('security');return false;">
+    <a class="nav-item" data-page="question-setup" href="#" onclick="navigate('question-setup');return false;" role="menuitem">
+      <span class="nav-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M9 5v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </span>
+      <span class="nav-label">Question Setup</span>
+    </a>
+    <a class="nav-item" data-page="security" href="#" onclick="navigate('security');return false;" role="menuitem">
       <span class="nav-icon">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1L2 4.5v4.25C2 12.65 5.08 16.5 9 17c3.92-.5 7-4.35 7-8.25V4.5L9 1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M6 9l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
       <span class="nav-label">Security</span>
     </a>
-    <a class="nav-item" data-page="results" href="#" onclick="navigate('results');return false;">
+    <a class="nav-item" data-page="results" href="#" onclick="navigate('results');return false;" role="menuitem">
       <span class="nav-icon">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 13l4-4 3 3 5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </span>
       <span class="nav-label">Results</span>
     </a>
-    <a class="nav-item" data-page="settings" href="#" onclick="navigate('settings');return false;">
+    <a class="nav-item" data-page="settings" href="#" onclick="navigate('settings');return false;" role="menuitem">
       <span class="nav-icon">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M9 1v2M9 15v2M1 9h2M15 9h2M3.22 3.22l1.41 1.41M13.37 13.37l1.41 1.41M3.22 14.78l1.41-1.41M13.37 4.63l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </span>
@@ -94,7 +106,7 @@
 <div class="main-wrapper" id="mainWrapper">
 
   <!-- TOP HEADER -->
-  <header class="top-header">
+  <header class="top-header" role="banner">
     <div class="header-left">
       <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -125,7 +137,7 @@
   </header>
 
   <!-- ═══ PAGE: DASHBOARD ═══ -->
-  <main class="page-content" id="page-dashboard">
+  <main class="page-content" id="page-dashboard" role="main">
     <div class="content-inner">
 
       <!-- Overview Cards -->
@@ -228,7 +240,7 @@
   </main>
 
   <!-- ═══ PAGE: ASSESSMENTS ═══ -->
-  <main class="page-content hidden" id="page-assessments">
+  <main class="page-content hidden" id="page-assessments" role="main">
     <div class="content-inner">
       <div class="page-actions-bar">
         <div class="filter-group">
@@ -250,7 +262,7 @@
   </main>
 
   <!-- ═══ PAGE: REGISTRATIONS ═══ -->
-  <main class="page-content hidden" id="page-registrations">
+  <main class="page-content hidden" id="page-registrations" role="main">
     <div class="content-inner">
       <div class="page-actions-bar">
         <div class="filter-group">
@@ -307,7 +319,7 @@
   </main>
 
   <!-- ═══ PAGE: CANDIDATES ═══ -->
-  <main class="page-content hidden" id="page-candidates">
+  <main class="page-content hidden" id="page-candidates" role="main">
     <div class="content-inner">
       <div class="monitor-header">
         <div class="monitor-stats">
@@ -350,8 +362,54 @@
     </div>
   </main>
 
+  <!-- ═══ PAGE: QUESTION SETUP ═══ -->
+  <main class="page-content hidden" id="page-question-setup" role="main">
+    <div class="content-inner">
+      <div class="page-actions-bar">
+        <div class="filter-group">
+          <select class="select-input" id="questionFilter">
+            <option value="all">All Questions</option>
+            <option value="mcq">Multiple Choice</option>
+            <option value="short">Short Answer</option>
+          </select>
+          <select class="select-input" id="questionAssessmentFilter">
+            <option value="all">All Assessments</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" onclick="openModal('createQuestionModal')">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Create Question
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Question Bank</div>
+            <div class="card-subtitle" id="questionCountLabel">0 questions available</div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Question</th>
+                <th>Type</th>
+                <th>Assessment</th>
+                <th>Marks</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="questionTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
   <!-- ═══ PAGE: SECURITY ═══ -->
-  <main class="page-content hidden" id="page-security">
+  <main class="page-content hidden" id="page-security" role="main">
     <div class="content-inner">
       <div class="two-col-layout">
         <div class="security-col">
@@ -389,39 +447,39 @@
   </main>
 
   <!-- ═══ PAGE: RESULTS ═══ -->
-  <main class="page-content hidden" id="page-results">
+  <main class="page-content hidden" id="page-results" role="main">
     <div class="content-inner">
       <div class="page-actions-bar">
-        <select class="select-input" id="resultAssessmentSelect">
+        <select class="select-input" id="resultAssessmentSelect" style="min-width:200px;">
           <option>Data Science Fundamentals — Batch A</option>
           <option>Web Dev Midterm 2025</option>
           <option>Cybersecurity Basics</option>
         </select>
         <div class="btn-group">
-          <button class="btn btn-ghost btn-sm">Export PDF</button>
-          <button class="btn btn-ghost btn-sm">Export CSV</button>
+          <button class="btn btn-ghost btn-sm" onclick="showToast('PDF exported successfully','success')">Export PDF</button>
+          <button class="btn btn-ghost btn-sm" onclick="showToast('CSV exported successfully','success')">Export CSV</button>
         </div>
       </div>
 
       <div class="results-summary-grid">
         <div class="result-stat-card">
           <div class="result-stat-icon blue"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L3 5.5v4.75C3 14.05 6.09 17.9 10 18.5c3.91-.6 7-4.45 7-8.25V5.5L10 2z" stroke="currentColor" stroke-width="1.5"/></svg></div>
-          <div class="result-stat-val">74.3%</div>
+          <div class="result-stat-val" id="resAvg">74.3%</div>
           <div class="result-stat-label">Average Score</div>
         </div>
         <div class="result-stat-card">
           <div class="result-stat-icon green"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l4 4 6-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="result-stat-val">98%</div>
+          <div class="result-stat-val" id="resHigh">98%</div>
           <div class="result-stat-label">Highest Score</div>
         </div>
         <div class="result-stat-card">
           <div class="result-stat-icon amber"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 12l4-4 4 4 6-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-          <div class="result-stat-val">68%</div>
+          <div class="result-stat-val" id="resPassRate">68%</div>
           <div class="result-stat-label">Pass Rate</div>
         </div>
         <div class="result-stat-card">
           <div class="result-stat-icon red"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 6l8 8M14 6l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-          <div class="result-stat-val">32%</div>
+          <div class="result-stat-val" id="resFailRate">32%</div>
           <div class="result-stat-label">Fail Rate</div>
         </div>
       </div>
@@ -454,7 +512,7 @@
   </main>
 
   <!-- ═══ PAGE: SETTINGS ═══ -->
-  <main class="page-content hidden" id="page-settings">
+  <main class="page-content hidden" id="page-settings" role="main">
     <div class="content-inner">
       <div class="settings-layout">
         <div class="settings-nav">
@@ -518,41 +576,43 @@
       <div class="form-grid">
         <div class="form-row full">
           <label class="field-label">Assessment Name *</label>
-          <input class="input" type="text" placeholder="e.g. Data Science Fundamentals — Q1" id="newAssessName" />
+          <input name="examName" class="input" type="text" placeholder="e.g. Data Science Fundamentals — Q1" id="newAssessName" />
         </div>
         <div class="form-row">
           <label class="field-label">Course *</label>
-          <select class="select-input full-width" id="newAssessCourse">
+          <select name="examTopic" class="select-input full-width" id="newAssessCourse" onchange="toggleCustomCourse(this)">
             <option value="">Select course…</option>
             <option>Data Science</option>
             <option>Web Development</option>
             <option>Cybersecurity</option>
             <option>Machine Learning</option>
+            <option value="custom">Other (Custom)</option>
           </select>
+          <input class="input" type="text" id="newAssessCourseCustom" placeholder="Enter custom course name…" style="display:none;margin-top:8px" oninput="updateCustomCourse()" />
         </div>
         <div class="form-row">
           <label class="field-label">Duration (minutes) *</label>
-          <input class="input" type="number" placeholder="90" id="newAssessDuration" />
+          <input name='examDuration' class="input" type="number" placeholder="90" id="newAssessDuration" />
         </div>
         <div class="form-row">
           <label class="field-label">Passing Marks (%)</label>
-          <input class="input" type="number" placeholder="60" value="60" id="newAssessPass" />
+          <input name="passingMarks" class="input" type="number" placeholder="60" value="60" id="newAssessPass" />
         </div>
         <div class="form-row">
           <label class="field-label">Start Date & Time *</label>
-          <input class="input" type="datetime-local" id="newAssessStart" />
+          <input name="startExam" class="input" type="datetime-local" id="newAssessStart" />
         </div>
         <div class="form-row">
           <label class="field-label">End Date & Time *</label>
-          <input class="input" type="datetime-local" id="newAssessEnd" />
+          <input name="endExam" class="input" type="datetime-local" id="newAssessEnd" />
         </div>
         <div class="form-row full">
           <label class="field-label">Description</label>
-          <textarea class="input textarea" placeholder="Brief description of this assessment…" id="newAssessDesc"></textarea>
+          <textarea name="description" class="input textarea" placeholder="Brief description of this assessment…" id="newAssessDesc"></textarea>
         </div>
         <div class="form-row full">
           <label class="field-label">Instructions for Candidates</label>
-          <textarea class="input textarea" placeholder="Instructions shown to candidates before starting…" id="newAssessInstr"></textarea>
+          <textarea name='instructions' class="input textarea" placeholder="Instructions shown to candidates before starting…" id="newAssessInstr"></textarea>
         </div>
       </div>
     </div>
@@ -564,29 +624,67 @@
   </div>
 </div>
 
-<!-- QUESTION MANAGER MODAL -->
-<div class="modal-overlay" id="questionModal">
-  <div class="modal xlarge-modal">
+<!-- CREATE QUESTION MODAL -->
+<div class="modal-overlay" id="createQuestionModal">
+  <div class="modal large-modal">
     <div class="modal-header">
-      <div class="modal-title">Question Manager — <span id="questionModalTitle">Assessment</span></div>
-      <button class="modal-close" onclick="closeModal('questionModal')">
+      <div class="modal-title">Create Question</div>
+      <button class="modal-close" onclick="closeModal('createQuestionModal')">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </button>
     </div>
-    <div class="modal-body question-modal-body">
-      <div class="q-sidebar">
-        <div class="q-sidebar-header">
-          <div class="q-count" id="qCount">0 Questions</div>
-          <button class="btn btn-primary btn-sm" onclick="addNewQuestion()">+ Add</button>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-row full">
+          <label class="field-label">Assessment *</label>
+          <select class="select-input full-width" id="questionAssessmentSelect"></select>
         </div>
-        <div class="q-list" id="qList"></div>
-      </div>
-      <div class="q-editor" id="qEditor">
-        <div class="q-editor-placeholder">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="6" width="32" height="28" rx="4" stroke="#D8E1EC" stroke-width="2"/><path d="M12 14h16M12 20h16M12 26h8" stroke="#D8E1EC" stroke-width="2" stroke-linecap="round"/></svg>
-          <p>Select a question or add a new one</p>
+        <div class="form-row full">
+          <label class="field-label">Question Type *</label>
+          <select class="select-input full-width" id="questionTypeSelect" onchange="toggleQuestionOptions(this)">
+            <option value="mcq">Multiple Choice</option>
+            <option value="short">Short Answer</option>
+          </select>
+        </div>
+        <div class="form-row full">
+          <label class="field-label">Question Text *</label>
+          <textarea class="input textarea" rows="3" placeholder="Enter your question here..." id="questionText"></textarea>
+        </div>
+        <div class="form-row">
+          <label class="field-label">Marks</label>
+          <input class="input" type="number" value="2" min="1" max="20" id="questionMarks" />
+        </div>
+        <div class="form-row full" id="mcqOptionsContainer">
+          <label class="field-label">Answer Options</label>
+          <div class="q-options-list" id="newQuestionOptions">
+            <div class="q-option-row">
+              <input type="radio" name="correct-answer" value="0" checked />
+              <input class="input q-option-input" type="text" placeholder="Option A" value="Option A" />
+            </div>
+            <div class="q-option-row">
+              <input type="radio" name="correct-answer" value="1" />
+              <input class="input q-option-input" type="text" placeholder="Option B" value="Option B" />
+            </div>
+            <div class="q-option-row">
+              <input type="radio" name="correct-answer" value="2" />
+              <input class="input q-option-input" type="text" placeholder="Option C" value="Option C" />
+            </div>
+            <div class="q-option-row">
+              <input type="radio" name="correct-answer" value="3" />
+              <input class="input q-option-input" type="text" placeholder="Option D" value="Option D" />
+            </div>
+          </div>
+          <button class="add-option-btn" onclick="addNewQuestionOption()">+ Add Option</button>
+        </div>
+        <div class="form-row full" id="shortAnswerContainer" style="display:none">
+          <label class="field-label">Model Answer (optional)</label>
+          <textarea class="input textarea" placeholder="Enter expected answer for grading reference..." id="questionModelAnswer"></textarea>
         </div>
       </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('createQuestionModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveQuestionToBank()">Save Question</button>
     </div>
   </div>
 </div>
@@ -684,10 +782,12 @@
 
 <style>
   /* ═══════════════════════════════════════════════
-   ASSESSFORGE — Stormy Morning Design System
+   ASSESSFORGE — Responsive Mobile-First Design System
    ═══════════════════════════════════════════════ */
 
+/* ===== CSS Variables ===== */
 :root {
+  /* Colors */
   --bg: #F5F7FA;
   --surface: #FFFFFF;
   --sidebar: #EEF2F7;
@@ -708,24 +808,45 @@
   --text: #1F2937;
   --text-secondary: #6B7280;
   --text-tertiary: #9CA3AF;
+  
+  /* Shadows */
   --shadow-xs: 0 1px 2px rgba(15,23,42,0.05);
   --shadow-sm: 0 1px 4px rgba(15,23,42,0.07), 0 2px 8px rgba(15,23,42,0.05);
   --shadow-md: 0 4px 16px rgba(15,23,42,0.08), 0 1px 4px rgba(15,23,42,0.05);
   --shadow-lg: 0 8px 32px rgba(15,23,42,0.12), 0 2px 8px rgba(15,23,42,0.06);
+  
+  /* Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 20px;
+  
+  /* Sizing */
   --sidebar-w: 240px;
   --sidebar-w-collapsed: 64px;
   --header-h: 64px;
   --transition: 0.18s ease;
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Safe areas for iOS */
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-inset-left: env(safe-area-inset-left, 0px);
+  --safe-area-inset-right: env(safe-area-inset-right, 0px);
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ===== Reset & Base ===== */
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
 
-html { font-size: 14px; -webkit-font-smoothing: antialiased; }
+html { 
+  font-size: 14px; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 body {
   font-family: var(--font);
@@ -733,18 +854,21 @@ body {
   color: var(--text);
   display: flex;
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
+  padding-top: var(--safe-area-inset-top);
+  padding-bottom: var(--safe-area-inset-bottom);
 }
 
-/* ═══ SCROLLBAR ═══ */
+/* ===== Scrollbar ===== */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--secondary); }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    SIDEBAR
-═══════════════════════════════════════════════ */
+============================================ */
 .sidebar {
   width: var(--sidebar-w);
   background: var(--sidebar);
@@ -752,8 +876,10 @@ body {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 0; left: 0;
+  top: var(--safe-area-inset-top);
+  left: var(--safe-area-inset-left);
   height: 100vh;
+  height: 100dvh;
   z-index: 200;
   transition: width var(--transition), transform var(--transition);
   overflow: hidden;
@@ -764,20 +890,32 @@ body {
 .sidebar.collapsed .nav-label,
 .sidebar.collapsed .nav-badge,
 .sidebar.collapsed .nav-section-label,
-.sidebar.collapsed .user-info { opacity: 0; pointer-events: none; width: 0; overflow: hidden; }
+.sidebar.collapsed .user-info { 
+  opacity: 0; 
+  pointer-events: none; 
+  width: 0; 
+  overflow: hidden; 
+}
 
 .sidebar-logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 0 16px;
+  padding: 0 clamp(12px, 2vw, 16px);
   height: var(--header-h);
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
 
 .logo-mark { flex-shrink: 0; display: flex; align-items: center; }
-.logo-text { font-size: 15px; font-weight: 700; color: var(--text); white-space: nowrap; flex: 1; transition: opacity var(--transition); }
+.logo-text { 
+  font-size: clamp(14px, 1.2vw, 15px); 
+  font-weight: 700; 
+  color: var(--text); 
+  white-space: nowrap; 
+  flex: 1; 
+  transition: opacity var(--transition); 
+}
 
 .sidebar-toggle {
   margin-left: auto;
@@ -817,7 +955,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 9px 10px;
+  padding: clamp(8px, 0.7vw, 9px) 10px;
   border-radius: var(--radius-sm);
   color: var(--text-secondary);
   text-decoration: none;
@@ -825,8 +963,9 @@ body {
   transition: background var(--transition), color var(--transition);
   white-space: nowrap;
   position: relative;
-  font-size: 13.5px;
+  font-size: clamp(13px, 1vw, 13.5px);
   font-weight: 500;
+  min-height: 44px;
 }
 
 .nav-item:hover { background: rgba(79,125,243,0.07); color: var(--primary); }
@@ -873,25 +1012,27 @@ body {
   flex-shrink: 0;
 }
 
-.user-name { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; }
-.user-role { font-size: 11px; color: var(--text-secondary); white-space: nowrap; }
+.user-name { font-size: clamp(12px, 0.9vw, 13px); font-weight: 600; color: var(--text); white-space: nowrap; }
+.user-role { font-size: clamp(10px, 0.8vw, 11px); color: var(--text-secondary); white-space: nowrap; }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    MAIN WRAPPER
-═══════════════════════════════════════════════ */
+============================================ */
 .main-wrapper {
   margin-left: var(--sidebar-w);
   flex: 1;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  min-height: 100dvh;
   transition: margin-left var(--transition);
+  width: calc(100% - var(--sidebar-w));
 }
-.main-wrapper.sidebar-collapsed { margin-left: var(--sidebar-w-collapsed); }
+.main-wrapper.sidebar-collapsed { margin-left: var(--sidebar-w-collapsed); width: calc(100% - var(--sidebar-w-collapsed)); }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    TOP HEADER
-═══════════════════════════════════════════════ */
+============================================ */
 .top-header {
   height: var(--header-h);
   background: var(--surface);
@@ -899,15 +1040,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 clamp(16px, 2vw, 24px);
   position: sticky;
-  top: 0;
+  top: var(--safe-area-inset-top);
   z-index: 100;
   gap: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.header-left { display: flex; align-items: center; gap: 14px; }
-.page-title { font-size: 16px; font-weight: 700; color: var(--text); white-space: nowrap; }
+.header-left { display: flex; align-items: center; gap: clamp(10px, 1.2vw, 14px); }
+.page-title { 
+  font-size: clamp(16px, 1.3vw, 18px); 
+  font-weight: 700; 
+  color: var(--text); 
+  white-space: nowrap; 
+}
 
 .mobile-menu-btn {
   display: none;
@@ -915,11 +1063,15 @@ body {
   border: none;
   cursor: pointer;
   color: var(--text-secondary);
-  padding: 6px;
-  border-radius: 6px;
+  padding: 8px;
+  border-radius: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
 }
 
-.header-right { display: flex; align-items: center; gap: 10px; }
+.header-right { display: flex; align-items: center; gap: clamp(8px, 1vw, 10px); }
 
 .search-wrap {
   position: relative;
@@ -941,12 +1093,13 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 8px 70px 8px 32px;
-  font-size: 13px;
+  font-size: clamp(13px, 0.9vw, 14px);
   color: var(--text);
   font-family: var(--font);
-  width: 240px;
+  width: clamp(160px, 18vw, 240px);
   transition: border-color var(--transition), box-shadow var(--transition);
   outline: none;
+  min-height: 38px;
 }
 .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79,125,243,0.12); }
 .search-input::placeholder { color: var(--text-tertiary); }
@@ -963,7 +1116,8 @@ body {
 }
 
 .icon-btn {
-  width: 36px; height: 36px;
+  width: clamp(36px, 2.8vw, 40px);
+  height: clamp(36px, 2.8vw, 40px);
   border: 1px solid var(--border);
   background: var(--surface);
   border-radius: var(--radius-sm);
@@ -972,23 +1126,25 @@ body {
   color: var(--text-secondary);
   position: relative;
   transition: background var(--transition), color var(--transition), border-color var(--transition);
+  min-width: 44px;
+  min-height: 44px;
 }
 .icon-btn:hover { background: var(--bg); color: var(--text); border-color: var(--primary); }
 
 .notif-dot {
   position: absolute;
   top: 7px; right: 7px;
-  width: 7px; height: 7px;
+  width: 8px; height: 8px;
   background: var(--danger);
   border-radius: 50%;
-  border: 1.5px solid var(--surface);
+  border: 2px solid var(--surface);
 }
 
 .header-profile {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 10px;
+  padding: 6px 12px 6px 8px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -1007,24 +1163,29 @@ body {
   flex-shrink: 0;
 }
 
-.profile-name { font-size: 12.5px; font-weight: 600; color: var(--text); white-space: nowrap; }
-.profile-role { font-size: 11px; color: var(--text-secondary); }
+.profile-name { font-size: clamp(12px, 0.9vw, 13px); font-weight: 600; color: var(--text); white-space: nowrap; }
+.profile-role { font-size: clamp(10px, 0.7vw, 11px); color: var(--text-secondary); }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    PAGE CONTENT
-═══════════════════════════════════════════════ */
+============================================ */
 .page-content { flex: 1; display: flex; flex-direction: column; }
 .page-content.hidden { display: none; }
-.content-inner { padding: 24px; max-width: 1400px; width: 100%; }
+.content-inner { 
+  padding: clamp(16px, 2vw, 24px); 
+  max-width: 1400px; 
+  width: 100%; 
+  margin: 0 auto;
+}
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    CARDS
-═══════════════════════════════════════════════ */
+============================================ */
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: clamp(16px, 1.5vw, 20px);
   box-shadow: var(--shadow-xs);
   transition: box-shadow var(--transition);
 }
@@ -1036,18 +1197,19 @@ body {
   justify-content: space-between;
   margin-bottom: 16px;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
-.card-title { font-size: 14px; font-weight: 700; color: var(--text); }
-.card-subtitle { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+.card-title { font-size: clamp(14px, 1.1vw, 16px); font-weight: 700; color: var(--text); }
+.card-subtitle { font-size: clamp(12px, 0.8vw, 13px); color: var(--text-secondary); margin-top: 2px; }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    OVERVIEW STATS
-═══════════════════════════════════════════════ */
+============================================ */
 .overview-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: clamp(12px, 1.2vw, 16px);
   margin-bottom: 20px;
 }
 
@@ -1055,7 +1217,7 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: clamp(16px, 1.5vw, 20px);
   box-shadow: var(--shadow-xs);
   transition: box-shadow var(--transition), transform var(--transition);
   cursor: default;
@@ -1064,10 +1226,11 @@ body {
 .danger-card { border-color: rgba(239,68,68,0.25); background: linear-gradient(135deg, #FFFFFFFF 0%, #FEF2F2 100%); }
 
 .stat-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.stat-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+.stat-label { font-size: clamp(11px, 0.8vw, 12px); color: var(--text-secondary); font-weight: 500; }
 
 .stat-icon {
-  width: 32px; height: 32px;
+  width: clamp(28px, 2.2vw, 32px);
+  height: clamp(28px, 2.2vw, 32px);
   border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
@@ -1078,15 +1241,21 @@ body {
 .stat-icon.amber { background: var(--warning-light); color: var(--warning); }
 .stat-icon.red { background: var(--danger-light); color: var(--danger); }
 
-.stat-value { font-size: 28px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; margin-bottom: 6px; }
-.stat-change { font-size: 11.5px; font-weight: 500; display: flex; align-items: center; gap: 4px; }
+.stat-value { 
+  font-size: clamp(24px, 2.2vw, 28px); 
+  font-weight: 800; 
+  color: var(--text); 
+  letter-spacing: -0.5px; 
+  margin-bottom: 6px; 
+}
+.stat-change { font-size: clamp(10px, 0.8vw, 11.5px); font-weight: 500; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
 .stat-change.up { color: var(--success); }
 .stat-change.danger { color: var(--danger); }
 .stat-change.neutral { color: var(--text-secondary); }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    DASHBOARD GRID
-═══════════════════════════════════════════════ */
+============================================ */
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -1098,25 +1267,25 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: clamp(16px, 1.5vw, 20px);
   box-shadow: var(--shadow-xs);
 }
 
-.chart-legend { display: flex; gap: 12px; align-items: center; }
-.legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-secondary); }
+.chart-legend { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: clamp(11px, 0.8vw, 12px); color: var(--text-secondary); }
 .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .legend-dot.blue { background: var(--primary); }
 .legend-dot.green { background: var(--success); }
 
-.chart-wrap { position: relative; }
-.chart-wrap canvas { width: 100% !important; }
+.chart-wrap { position: relative; width: 100%; }
+.chart-wrap canvas { width: 100% !important; height: auto !important; }
 
 .sidebar-cards { display: flex; flex-direction: column; gap: 16px; }
 .mini-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: clamp(16px, 1.5vw, 20px);
   box-shadow: var(--shadow-xs);
   flex: 1;
 }
@@ -1131,6 +1300,7 @@ body {
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   transition: border-color var(--transition);
+  flex-wrap: wrap;
 }
 .upcoming-item:hover { border-color: var(--primary); }
 .upcoming-time-badge {
@@ -1143,12 +1313,12 @@ body {
   white-space: nowrap;
   flex-shrink: 0;
 }
-.upcoming-name { font-size: 12px; font-weight: 600; color: var(--text); }
-.upcoming-meta { font-size: 11px; color: var(--text-secondary); }
+.upcoming-name { font-size: clamp(12px, 0.9vw, 13px); font-weight: 600; color: var(--text); }
+.upcoming-meta { font-size: clamp(10px, 0.7vw, 11px); color: var(--text-secondary); }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    PULSE DOT / LIVE
-═══════════════════════════════════════════════ */
+============================================ */
 .pulse-dot {
   display: inline-block;
   width: 7px; height: 7px;
@@ -1166,26 +1336,32 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: clamp(11px, 0.8vw, 12px);
   color: var(--success);
   font-weight: 600;
 }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    TABLES
-═══════════════════════════════════════════════ */
-.table-wrap { overflow-x: auto; }
+============================================ */
+.table-wrap { 
+  overflow-x: auto; 
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -4px;
+  padding: 0 4px;
+}
 
 .data-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: clamp(12px, 0.9vw, 13px);
+  min-width: 600px;
 }
 
 .data-table th {
   text-align: left;
-  padding: 10px 12px;
-  font-size: 11px;
+  padding: clamp(8px, 0.7vw, 10px) clamp(8px, 0.8vw, 12px);
+  font-size: clamp(10px, 0.7vw, 11px);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -1195,7 +1371,7 @@ body {
 }
 
 .data-table td {
-  padding: 13px 12px;
+  padding: clamp(10px, 0.8vw, 13px) clamp(8px, 0.8vw, 12px);
   border-bottom: 1px solid var(--border);
   color: var(--text);
   vertical-align: middle;
@@ -1208,16 +1384,16 @@ body {
 }
 .data-table tbody tr:hover { background: var(--bg); }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    BADGES / STATUS
-═══════════════════════════════════════════════ */
+============================================ */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   padding: 3px 9px;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: clamp(10px, 0.7vw, 11px);
   font-weight: 600;
   white-space: nowrap;
 }
@@ -1227,16 +1403,16 @@ body {
 .badge-primary { background: var(--primary-light); color: var(--primary); }
 .badge-secondary { background: var(--border); color: var(--text-secondary); }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    BUTTONS
-═══════════════════════════════════════════════ */
+============================================ */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 9px 16px;
+  padding: clamp(8px, 0.7vw, 9px) clamp(12px, 1.2vw, 16px);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: clamp(12px, 0.9vw, 13px);
   font-weight: 600;
   font-family: var(--font);
   cursor: pointer;
@@ -1244,6 +1420,9 @@ body {
   transition: background var(--transition), box-shadow var(--transition), transform var(--transition), opacity var(--transition);
   white-space: nowrap;
   line-height: 1;
+  min-height: 44px;
+  min-width: 44px;
+  justify-content: center;
 }
 .btn:active { transform: scale(0.98); }
 
@@ -1259,24 +1438,25 @@ body {
 .btn-danger { background: var(--danger); color: #fff; }
 .btn-danger:hover { background: #DC2626; box-shadow: 0 2px 8px rgba(239,68,68,0.35); }
 
-.btn-sm { padding: 6px 12px; font-size: 12px; }
+.btn-sm { padding: clamp(6px, 0.5vw, 8px) clamp(10px, 0.8vw, 12px); font-size: clamp(11px, 0.8vw, 12px); min-height: 36px; }
 
-.btn-group { display: flex; gap: 8px; align-items: center; }
+.btn-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    FORM ELEMENTS
-═══════════════════════════════════════════════ */
+============================================ */
 .input {
   width: 100%;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 9px 12px;
-  font-size: 13px;
+  padding: clamp(8px, 0.7vw, 9px) 12px;
+  font-size: clamp(13px, 0.9vw, 14px);
   color: var(--text);
   font-family: var(--font);
   outline: none;
   transition: border-color var(--transition), box-shadow var(--transition);
+  min-height: 44px;
 }
 .input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79,125,243,0.12); }
 .input::placeholder { color: var(--text-tertiary); }
@@ -1287,8 +1467,8 @@ body {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 8px 12px;
-  font-size: 13px;
+  padding: clamp(8px, 0.7vw, 9px) 12px;
+  font-size: clamp(13px, 0.9vw, 14px);
   color: var(--text);
   font-family: var(--font);
   outline: none;
@@ -1299,21 +1479,29 @@ body {
   background-repeat: no-repeat;
   background-position: right 10px center;
   padding-right: 30px;
+  min-height: 44px;
+  width: 100%;
 }
 .select-input:focus { border-color: var(--primary); }
 .select-input.full-width { width: 100%; }
 
-.field-label { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 6px; display: block; }
-.field-hint { font-size: 11px; color: var(--text-secondary); margin-top: 5px; }
+.field-label { 
+  font-size: clamp(12px, 0.8vw, 13px); 
+  font-weight: 600; 
+  color: var(--text); 
+  margin-bottom: 6px; 
+  display: block; 
+}
+.field-hint { font-size: clamp(10px, 0.7vw, 11px); color: var(--text-secondary); margin-top: 5px; }
 
 .form-row { margin-bottom: 16px; }
 .form-row.full { grid-column: 1 / -1; }
 
-.checkbox { width: 14px; height: 14px; cursor: pointer; accent-color: var(--primary); }
+.checkbox { width: 18px; height: 18px; cursor: pointer; accent-color: var(--primary); }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    PAGE ACTIONS BAR
-═══════════════════════════════════════════════ */
+============================================ */
 .page-actions-bar {
   display: flex;
   align-items: center;
@@ -1324,13 +1512,14 @@ body {
 }
 
 .filter-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.filter-group .select-input { width: auto; min-width: 140px; }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    ASSESSMENTS GRID
-═══════════════════════════════════════════════ */
+============================================ */
 .assessments-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
   gap: 16px;
 }
 
@@ -1338,7 +1527,7 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: clamp(16px, 1.5vw, 20px);
   box-shadow: var(--shadow-xs);
   transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
   cursor: default;
@@ -1349,13 +1538,12 @@ body {
 .assessment-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: rgba(79,125,243,0.25); }
 
 .ac-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-.ac-title { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.4; }
-.ac-course { font-size: 11.5px; color: var(--text-secondary); margin-top: 3px; }
+.ac-title { font-size: clamp(14px, 1vw, 16px); font-weight: 700; color: var(--text); line-height: 1.4; }
+.ac-course { font-size: clamp(11px, 0.8vw, 12px); color: var(--text-secondary); margin-top: 3px; }
 
 .ac-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.ac-meta-item { }
 .ac-meta-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-tertiary); margin-bottom: 2px; }
-.ac-meta-val { font-size: 12.5px; font-weight: 600; color: var(--text); }
+.ac-meta-val { font-size: clamp(12px, 0.9vw, 13px); font-weight: 600; color: var(--text); }
 
 .ac-actions {
   display: flex;
@@ -1371,21 +1559,22 @@ body {
   background: none;
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 5px 10px;
-  font-size: 11.5px;
+  padding: clamp(5px, 0.4vw, 6px) clamp(8px, 0.7vw, 10px);
+  font-size: clamp(11px, 0.8vw, 12px);
   font-weight: 600;
   font-family: var(--font);
   color: var(--text-secondary);
   cursor: pointer;
   transition: all var(--transition);
+  min-height: 36px;
 }
 .ac-action-btn:hover { background: var(--bg); color: var(--text); border-color: var(--secondary); }
 .ac-action-btn.danger:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
 .ac-action-btn.primary:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    CANDIDATES MONITOR
-═══════════════════════════════════════════════ */
+============================================ */
 .monitor-header {
   display: flex;
   align-items: center;
@@ -1395,14 +1584,28 @@ body {
   gap: 12px;
 }
 
-.monitor-stats { display: flex; align-items: center; gap: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 4px; }
-.mini-stat { padding: 10px 20px; text-align: center; }
-.mini-stat-val { font-size: 22px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
+.monitor-stats { 
+  display: flex; 
+  align-items: center; 
+  gap: 0; 
+  background: var(--surface); 
+  border: 1px solid var(--border); 
+  border-radius: var(--radius-md); 
+  padding: 4px;
+  flex-wrap: wrap;
+}
+.mini-stat { padding: clamp(8px, 0.7vw, 10px) clamp(12px, 1.2vw, 20px); text-align: center; }
+.mini-stat-val { 
+  font-size: clamp(18px, 1.8vw, 22px); 
+  font-weight: 800; 
+  color: var(--text); 
+  letter-spacing: -0.5px; 
+}
 .mini-stat-val.green { color: var(--success); }
 .mini-stat-val.amber { color: var(--warning); }
-.mini-stat-label { font-size: 11px; color: var(--text-secondary); font-weight: 500; }
+.mini-stat-label { font-size: clamp(10px, 0.7vw, 11px); color: var(--text-secondary); font-weight: 500; }
 .mini-stat-divider { width: 1px; height: 36px; background: var(--border); }
-.monitor-actions { display: flex; gap: 8px; }
+.monitor-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
 .progress-bar-wrap { width: 80px; background: var(--bg); border-radius: 4px; height: 6px; overflow: hidden; }
 .progress-bar-fill { height: 100%; border-radius: 4px; background: var(--primary); transition: width 0.4s ease; }
@@ -1412,9 +1615,9 @@ body {
 .violation-count.mid { color: var(--warning); }
 .violation-count.low { color: var(--success); }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    SECURITY TOGGLES
-═══════════════════════════════════════════════ */
+============================================ */
 .two-col-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
 .security-col { display: flex; flex-direction: column; }
 
@@ -1423,17 +1626,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 0;
+  padding: clamp(12px, 1vw, 14px) 0;
   border-bottom: 1px solid var(--border);
   gap: 12px;
 }
 .toggle-row:last-child { border-bottom: none; }
 
-.toggle-info {}
-.toggle-label { font-size: 13px; font-weight: 600; color: var(--text); }
-.toggle-desc { font-size: 11.5px; color: var(--text-secondary); margin-top: 2px; }
+.toggle-label { font-size: clamp(13px, 0.9vw, 14px); font-weight: 600; color: var(--text); }
+.toggle-desc { font-size: clamp(11px, 0.7vw, 12px); color: var(--text-secondary); margin-top: 2px; }
 
-/* Premium Toggle Switch */
 .toggle-switch { position: relative; width: 42px; height: 24px; flex-shrink: 0; }
 .toggle-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
 .toggle-track {
@@ -1477,12 +1678,12 @@ body {
 
 .security-save-row { display: flex; gap: 10px; flex-wrap: wrap; }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    RESULTS
-═══════════════════════════════════════════════ */
+============================================ */
 .results-summary-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
   gap: 16px;
   margin-bottom: 20px;
 }
@@ -1491,7 +1692,7 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: clamp(16px, 1.5vw, 20px);
   box-shadow: var(--shadow-xs);
   display: flex;
   flex-direction: column;
@@ -1502,7 +1703,8 @@ body {
 .result-stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
 
 .result-stat-icon {
-  width: 40px; height: 40px;
+  width: clamp(36px, 3vw, 40px);
+  height: clamp(36px, 3vw, 40px);
   border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
 }
@@ -1511,16 +1713,20 @@ body {
 .result-stat-icon.amber { background: var(--warning-light); color: var(--warning); }
 .result-stat-icon.red { background: var(--danger-light); color: var(--danger); }
 
-.result-stat-val { font-size: 30px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
-.result-stat-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+.result-stat-val { 
+  font-size: clamp(24px, 2.5vw, 30px); 
+  font-weight: 800; 
+  color: var(--text); 
+  letter-spacing: -0.5px; 
+}
+.result-stat-label { font-size: clamp(11px, 0.8vw, 12px); color: var(--text-secondary); font-weight: 500; }
 
 .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
 .question-analysis { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
-.qa-item { }
-.qa-top { display: flex; justify-content: space-between; margin-bottom: 5px; }
-.qa-label { font-size: 12px; font-weight: 600; color: var(--text); }
-.qa-pct { font-size: 12px; font-weight: 700; color: var(--primary); }
+.qa-top { display: flex; justify-content: space-between; margin-bottom: 5px; flex-wrap: wrap; gap: 4px; }
+.qa-label { font-size: clamp(11px, 0.8vw, 12px); font-weight: 600; color: var(--text); }
+.qa-pct { font-size: clamp(11px, 0.8vw, 12px); font-weight: 700; color: var(--primary); }
 .qa-bar { background: var(--bg); border-radius: 4px; height: 7px; overflow: hidden; border: 1px solid var(--border); }
 .qa-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
 .qa-fill.high { background: var(--success); }
@@ -1541,9 +1747,9 @@ body {
 .rank-3 { background: #FED7AA; color: #9A3412; }
 .rank-other { background: var(--bg); color: var(--text-secondary); font-size: 11px; }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    SETTINGS
-═══════════════════════════════════════════════ */
+============================================ */
 .settings-layout { display: grid; grid-template-columns: 180px 1fr; gap: 24px; }
 
 .settings-nav {
@@ -1561,35 +1767,35 @@ body {
   background: none;
   border: none;
   border-radius: var(--radius-sm);
-  padding: 9px 12px;
+  padding: clamp(8px, 0.7vw, 9px) 12px;
   text-align: left;
-  font-size: 13px;
+  font-size: clamp(12px, 0.9vw, 13px);
   font-weight: 500;
   color: var(--text-secondary);
   cursor: pointer;
   font-family: var(--font);
   transition: background var(--transition), color var(--transition);
+  min-height: 44px;
 }
 .settings-tab:hover { background: var(--bg); color: var(--text); }
 .settings-tab.active { background: var(--primary-light); color: var(--primary); font-weight: 600; }
 
-.settings-body {}
 .settings-section { display: none; }
 .settings-section.active { display: block; }
 
-.settings-form {}
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
 .form-actions { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    MODALS
-═══════════════════════════════════════════════ */
+============================================ */
 .modal-overlay {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(15,23,42,0.45);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 1000;
   align-items: center;
   justify-content: center;
@@ -1614,7 +1820,6 @@ body {
 }
 
 .large-modal { max-width: 760px; }
-.xlarge-modal { max-width: 960px; }
 
 @keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -1622,147 +1827,120 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px 16px;
+  padding: clamp(16px, 1.5vw, 20px) clamp(16px, 2vw, 24px) 16px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
-.modal-title { font-size: 15px; font-weight: 700; color: var(--text); }
+.modal-title { font-size: clamp(15px, 1.2vw, 17px); font-weight: 700; color: var(--text); }
 .modal-close {
   background: none;
   border: none;
   cursor: pointer;
   color: var(--text-secondary);
-  padding: 4px;
+  padding: 8px;
   border-radius: 6px;
   display: flex; align-items: center;
   transition: background var(--transition), color var(--transition);
+  min-width: 44px;
+  min-height: 44px;
 }
 .modal-close:hover { background: var(--bg); color: var(--text); }
 
-.modal-body { padding: 20px 24px; overflow-y: auto; flex: 1; }
+.modal-body { padding: clamp(16px, 1.5vw, 20px) clamp(16px, 2vw, 24px); overflow-y: auto; flex: 1; }
 .modal-footer {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 8px;
-  padding: 16px 24px;
+  padding: 16px clamp(16px, 2vw, 24px);
   border-top: 1px solid var(--border);
   flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
-/* ═══════════════════════════════════════════════
-   QUESTION MANAGER
-═══════════════════════════════════════════════ */
-.question-modal-body {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  padding: 0 !important;
-  gap: 0;
-  flex: 1;
-  overflow: hidden;
-}
-
-.q-sidebar {
-  border-right: 1px solid var(--border);
+/* ============================================
+   QUESTION SETUP STYLES
+============================================ */
+.q-options-list {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  background: var(--bg);
+  gap: 8px;
+  margin-top: 8px;
 }
-.q-sidebar-header {
+
+.q-option-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--border);
-}
-.q-count { font-size: 12px; font-weight: 600; color: var(--text-secondary); }
-
-.q-list { flex: 1; overflow-y: auto; padding: 8px; }
-.q-list-item {
-  padding: 10px 12px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  border: 1px solid transparent;
-  margin-bottom: 4px;
-  transition: all var(--transition);
-}
-.q-list-item:hover { background: var(--surface); border-color: var(--border); }
-.q-list-item.active { background: var(--surface); border-color: var(--primary); }
-.q-list-item-num { font-size: 10px; font-weight: 700; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; }
-.q-list-item-text { font-size: 12px; font-weight: 500; color: var(--text); margin-top: 2px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.q-list-item-type { font-size: 10px; color: var(--text-secondary); margin-top: 2px; }
-
-.q-editor { flex: 1; overflow-y: auto; padding: 20px 24px; }
-.q-editor-placeholder {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  color: var(--text-tertiary);
-  font-size: 13px;
+  gap: 8px;
 }
 
-.q-form { display: flex; flex-direction: column; gap: 16px; }
-.q-form-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-.q-options-list { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-.q-option-row { display: flex; align-items: center; gap: 8px; }
-.q-option-row input[type="radio"],
-.q-option-row input[type="checkbox"] { flex-shrink: 0; accent-color: var(--primary); }
+.q-option-row input[type="radio"] {
+  flex-shrink: 0;
+  accent-color: var(--primary);
+  width: 18px;
+  height: 18px;
+}
+
 .q-option-input { flex: 1; }
+
 .q-option-delete {
-  background: none; border: none; cursor: pointer;
-  color: var(--text-tertiary); padding: 4px;
-  border-radius: 4px; display: flex; align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  padding: 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
   transition: color var(--transition);
+  min-width: 44px;
+  min-height: 44px;
 }
 .q-option-delete:hover { color: var(--danger); }
+
 .add-option-btn {
-  background: none; border: 1px dashed var(--border);
-  border-radius: var(--radius-sm); padding: 7px 12px;
-  font-size: 12px; color: var(--text-secondary); cursor: pointer;
-  font-family: var(--font); font-weight: 500;
+  background: none;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  padding: clamp(6px, 0.5vw, 7px) 12px;
+  font-size: clamp(11px, 0.8vw, 12px);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--font);
+  font-weight: 500;
   transition: all var(--transition);
+  margin-top: 8px;
+  min-height: 44px;
 }
 .add-option-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
 
-.drag-handle {
-  cursor: grab;
-  color: var(--text-tertiary);
-  padding: 2px 4px;
-  flex-shrink: 0;
-  display: flex; align-items: center;
-}
-
-/* ═══════════════════════════════════════════════
+/* ============================================
    UPLOAD ZONE
-═══════════════════════════════════════════════ */
+============================================ */
 .upload-zone {
   border: 2px dashed var(--border);
   border-radius: var(--radius-md);
-  padding: 32px;
+  padding: clamp(24px, 3vw, 32px);
   text-align: center;
   cursor: pointer;
   transition: all var(--transition);
   background: var(--bg);
 }
 .upload-zone:hover { border-color: var(--primary); background: var(--primary-light); }
-.upload-label { font-size: 14px; font-weight: 600; color: var(--text); margin: 12px 0 4px; }
-.upload-hint { font-size: 12px; color: var(--text-secondary); }
+.upload-label { font-size: clamp(13px, 1vw, 14px); font-weight: 600; color: var(--text); margin: 12px 0 4px; }
+.upload-hint { font-size: clamp(11px, 0.8vw, 12px); color: var(--text-secondary); }
 .upload-format { margin-top: 16px; }
 .format-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 6px; }
-.format-code { display: block; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; font-size: 12px; color: var(--primary); font-family: monospace; }
+.format-code { display: block; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; font-size: clamp(11px, 0.8vw, 12px); color: var(--primary); font-family: monospace; overflow-x: auto; }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    NOTIFICATIONS PANEL
-═══════════════════════════════════════════════ */
+============================================ */
 .notif-panel {
   position: fixed;
-  top: calc(var(--header-h) + 8px);
-  right: 16px;
-  width: 340px;
+  top: calc(var(--header-h) + 8px + var(--safe-area-inset-top));
+  right: max(16px, var(--safe-area-inset-right));
+  width: min(340px, 90vw);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -1770,7 +1948,7 @@ body {
   z-index: 500;
   display: none;
   flex-direction: column;
-  max-height: 480px;
+  max-height: min(480px, 70vh);
   overflow: hidden;
   animation: slideUp 0.15s ease;
 }
@@ -1784,7 +1962,7 @@ body {
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
-.notif-panel-title { font-size: 13px; font-weight: 700; color: var(--text); }
+.notif-panel-title { font-size: clamp(13px, 0.9vw, 14px); font-weight: 700; color: var(--text); }
 .notif-list { overflow-y: auto; flex: 1; }
 
 .notif-item {
@@ -1811,33 +1989,33 @@ body {
 .notif-icon-wrap.danger { background: var(--danger-light); color: var(--danger); }
 .notif-icon-wrap.success { background: var(--success-light); color: var(--success); }
 
-.notif-body {}
-.notif-text { font-size: 12.5px; font-weight: 500; color: var(--text); line-height: 1.4; }
-.notif-time { font-size: 11px; color: var(--text-secondary); margin-top: 3px; }
+.notif-text { font-size: clamp(12px, 0.8vw, 13px); font-weight: 500; color: var(--text); line-height: 1.4; }
+.notif-time { font-size: clamp(10px, 0.7vw, 11px); color: var(--text-secondary); margin-top: 3px; }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    TOAST
-═══════════════════════════════════════════════ */
+============================================ */
 .toast-container {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: max(24px, var(--safe-area-inset-bottom));
+  right: max(24px, var(--safe-area-inset-right));
   z-index: 2000;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: min(100%, 400px);
 }
 
 .toast {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 13px 16px;
+  padding: clamp(12px, 1vw, 13px) clamp(14px, 1.2vw, 16px);
   background: var(--text);
   color: #fff;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
-  font-size: 13px;
+  font-size: clamp(12px, 0.9vw, 13px);
   font-weight: 500;
   min-width: 280px;
   animation: toastIn 0.25s ease forwards;
@@ -1852,14 +2030,14 @@ body {
 
 .toast-icon { flex-shrink: 0; }
 
-/* ═══════════════════════════════════════════════
-   CANVAS CHART (vanilla)
-═══════════════════════════════════════════════ */
-#activityChart { display: block; }
+/* ============================================
+   CANVAS CHART
+============================================ */
+#activityChart { display: block; width: 100% !important; height: auto !important; }
 
-/* ═══════════════════════════════════════════════
+/* ============================================
    MOBILE OVERLAY
-═══════════════════════════════════════════════ */
+============================================ */
 .mobile-overlay {
   display: none;
   position: fixed;
@@ -1868,52 +2046,114 @@ body {
   z-index: 190;
 }
 
-/* ═══════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════ */
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+============================================ */
+
+/* Large Desktops & 4K */
+@media (min-width: 1920px) {
+  .content-inner { max-width: 1600px; }
+  .overview-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+/* Tablets & Small Desktops */
 @media (max-width: 1200px) {
   .overview-grid { grid-template-columns: repeat(3, 1fr); }
   .dashboard-grid { grid-template-columns: 1fr; }
   .sidebar-cards { flex-direction: row; }
   .mini-card { flex: 1; }
-}
-
-@media (max-width: 900px) {
   .results-summary-grid { grid-template-columns: repeat(2, 1fr); }
   .results-grid { grid-template-columns: 1fr; }
   .two-col-layout { grid-template-columns: 1fr; }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
   .form-grid { grid-template-columns: 1fr; }
   .settings-layout { grid-template-columns: 1fr; }
   .settings-nav { flex-direction: row; flex-wrap: wrap; }
   .overview-grid { grid-template-columns: repeat(2, 1fr); }
+  .assessments-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+  .results-grid { grid-template-columns: 1fr; }
 }
 
+/* Mobile */
 @media (max-width: 768px) {
-  .sidebar { transform: translateX(-100%); width: var(--sidebar-w) !important; }
+  /* Sidebar transforms to drawer */
+  .sidebar { 
+    transform: translateX(-100%); 
+    width: var(--sidebar-w) !important; 
+    top: 0;
+    left: 0;
+    height: 100vh;
+    height: 100dvh;
+    padding-top: var(--safe-area-inset-top);
+  }
   .sidebar.mobile-open { transform: translateX(0); }
-  .main-wrapper { margin-left: 0 !important; }
+  .main-wrapper { 
+    margin-left: 0 !important; 
+    width: 100% !important; 
+  }
+  .main-wrapper.sidebar-collapsed { margin-left: 0 !important; }
   .mobile-overlay.open { display: block; }
   .mobile-menu-btn { display: flex; }
   .sidebar-toggle { display: none; }
+  
+  /* Header adjustments */
   .header-profile .profile-info { display: none; }
-  .search-input { width: 160px; }
+  .search-input { width: 140px; }
   .search-shortcut { display: none; }
+  
+  /* Grid adjustments */
   .overview-grid { grid-template-columns: 1fr 1fr; }
   .content-inner { padding: 16px; }
-  .page-actions-bar { flex-direction: column; align-items: flex-start; }
-  .question-modal-body { grid-template-columns: 1fr; }
-  .q-sidebar { max-height: 200px; }
-  .candidates-table th:nth-child(4),
-  .candidates-table td:nth-child(4),
-  .candidates-table th:nth-child(7),
-  .candidates-table td:nth-child(7) { display: none; }
-}
-
-@media (max-width: 480px) {
-  .overview-grid { grid-template-columns: 1fr; }
+  .page-actions-bar { flex-direction: column; align-items: stretch; }
+  .page-actions-bar .btn-group { justify-content: flex-start; }
+  .monitor-header { flex-direction: column; align-items: stretch; }
+  .monitor-stats { flex-wrap: wrap; justify-content: center; }
+  .mini-stat { padding: 8px 12px; }
   .results-summary-grid { grid-template-columns: 1fr 1fr; }
+  
+  /* Modal adjustments */
   .modal { max-width: 100%; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
   .modal-overlay { align-items: flex-end; padding: 0; }
+  .large-modal { max-width: 100%; }
+  .btn-group { flex-wrap: wrap; }
+  .header-right .search-wrap { display: none; }
+  .filter-group { flex-direction: column; align-items: stretch; }
+  .filter-group .select-input { width: 100%; }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .overview-grid { grid-template-columns: 1fr; }
+  .results-summary-grid { grid-template-columns: 1fr; }
+  .stat-value { font-size: 22px; }
+  .result-stat-val { font-size: 24px; }
+  .assessments-grid { grid-template-columns: 1fr; }
+  
+  .modal-body { padding: 16px; }
+  .modal-header { padding: 16px; }
+  .modal-footer { padding: 12px 16px; flex-wrap: wrap; justify-content: center; }
+  
+  .data-table { font-size: 12px; min-width: 500px; }
+  .data-table th, .data-table td { padding: 8px 10px; }
+  
+  .top-header { padding: 0 12px; }
+  .content-inner { padding: 12px; }
+  .page-actions-bar .btn { width: 100%; justify-content: center; }
+  .btn-group { flex-direction: column; width: 100%; }
+  .btn-group .btn { width: 100%; }
+  
+  .ac-meta { grid-template-columns: 1fr; }
+}
+
+/* iPhone SE & very small screens */
+@media (max-width: 375px) {
+  .stat-value { font-size: 20px; }
+  .page-title { font-size: 15px; }
+  .mini-stat { padding: 6px 8px; }
+  .mini-stat-val { font-size: 16px; }
 }
 </style>
 <script>
@@ -1933,12 +2173,12 @@ const State = {
   threshold: 3,
   liveInterval: null,
   chartInstance: null,
-  currentAssessmentId: null, // for question manager
+  currentAssessmentId: null,
   notifications: [],
   assessments: [],
   registrations: [],
   candidates: [],
-  questions: {}, // keyed by assessmentId
+  questionBank: [],
   securitySettings: {
     disableCopyPaste: true,
     blockRightClick: true,
@@ -2037,6 +2277,16 @@ function seedData() {
     };
   });
 
+  // Seed question bank
+  State.questionBank = [
+    { id: 'q1', assessmentId: 'ASSESS-1000', type: 'mcq', text: 'What is the primary purpose of a DataFrame in pandas?', options: ['Store tabular data','Draw charts','Train ML models','Manage databases'], correct: 0, marks: 2 },
+    { id: 'q2', assessmentId: 'ASSESS-1000', type: 'mcq', text: 'Which algorithm is used for classification in scikit-learn?', options: ['K-Means','Linear Regression','Random Forest','PCA'], correct: 2, marks: 2 },
+    { id: 'q3', assessmentId: 'ASSESS-1000', type: 'short', text: 'Explain the difference between supervised and unsupervised learning.', options: [], correct: null, marks: 5 },
+    { id: 'q4', assessmentId: 'ASSESS-1000', type: 'mcq', text: 'What does the "fit" method do in scikit-learn?', options: ['Saves the model','Trains the model','Makes predictions','Loads data'], correct: 1, marks: 2 },
+    { id: 'q5', assessmentId: 'ASSESS-1001', type: 'mcq', text: 'Which HTML tag is used to create a hyperlink?', options: ['<link>','<a>','<href>','<url>'], correct: 1, marks: 2 },
+    { id: 'q6', assessmentId: 'ASSESS-1001', type: 'mcq', text: 'What is the default port for HTTPS?', options: ['80','443','8080','22'], correct: 1, marks: 2 },
+  ];
+
   // Notifications
   State.notifications = [
     { type:'danger', title:'Security Alert', msg:'Candidate TCA-1007 triggered 3 violations — auto-submitted.', time:'2 min ago', read:false },
@@ -2045,15 +2295,6 @@ function seedData() {
     { type:'success', title:'Batch Completed', msg:'Cybersecurity Basics Batch A completed. 245 submissions received.', time:'1 hr ago', read:true },
     { type:'warn', title:'Low Network Warning', msg:'Candidate TCA-1019 has poor network connectivity.', time:'1 hr ago', read:true },
     { type:'info', title:'IDs Generated', msg:'50 registration IDs generated for Machine Learning batch.', time:'2 hrs ago', read:true },
-  ];
-
-  // Questions (for first assessment)
-  State.questions['ASSESS-1000'] = [
-    { id:'q1', type:'mcq', text:'What is the primary purpose of a DataFrame in pandas?', options:['Store tabular data','Draw charts','Train ML models','Manage databases'], correct:0, marks:2 },
-    { id:'q2', type:'mcq', text:'Which algorithm is used for classification in scikit-learn?', options:['K-Means','Linear Regression','Random Forest','PCA'], correct:2, marks:2 },
-    { id:'q3', type:'short', text:'Explain the difference between supervised and unsupervised learning.', options:[], correct:null, marks:5 },
-    { id:'q4', type:'mcq', text:'What does the "fit" method do in scikit-learn?', options:['Saves the model','Trains the model','Makes predictions','Loads data'], correct:1, marks:2 },
-    { id:'q5', type:'mcq', text:'Which library is primarily used for deep learning in Python?', options:['NumPy','Pandas','TensorFlow','Matplotlib'], correct:2, marks:2 },
   ];
 }
 
@@ -2081,6 +2322,7 @@ function navigate(page) {
     candidates: 'Live Candidates',
     security: 'Security Settings',
     results: 'Results',
+    'question-setup': 'Question Setup',
     settings: 'Settings',
   };
   document.getElementById('pageTitle').textContent = titles[page] || page;
@@ -2093,6 +2335,7 @@ function navigate(page) {
   if (page === 'candidates') renderCandidatesTable();
   if (page === 'security') renderSecurityToggles();
   if (page === 'results') renderResults();
+  if (page === 'question-setup') renderQuestionBank();
   if (page === 'dashboard') setTimeout(drawChart, 50);
 
   // Close mobile sidebar
@@ -2150,6 +2393,28 @@ function initModalOverlayClose() {
       document.getElementById('notifPanel').classList.remove('open');
     }
   });
+}
+
+/* ══════════════════════════════════════════
+   CUSTOM COURSE TOGGLE
+══════════════════════════════════════════ */
+function toggleCustomCourse(select) {
+  const customInput = document.getElementById('newAssessCourseCustom');
+  if (select.value === 'custom') {
+    customInput.style.display = 'block';
+    customInput.focus();
+  } else {
+    customInput.style.display = 'none';
+    customInput.value = '';
+  }
+}
+
+function updateCustomCourse() {
+  const select = document.getElementById('newAssessCourse');
+  const customInput = document.getElementById('newAssessCourseCustom');
+  if (customInput.value.trim()) {
+    select.value = 'custom';
+  }
 }
 
 /* ══════════════════════════════════════════
@@ -2436,8 +2701,7 @@ function renderAssessmentsGrid() {
         </div>
       </div>
       <div class="ac-actions">
-        <button class="ac-action-btn primary" onclick="openQuestionManager('${a.id}')">Questions</button>
-        <button class="ac-action-btn" onclick="editAssessment('${a.id}')">Edit</button>
+        <button class="ac-action-btn primary" onclick="editAssessment('${a.id}')">Edit</button>
         ${a.status === 'draft' ? `<button class="ac-action-btn primary" onclick="publishAssessment('${a.id}')">Publish</button>` : ''}
         ${a.status === 'published' ? `<button class="ac-action-btn" onclick="archiveAssessment('${a.id}')">Archive</button>` : ''}
         <button class="ac-action-btn danger" onclick="deleteAssessment('${a.id}')">Delete</button>
@@ -2469,7 +2733,19 @@ function editAssessment(id) {
   const a = State.assessments.find(x => x.id === id);
   if (!a) return;
   document.getElementById('newAssessName').value = a.name;
-  document.getElementById('newAssessCourse').value = a.course;
+  
+  const courseSelect = document.getElementById('newAssessCourse');
+  const predefinedCourses = ['Data Science', 'Web Development', 'Cybersecurity', 'Machine Learning'];
+  if (predefinedCourses.includes(a.course)) {
+    courseSelect.value = a.course;
+    document.getElementById('newAssessCourseCustom').style.display = 'none';
+    document.getElementById('newAssessCourseCustom').value = '';
+  } else {
+    courseSelect.value = 'custom';
+    document.getElementById('newAssessCourseCustom').style.display = 'block';
+    document.getElementById('newAssessCourseCustom').value = a.course;
+  }
+  
   document.getElementById('newAssessDuration').value = a.duration;
   document.getElementById('newAssessPass').value = a.passMarks;
   document.getElementById('newAssessDesc').value = a.description;
@@ -2490,6 +2766,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function saveAssessment(status) {
   const name = document.getElementById('newAssessName').value.trim();
   const course = document.getElementById('newAssessCourse').value;
+  const customCourse = document.getElementById('newAssessCourseCustom').value.trim();
   const duration = parseInt(document.getElementById('newAssessDuration').value);
   const passMarks = parseInt(document.getElementById('newAssessPass').value) || 60;
   const startVal = document.getElementById('newAssessStart').value;
@@ -2497,15 +2774,17 @@ function saveAssessment(status) {
   const description = document.getElementById('newAssessDesc').value.trim();
   const instructions = document.getElementById('newAssessInstr').value.trim();
 
+  const finalCourse = course === 'custom' ? customCourse : course;
   if (!name) { showToast('Assessment name is required', 'error'); return; }
-  if (!course) { showToast('Please select a course', 'error'); return; }
+  if (!finalCourse) { showToast('Please select or enter a course', 'error'); return; }
+  if (course === 'custom' && !customCourse) { showToast('Please enter a custom course name', 'error'); return; }
   if (!duration || duration < 1) { showToast('Please enter a valid duration', 'error'); return; }
   if (status === 'published' && (!startVal || !endVal)) { showToast('Start and end date are required to publish', 'error'); return; }
 
   const newAssess = {
     id: `ASSESS-${1000 + State.assessments.length}`,
     name,
-    course,
+    course: finalCourse,
     duration,
     passMarks,
     status,
@@ -2522,7 +2801,6 @@ function saveAssessment(status) {
   clearAssessmentForm();
   showToast(`Assessment ${status === 'published' ? 'published' : 'saved as draft'} successfully`, 'success');
 
-  // Add notification
   State.notifications.unshift({
     type: 'info',
     title: 'New Assessment Created',
@@ -2535,204 +2813,251 @@ function saveAssessment(status) {
 }
 
 function clearAssessmentForm() {
-  ['newAssessName','newAssessDuration','newAssessDesc','newAssessInstr'].forEach(id => {
+  ['newAssessName','newAssessDuration','newAssessDesc','newAssessInstr','newAssessCourseCustom'].forEach(id => {
     document.getElementById(id).value = '';
   });
   document.getElementById('newAssessCourse').value = '';
   document.getElementById('newAssessPass').value = '60';
   document.getElementById('newAssessStart').value = '';
   document.getElementById('newAssessEnd').value = '';
+  document.getElementById('newAssessCourseCustom').style.display = 'none';
   document.querySelector('#createAssessmentModal .modal-title').textContent = 'Create Assessment';
 }
 
 /* ══════════════════════════════════════════
-   QUESTION MANAGER
+   QUESTION BANK FUNCTIONS
 ══════════════════════════════════════════ */
-function openQuestionManager(assessId) {
-  State.currentAssessmentId = assessId;
-  const assess = State.assessments.find(a => a.id === assessId);
-  document.getElementById('questionModalTitle').textContent = assess ? assess.name : assessId;
+function renderQuestionBank() {
+  const filterType = document.getElementById('questionFilter').value;
+  const filterAssessment = document.getElementById('questionAssessmentFilter').value;
+  
+  // Populate assessment filter
+  const assessSelect = document.getElementById('questionAssessmentFilter');
+  assessSelect.innerHTML = '<option value="all">All Assessments</option>';
+  State.assessments.forEach(a => {
+    assessSelect.innerHTML += `<option value="${a.id}">${a.name}</option>`;
+  });
+  assessSelect.value = filterAssessment;
 
-  if (!State.questions[assessId]) State.questions[assessId] = [];
-  renderQuestionList();
-  openModal('questionModal');
+  let questions = State.questionBank;
+  if (filterType !== 'all') {
+    questions = questions.filter(q => q.type === filterType);
+  }
+  if (filterAssessment !== 'all') {
+    questions = questions.filter(q => q.assessmentId === filterAssessment);
+  }
+
+  const tbody = document.getElementById('questionTable');
+  const countLabel = document.getElementById('questionCountLabel');
+  
+  countLabel.textContent = `${questions.length} questions available`;
+
+  tbody.innerHTML = questions.map((q, i) => {
+    const assess = State.assessments.find(a => a.id === q.assessmentId);
+    const typeLabel = q.type === 'mcq' ? 'Multiple Choice' : 'Short Answer';
+    return `
+      <tr>
+        <td>${i + 1}</td>
+        <td>${q.text.length > 50 ? q.text.slice(0, 50) + '…' : q.text}</td>
+        <td><span class="badge badge-primary">${typeLabel}</span></td>
+        <td>${assess ? assess.name : 'Unknown'}</td>
+        <td>${q.marks}</td>
+        <td>
+          <div style="display:flex;gap:4px">
+            <button class="ac-action-btn" onclick="editQuestion('${q.id}')">Edit</button>
+            <button class="ac-action-btn danger" onclick="deleteQuestionFromBank('${q.id}')">Delete</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('') || '<tr><td colspan="6" style="text-align:center;color:var(--text-secondary);padding:24px;">No questions found. Create your first question!</td></tr>';
 }
 
-function renderQuestionList() {
-  const id = State.currentAssessmentId;
-  const qs = State.questions[id] || [];
-  const list = document.getElementById('qList');
-  const countEl = document.getElementById('qCount');
+// Filter listeners
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('questionFilter').addEventListener('change', renderQuestionBank);
+  document.getElementById('questionAssessmentFilter').addEventListener('change', renderQuestionBank);
+});
 
-  countEl.textContent = `${qs.length} Question${qs.length !== 1 ? 's' : ''}`;
-
-  list.innerHTML = qs.map((q, i) => `
-    <div class="q-list-item ${q.id === State._activeQId ? 'active' : ''}" onclick="selectQuestion('${q.id}')">
-      <div class="q-list-item-num">Q${i + 1}</div>
-      <div class="q-list-item-text">${q.text || 'Untitled question'}</div>
-      <div class="q-list-item-type">${q.type === 'mcq' ? 'Multiple Choice' : 'Short Answer'} · ${q.marks} mark${q.marks !== 1 ? 's' : ''}</div>
-    </div>
-  `).join('') || '';
-
-  if (qs.length === 0) {
-    document.getElementById('qEditor').innerHTML = `
-      <div class="q-editor-placeholder">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="6" width="32" height="28" rx="4" stroke="#D8E1EC" stroke-width="2"/><path d="M12 14h16M12 20h16M12 26h8" stroke="#D8E1EC" stroke-width="2" stroke-linecap="round"/></svg>
-        <p>Select a question or add a new one</p>
-      </div>`;
+function toggleQuestionOptions(select) {
+  const mcqContainer = document.getElementById('mcqOptionsContainer');
+  const shortContainer = document.getElementById('shortAnswerContainer');
+  if (select.value === 'mcq') {
+    mcqContainer.style.display = 'block';
+    shortContainer.style.display = 'none';
+  } else {
+    mcqContainer.style.display = 'none';
+    shortContainer.style.display = 'block';
   }
 }
 
-function selectQuestion(qId) {
-  const id = State.currentAssessmentId;
-  const q = (State.questions[id] || []).find(x => x.id === qId);
-  if (!q) return;
-  State._activeQId = qId;
-
-  // Highlight in list
-  document.querySelectorAll('.q-list-item').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.q-list-item').forEach(el => {
-    if (el.onclick && el.onclick.toString().includes(qId)) el.classList.add('active');
-  });
-  renderQuestionList();
-  renderQuestionEditor(q);
+function addNewQuestionOption() {
+  const container = document.getElementById('newQuestionOptions');
+  const index = container.children.length;
+  const row = document.createElement('div');
+  row.className = 'q-option-row';
+  row.innerHTML = `
+    <input type="radio" name="correct-answer" value="${index}" />
+    <input class="input q-option-input" type="text" placeholder="Option ${String.fromCharCode(65 + index)}" value="Option ${String.fromCharCode(65 + index)}" />
+    <button class="q-option-delete" onclick="this.parentElement.remove()" title="Remove option">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  `;
+  container.appendChild(row);
 }
 
-function renderQuestionEditor(q) {
-  const editor = document.getElementById('qEditor');
-  const isMCQ = q.type === 'mcq';
+function saveQuestionToBank() {
+  const assessmentId = document.getElementById('questionAssessmentSelect').value;
+  const type = document.getElementById('questionTypeSelect').value;
+  const text = document.getElementById('questionText').value.trim();
+  const marks = parseInt(document.getElementById('questionMarks').value) || 2;
 
-  editor.innerHTML = `
-    <div class="q-form">
-      <div class="q-form-title">Edit Question</div>
+  if (!assessmentId) { showToast('Please select an assessment', 'error'); return; }
+  if (!text) { showToast('Please enter question text', 'error'); return; }
 
-      <div class="form-row">
-        <label class="field-label">Question Type</label>
-        <select class="select-input full-width" onchange="changeQType('${q.id}', this.value)">
-          <option value="mcq" ${isMCQ ? 'selected' : ''}>Multiple Choice</option>
-          <option value="short" ${!isMCQ ? 'selected' : ''}>Short Answer</option>
-        </select>
-      </div>
+  let options = [];
+  let correct = null;
 
-      <div class="form-row">
-        <label class="field-label">Question Text *</label>
-        <textarea class="input textarea" rows="3" onchange="updateQ('${q.id}','text',this.value)">${q.text}</textarea>
-      </div>
+  if (type === 'mcq') {
+    const optionInputs = document.querySelectorAll('#newQuestionOptions .q-option-input');
+    const radioButtons = document.querySelectorAll('#newQuestionOptions input[type="radio"]');
+    options = Array.from(optionInputs).map(inp => inp.value.trim());
+    if (options.some(opt => !opt)) { showToast('Please fill all options', 'error'); return; }
+    radioButtons.forEach((radio, i) => {
+      if (radio.checked) correct = i;
+    });
+    if (correct === null) correct = 0;
+  }
 
-      <div class="form-row">
-        <label class="field-label">Marks</label>
-        <input class="input" type="number" min="1" max="20" value="${q.marks}" onchange="updateQ('${q.id}','marks',parseInt(this.value))" style="max-width:80px" />
-      </div>
+  const newQuestion = {
+    id: `q${Date.now()}`,
+    assessmentId,
+    type,
+    text,
+    options,
+    correct,
+    marks,
+  };
 
-      ${isMCQ ? `
-        <div class="form-row">
-          <label class="field-label">Options (select correct answer)</label>
-          <div class="q-options-list" id="optionsList-${q.id}">
-            ${q.options.map((opt, i) => `
-              <div class="q-option-row">
-                <input type="radio" name="correct-${q.id}" ${q.correct === i ? 'checked' : ''} onchange="updateQ('${q.id}','correct',${i})" />
-                <input class="input q-option-input" type="text" value="${opt}" placeholder="Option ${i+1}" onchange="updateOption('${q.id}',${i},this.value)" />
-                <button class="q-option-delete" onclick="deleteOption('${q.id}',${i})" title="Remove option">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </button>
-              </div>
-            `).join('')}
-          </div>
-          <button class="add-option-btn" onclick="addOption('${q.id}')">+ Add Option</button>
-        </div>
-      ` : `
-        <div class="form-row">
-          <label class="field-label">Model Answer (optional)</label>
-          <textarea class="input textarea" placeholder="Enter expected answer for grading reference…" onchange="updateQ('${q.id}','modelAnswer',this.value)">${q.modelAnswer || ''}</textarea>
-        </div>
-      `}
+  State.questionBank.push(newQuestion);
+  closeModal('createQuestionModal');
+  clearQuestionForm();
+  renderQuestionBank();
+  showToast('Question added successfully!', 'success');
+}
 
-      <div style="display:flex;gap:8px;margin-top:8px">
-        <button class="btn btn-primary btn-sm" onclick="saveQuestion('${q.id}')">Save Question</button>
-        <button class="btn btn-ghost btn-sm" onclick="duplicateQuestion('${q.id}')">Duplicate</button>
-        <button class="btn btn-danger btn-sm" onclick="deleteQuestion('${q.id}')">Delete</button>
-      </div>
+function clearQuestionForm() {
+  document.getElementById('questionText').value = '';
+  document.getElementById('questionMarks').value = '2';
+  document.getElementById('questionTypeSelect').value = 'mcq';
+  document.getElementById('shortAnswerContainer').style.display = 'none';
+  document.getElementById('mcqOptionsContainer').style.display = 'block';
+  
+  const container = document.getElementById('newQuestionOptions');
+  container.innerHTML = `
+    <div class="q-option-row">
+      <input type="radio" name="correct-answer" value="0" checked />
+      <input class="input q-option-input" type="text" placeholder="Option A" value="Option A" />
+    </div>
+    <div class="q-option-row">
+      <input type="radio" name="correct-answer" value="1" />
+      <input class="input q-option-input" type="text" placeholder="Option B" value="Option B" />
+    </div>
+    <div class="q-option-row">
+      <input type="radio" name="correct-answer" value="2" />
+      <input class="input q-option-input" type="text" placeholder="Option C" value="Option C" />
+    </div>
+    <div class="q-option-row">
+      <input type="radio" name="correct-answer" value="3" />
+      <input class="input q-option-input" type="text" placeholder="Option D" value="Option D" />
     </div>
   `;
+  document.getElementById('questionModelAnswer').value = '';
 }
 
-function updateQ(qId, field, value) {
-  const q = (State.questions[State.currentAssessmentId] || []).find(x => x.id === qId);
-  if (q) q[field] = value;
-}
-
-function updateOption(qId, idx, value) {
-  const q = (State.questions[State.currentAssessmentId] || []).find(x => x.id === qId);
-  if (q && q.options) q.options[idx] = value;
-}
-
-function addOption(qId) {
-  const q = (State.questions[State.currentAssessmentId] || []).find(x => x.id === qId);
-  if (q && q.options) { q.options.push(''); renderQuestionEditor(q); renderQuestionList(); }
-}
-
-function deleteOption(qId, idx) {
-  const q = (State.questions[State.currentAssessmentId] || []).find(x => x.id === qId);
-  if (q && q.options && q.options.length > 2) {
-    q.options.splice(idx, 1);
-    if (q.correct >= idx) q.correct = Math.max(0, q.correct - 1);
-    renderQuestionEditor(q);
+function editQuestion(qId) {
+  const q = State.questionBank.find(x => x.id === qId);
+  if (!q) return;
+  
+  // Populate the modal
+  const select = document.getElementById('questionAssessmentSelect');
+  select.value = q.assessmentId;
+  document.getElementById('questionTypeSelect').value = q.type;
+  document.getElementById('questionText').value = q.text;
+  document.getElementById('questionMarks').value = q.marks;
+  
+  toggleQuestionOptions(document.getElementById('questionTypeSelect'));
+  
+  if (q.type === 'mcq') {
+    const container = document.getElementById('newQuestionOptions');
+    container.innerHTML = q.options.map((opt, i) => `
+      <div class="q-option-row">
+        <input type="radio" name="correct-answer" value="${i}" ${q.correct === i ? 'checked' : ''} />
+        <input class="input q-option-input" type="text" placeholder="Option ${String.fromCharCode(65 + i)}" value="${opt}" />
+        <button class="q-option-delete" onclick="this.parentElement.remove()" title="Remove option">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    `).join('');
   } else {
-    showToast('Minimum 2 options required', 'warning');
+    document.getElementById('questionModelAnswer').value = q.modelAnswer || '';
   }
-}
+  
+  openModal('createQuestionModal');
+  document.querySelector('#createQuestionModal .modal-title').textContent = 'Edit Question';
+  
+  // Override save to update instead of create
+  const originalSave = window.saveQuestionToBank;
+  window.saveQuestionToBank = function() {
+    const assessmentId = document.getElementById('questionAssessmentSelect').value;
+    const type = document.getElementById('questionTypeSelect').value;
+    const text = document.getElementById('questionText').value.trim();
+    const marks = parseInt(document.getElementById('questionMarks').value) || 2;
 
-function changeQType(qId, type) {
-  const q = (State.questions[State.currentAssessmentId] || []).find(x => x.id === qId);
-  if (q) {
-    q.type = type;
-    if (type === 'mcq' && !q.options.length) q.options = ['Option A','Option B','Option C','Option D'];
-    renderQuestionEditor(q);
-    renderQuestionList();
-  }
-}
+    if (!assessmentId) { showToast('Please select an assessment', 'error'); return; }
+    if (!text) { showToast('Please enter question text', 'error'); return; }
 
-function saveQuestion(qId) {
-  showToast('Question saved', 'success');
-  renderQuestionList();
-}
+    let options = [];
+    let correct = null;
 
-function duplicateQuestion(qId) {
-  const id = State.currentAssessmentId;
-  const q = (State.questions[id] || []).find(x => x.id === qId);
-  if (q) {
-    const clone = JSON.parse(JSON.stringify(q));
-    clone.id = 'q' + Date.now();
-    clone.text = clone.text + ' (copy)';
-    State.questions[id].push(clone);
-    renderQuestionList();
-    showToast('Question duplicated', 'info');
-  }
-}
+    if (type === 'mcq') {
+      const optionInputs = document.querySelectorAll('#newQuestionOptions .q-option-input');
+      const radioButtons = document.querySelectorAll('#newQuestionOptions input[type="radio"]');
+      options = Array.from(optionInputs).map(inp => inp.value.trim());
+      if (options.some(opt => !opt)) { showToast('Please fill all options', 'error'); return; }
+      radioButtons.forEach((radio, i) => {
+        if (radio.checked) correct = i;
+      });
+      if (correct === null) correct = 0;
+    }
 
-function deleteQuestion(qId) {
-  const id = State.currentAssessmentId;
-  State.questions[id] = (State.questions[id] || []).filter(q => q.id !== qId);
-  State._activeQId = null;
-  renderQuestionList();
-  showToast('Question deleted', 'info');
-}
+    const index = State.questionBank.findIndex(x => x.id === qId);
+    if (index !== -1) {
+      State.questionBank[index] = {
+        ...State.questionBank[index],
+        assessmentId,
+        type,
+        text,
+        options,
+        correct,
+        marks,
+      };
+    }
 
-function addNewQuestion() {
-  const id = State.currentAssessmentId;
-  if (!State.questions[id]) State.questions[id] = [];
-  const newQ = {
-    id: 'q' + Date.now(),
-    type: 'mcq',
-    text: '',
-    options: ['Option A','Option B','Option C','Option D'],
-    correct: 0,
-    marks: 2,
+    closeModal('createQuestionModal');
+    clearQuestionForm();
+    renderQuestionBank();
+    showToast('Question updated successfully!', 'success');
+    window.saveQuestionToBank = originalSave;
   };
-  State.questions[id].push(newQ);
-  State._activeQId = newQ.id;
-  renderQuestionList();
-  renderQuestionEditor(newQ);
+}
+
+function deleteQuestionFromBank(qId) {
+  if (confirm('Delete this question?')) {
+    State.questionBank = State.questionBank.filter(q => q.id !== qId);
+    renderQuestionBank();
+    showToast('Question deleted', 'error');
+  }
 }
 
 /* ══════════════════════════════════════════
@@ -2964,20 +3289,18 @@ function forceSubmitCandidate(id) {
 }
 
 /* ══════════════════════════════════════════
-   LIVE SIMULATOR — auto-updates candidate data
+   LIVE SIMULATOR
 ══════════════════════════════════════════ */
 function startLiveSimulator() {
   State.liveInterval = setInterval(() => {
     State.candidates.forEach(c => {
       if (c.submitted) return;
 
-      // Advance progress
       if (c.progress < 100) {
         c.progress = Math.min(100, c.progress + randInt(0, 3));
         c.currentQ = Math.min(c.totalQ, Math.ceil(c.progress / 100 * c.totalQ));
       }
 
-      // Random violation
       if (Math.random() < 0.02) {
         c.violations++;
         c.violationLog.push(randItem(VIOLATION_TYPES));
@@ -2993,14 +3316,10 @@ function startLiveSimulator() {
         }
       }
 
-      // Fullscreen toggle
       if (Math.random() < 0.01) c.fullscreen = !c.fullscreen;
-
-      // Network fluctuation
       if (Math.random() < 0.05) c.network = randItem(NETWORKS);
     });
 
-    // Update live counter
     const online = State.candidates.filter(c => !c.submitted).length;
     const alerts = State.candidates.filter(c => c.flagged).length;
     const submitted = State.candidates.filter(c => c.submitted).length;
@@ -3009,9 +3328,7 @@ function startLiveSimulator() {
     document.getElementById('alertCount').textContent = alerts;
     document.getElementById('submittedCount').textContent = submitted;
     document.querySelector('.counter-live').textContent = online;
-    document.getElementById('liveCount').textContent = online;
 
-    // Re-render if on candidates page
     if (State.currentPage === 'candidates') renderCandidatesTable();
 
   }, 3000);
@@ -3161,14 +3478,11 @@ function renderResults() {
   const data = RESULTS_DATA[key];
   if (!data) return;
 
-  // Summary cards
-  const cards = document.querySelectorAll('.result-stat-val');
-  if (cards[0]) cards[0].textContent = data.avg + '%';
-  if (cards[1]) cards[1].textContent = data.high + '%';
-  if (cards[2]) cards[2].textContent = data.passRate + '%';
-  if (cards[3]) cards[3].textContent = data.failRate + '%';
+  document.getElementById('resAvg').textContent = data.avg + '%';
+  document.getElementById('resHigh').textContent = data.high + '%';
+  document.getElementById('resPassRate').textContent = data.passRate + '%';
+  document.getElementById('resFailRate').textContent = data.failRate + '%';
 
-  // Rankings
   const rankings = document.getElementById('rankingsTable');
   rankings.innerHTML = data.rankings.map((r, i) => {
     const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : 'rank-other';
@@ -3183,7 +3497,6 @@ function renderResults() {
     `;
   }).join('');
 
-  // Question analysis
   const analysis = document.getElementById('questionAnalysis');
   analysis.innerHTML = data.questions.map(q => {
     const cls = q.pct >= 75 ? 'high' : q.pct >= 50 ? 'mid' : 'low';
@@ -3199,10 +3512,13 @@ function renderResults() {
       </div>
     `;
   }).join('');
-
-  // Bind select change
-  select.onchange = renderResults;
 }
+
+// Result select change handler
+document.addEventListener('DOMContentLoaded', () => {
+  const select = document.getElementById('resultAssessmentSelect');
+  if (select) select.addEventListener('change', renderResults);
+});
 
 /* ══════════════════════════════════════════
    SETTINGS TABS
@@ -3217,7 +3533,6 @@ function initSettingsTabs() {
       if (section) {
         section.classList.add('active');
       } else {
-        // Create placeholder for unbuilt tabs
         const body = document.querySelector('.settings-body');
         body.querySelectorAll('.settings-section').forEach(s => s.classList.remove('active'));
         const placeholder = document.createElement('div');
@@ -3229,7 +3544,6 @@ function initSettingsTabs() {
             <div style="color:var(--text-secondary);font-size:13px">This section is coming soon.</div>
           </div>`;
         body.appendChild(placeholder);
-        setTimeout(() => placeholder.remove(), 0);
         const gen = document.getElementById('settings-general');
         if (gen) gen.after(placeholder);
         placeholder.classList.add('active');
@@ -3254,7 +3568,6 @@ function initSearch() {
     }, 300);
   });
 
-  // CMD+K / CTRL+K focus
   document.addEventListener('keydown', e => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
       e.preventDefault();
@@ -3265,11 +3578,9 @@ function initSearch() {
 }
 
 function handleSearch(query) {
-  // Search assessments
   const matchAssess = State.assessments.filter(a =>
     a.name.toLowerCase().includes(query) || a.course.toLowerCase().includes(query)
   );
-  // Search registrations
   const matchRegs = State.registrations.filter(r =>
     r.id.toLowerCase().includes(query) || r.name.toLowerCase().includes(query)
   );
@@ -3286,7 +3597,7 @@ function handleSearch(query) {
 }
 
 /* ══════════════════════════════════════════
-   DRAG & DROP UPLOAD ZONE
+   UPLOAD ZONE
 ══════════════════════════════════════════ */
 function initUploadZone() {
   const zone = document.getElementById('uploadZone');
@@ -3313,7 +3624,7 @@ function initUploadZone() {
 }
 
 /* ══════════════════════════════════════════
-   WINDOW RESIZE — Redraw chart
+   WINDOW RESIZE
 ══════════════════════════════════════════ */
 function initResizeObserver() {
   let resizeTimer;
@@ -3326,7 +3637,19 @@ function initResizeObserver() {
 }
 
 /* ══════════════════════════════════════════
-   INIT — Entry point
+   POPULATE ASSESSMENT SELECT IN MODAL
+══════════════════════════════════════════ */
+function populateAssessmentSelect() {
+  const select = document.getElementById('questionAssessmentSelect');
+  if (!select) return;
+  select.innerHTML = '<option value="">Select Assessment…</option>';
+  State.assessments.forEach(a => {
+    select.innerHTML += `<option value="${a.id}">${a.name}</option>`;
+  });
+}
+
+/* ══════════════════════════════════════════
+   INIT
 ══════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
   seedData();
@@ -3336,16 +3659,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initSearch();
   initSettingsTabs();
   initResizeObserver();
+  populateAssessmentSelect();
 
-  // Render dashboard content
   renderUpcomingExams();
   renderRecentActivity();
   setTimeout(drawChart, 100);
 
-  // Start live candidate simulator
   startLiveSimulator();
 
-  // Upload zone (lazy — modal may not be in DOM immediately)
   document.getElementById('notifBtn').addEventListener('click', initUploadZone, { once: true });
   initUploadZone();
 
