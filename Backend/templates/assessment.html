@@ -656,25 +656,25 @@
         </div>
         <div class="form-row full" id="mcqOptionsContainer">
           <label class="field-label">Answer Options</label>
-          <div name="answer" class="q-options-list" id="newQuestionOptions">
+          <div class="q-options-list" id="newQuestionOptions">
             <div class="q-option-row">
-              <input class="input q-option-input" type="text" placeholder="Option A" value="Option A" data-option-index="0" />
+              <input name="questionA" class="input q-option-input" type="text" placeholder="Option A" value="Option A" data-option-index="0" />
             </div>
             <div class="q-option-row">
-              <input class="input q-option-input" type="text" placeholder="Option B" value="Option B" data-option-index="1" />
+              <input name="questionB" class="input q-option-input" type="text" placeholder="Option B" value="Option B" data-option-index="1" />
             </div>
             <div class="q-option-row">
-              <input class="input q-option-input" type="text" placeholder="Option C" value="Option C" data-option-index="2" />
+              <input name="questionC" class="input q-option-input" type="text" placeholder="Option C" value="Option C" data-option-index="2" />
             </div>
             <div class="q-option-row">
-              <input class="input q-option-input" type="text" placeholder="Option D" value="Option D" data-option-index="3" />
+              <input name="questionD" class="input q-option-input" type="text" placeholder="Option D" value="Option D" data-option-index="3" />
             </div>
           </div>
           <button class="add-option-btn" onclick="addNewQuestionOption()">+ Add Option</button>
           <!-- New dropdown for selecting correct answer -->
           <div style="margin-top: 16px;">
             <label class="field-label">Correct Answer</label>
-            <select class="select-input full-width" id="correctAnswerSelect">
+            <select name="correctAnswer" class="select-input full-width" id="correctAnswerSelect">
               <option value="0">Option A</option>
               <option value="1">Option B</option>
               <option value="2">Option C</option>
