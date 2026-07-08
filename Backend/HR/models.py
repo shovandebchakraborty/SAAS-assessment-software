@@ -16,3 +16,39 @@ class Assessment(models.Model):
 
     def __str__(self):
         return f"{self.examName} | {self.examTopic} | {self.duration} Minutes"
+
+class QuestionSetup(models.Model):
+    QUESTION_TYPE = (
+        ('MCQ','Multiple Question'),
+        ('SAQ','Short Question'),
+    )
+    ANSWER_CHOICE = (
+        ('A','Option A'),
+        ('B','Option B'),
+        ('C','Option C'),
+        ('D','Option D'),
+    )
+    questionId = models.AutoField(primary_key=True)
+    assessment = models.ForeignKey(Assessment,
+                                   on_delete=models.CASCADE, 
+                                   related_name="assessment_questions")
+    questionType = models.CharField(max_length=50, choices=QUESTION_TYPE)
+    questionName = models.TextField()
+    marks = models.PositiveIntegerField(default=1)
+    optionA = models.CharField(max_length=255, blank=True, null=True)
+    optionB = models.CharField(max_length=255, blank=True, null=True)
+    optionC = models.CharField(max_length=255, blank=True, null=True)
+    optionD = models.CharField(max_length=255, blank=True, null=True)
+
+    correctAnswer = models.CharField(max_length=2,
+                                     choices=ANSWER_CHOICE,
+                                     blank=True,
+                                     null=True)
+    textAnswer = models.TextField(blank=True,null=True)
+    
+    class Meta:
+        db_table = "assessment_questions"
+        ordering = ["questionId"]
+
+    def __str__(self):
+        return f"{self.questionId} - {self.questionName[:50]}"
