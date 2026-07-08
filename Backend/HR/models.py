@@ -18,10 +18,12 @@ class Assessment(models.Model):
         return f"{self.examName} | {self.examTopic} | {self.duration} Minutes"
 
 class QuestionSetup(models.Model):
+    # Question type for select question making type
     QUESTION_TYPE = (
         ('MCQ','Multiple Question'),
         ('SAQ','Short Question'),
     )
+     # Answer selection
     ANSWER_CHOICE = (
         ('A','Option A'),
         ('B','Option B'),
@@ -29,9 +31,11 @@ class QuestionSetup(models.Model):
         ('D','Option D'),
     )
     questionId = models.AutoField(primary_key=True)
+     # this part is connect the 'Assessment' table to 'QuestionSetup' table
     assessment = models.ForeignKey(Assessment,
                                    on_delete=models.CASCADE, 
                                    related_name="assessment_questions")
+    
     questionType = models.CharField(max_length=50, choices=QUESTION_TYPE)
     questionName = models.TextField()
     marks = models.PositiveIntegerField(default=1)
@@ -40,10 +44,13 @@ class QuestionSetup(models.Model):
     optionC = models.CharField(max_length=255, blank=True, null=True)
     optionD = models.CharField(max_length=255, blank=True, null=True)
 
+     # This is for MCQ ANSWER set up
     correctAnswer = models.CharField(max_length=2,
                                      choices=ANSWER_CHOICE,
                                      blank=True,
                                      null=True)
+
+    # This is for SAQ answer setup
     textAnswer = models.TextField(blank=True,null=True)
     
     class Meta:
