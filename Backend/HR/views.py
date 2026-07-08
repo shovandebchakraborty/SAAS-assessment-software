@@ -23,7 +23,21 @@ def AssessmentCreate(request):
         endExam =  modal_data.get('endExam')
         description = modal_data.get('description')
         instructions = modal_data.get('instructions')
+
+        #Question Create
+        assesmentChoice = modal_data.get('assesmentChoice')
+        questionType = modal_data.get('questionType')
+        Question = modal_data.get('Question')
+        marks = modal_data.get('marks')
         
+        questionA = modal_data.get('questionA')
+        questionB = modal_data.get('questionB')
+        questionC = modal_data.get('questionC')
+        questionD = modal_data.get('questionD')
+        
+        correctAnswer = modal_data.get('correctAnswer')
+        textAnswer = modal_data.get('textAnswer')
+
         Assessment.objects.create(
             examName = examName,
             examTopic = examTopic,
@@ -39,8 +53,4 @@ def AssessmentCreate(request):
             "Assessment" : examName,
             "Message" : "Assessment Upload succesfully"
         })
-
-def QuestionMaking(request):
-    questionModel = json.loads(request.body)
-
-    
+        
