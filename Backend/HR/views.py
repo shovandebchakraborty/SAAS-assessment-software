@@ -15,6 +15,7 @@ def AssessmentCreate(request):
     if request.method != 'POST':
         return HttpResponse("<h2>Sorry! Its not POST method</h2>")
     else:
+        # Assessment Structure 
         examName = modal_data.get('examName')
         examTopic = modal_data.get('examTopic')
         examDuration = modal_data.get('examDuration')
@@ -38,6 +39,7 @@ def AssessmentCreate(request):
         correctAnswer = modal_data.get('correctAnswer')
         textAnswer = modal_data.get('textAnswer')
 
+        #This is for assessment structure creations
         Assessment.objects.create(
             examName = examName,
             examTopic = examTopic,
@@ -48,6 +50,21 @@ def AssessmentCreate(request):
             description = description,
             instruction = instructions
         )
+        # This is for Question storing
+        QuestionSetup.objects.create(
+            assessment = assesmentChoice,
+            questionType = questionType,
+            questionName = Question,
+            marks = marks,
+            optionA = questionA,
+            optionB = questionB,
+            optionC = questionC,
+            optionD = questionD,
+            correctAnswer = correctAnswer,
+            textAnswer = textAnswer
+        )
+
+        
         return JsonResponse({
             "status" : "Done",
             "Assessment" : examName,
